@@ -95,7 +95,7 @@ body.shinden-list #__next::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--bg-image), var(--tlo-obraz) var(--tlo-obraz-pozycja) / var(--tlo-obraz-rozmiar) no-repeat, var(--bg-solid);
+  background: linear-gradient(rgba(var(--bg-rgb), .88), rgba(var(--bg-rgb), .94)), var(--tlo-obraz) var(--tlo-obraz-pozycja) / var(--tlo-obraz-rozmiar) no-repeat, var(--bg-solid);
 }
 body.shinden-list * { font-family: var(--font) !important; }
 body.shinden-list h1, body.shinden-list h2, body.shinden-list h3,
