@@ -18,7 +18,8 @@
      ================================================================ */
   --baner: url("https://img10.joyreactor.com/pics/post/full/anime-fandoms-Spice-and-Wolf-208893.jpeg");
   --baner-pos: center;             /* poziome położenie kadru banera */
-  --baner-pos-y: top;              /* pionowe ustawienie kadru: top, center lub bottom */
+  --baner-pos-y: 0%;               /* pionowo: 0% = góra, 50% = środek, 100% = dół */
+  --baner-przesuniecie-y: 0%;       /* dodatkowa korekta pionowa: np. -5% w górę, 5% w dół */
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
@@ -533,7 +534,7 @@ body.shinden-list .hero-image-container::before {
   background:
     var(--lina) left bottom / 28px 14px repeat-x,
     var(--hero-overlay),
-    var(--baner) var(--baner-pos) var(--baner-pos-y) / var(--bw) auto no-repeat;
+    var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat;
 }
 /* dół banera to lina na burcie statku (warstwa w ::before), pod nią cień */
 body.shinden-list .hero-image-container {
@@ -667,7 +668,7 @@ body.shinden-list .header-wrapper::after {
     background:
       var(--lina) left bottom / 28px 14px repeat-x,
       var(--hero-overlay),
-      var(--baner) var(--baner-pos) var(--baner-pos-y) / var(--bw) auto no-repeat;
+      var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat;
   }
   /* na telefonie nogi zwisają w pustym miejscu nad wyszukiwarką */
   body.shinden-list { --hero-h: var(--hero-h-mobile); --postac-h: 230px; --postac-x: calc(100% - 165px); --postac-nogi-na-liscie: 0px; --tile-min: 140px; }
