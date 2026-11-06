@@ -1226,7 +1226,7 @@ body.shinden-list .layout-wrapper::before {
   to   { background-position: 160px -320px, -200px -170px; }
 }
 
-/* ---------- kursor: serce (zwykły) i złote serce (nad klikalnymi elementami) ---------- */
+/* ---------- kursor: złoty kłos i medalion z kłosem ---------- */
 body.shinden-list,
 body.shinden-list * {
   /* Złoty kłos — spokojny kursor inspirowany motywem podróży i pszenicy */
