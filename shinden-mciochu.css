@@ -22,7 +22,7 @@
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
-  --tlo-obraz: none;               /* np. url("https://adres/obrazka.jpg") */
+  --tlo-obraz: url("https://images.cybersport.ru/images/og-jpg/plain/39/3941234d-0a6e-453b-bcba-b129581292c1.jpg"); /* tło strony */
   --tlo-obraz-pozycja: center;
   --tlo-obraz-rozmiar: cover;
   --postac: none;                  /* Holo przy banerze */
