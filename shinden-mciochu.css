@@ -18,6 +18,7 @@
      ================================================================ */
   --baner: url("https://img10.joyreactor.com/pics/post/full/anime-fandoms-Spice-and-Wolf-208893.jpeg");
   --baner-pos: center;             /* poziome położenie kadru banera */
+  --baner-przesuniecie-y: 45px;    /* PRZESUNIĘCIE GRAFIKI W DÓŁ: zwiększ np. do 70px */
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
@@ -530,7 +531,7 @@ body.shinden-list .hero-image-container::before {
   background:
     var(--lina) left bottom / 28px 14px repeat-x,
     var(--hero-overlay),
-    var(--baner) var(--baner-pos) calc(var(--hero-h) - var(--bw) / var(--baner-proporcje) * var(--baner-krawedz)) / var(--bw) auto no-repeat;
+    var(--baner) var(--baner-pos) calc(var(--hero-h) - var(--bw) / var(--baner-proporcje) * var(--baner-krawedz) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat;
 }
 /* dół banera to lina na burcie statku (warstwa w ::before), pod nią cień */
 body.shinden-list .hero-image-container {
