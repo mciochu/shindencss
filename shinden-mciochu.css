@@ -28,14 +28,14 @@
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
   --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
   --tlo-obraz-rozmiar: cover;
-  --postac: none;                  /* Holo przy banerze */
+  --postac: url("https://cdn.discordapp.com/attachments/685477357531955218/1568384841161117757/holo_postac.png?ex=6aef9fb5&is=6aee4e35&hm=c5d17a309dae8dd8c929b32a0e94d2d62868d8f640bfc8138fc2ec10aba25768&");                  /* Holo przy banerze */
   --postac-duza: none;           /* Holo przy lewej krawędzi dużego ekranu */
   --postac-prawa: none;          /* opcjonalna druga grafika */
-  --postac-siad: .63;
+  --postac-siad: .6;
   --postac-proporcje: .7111;
-  --postac-h: 400px;
+  --postac-h: 300px;
   --postac-nogi-na-liscie: 60px;
-  --postac-x: calc(50% - 200px);
+  --postac-x: calc(65% - 200px);
   --postac-uniesienie: 5px;
   --postac-maska: none;
   --postac-duza-maska: none;
