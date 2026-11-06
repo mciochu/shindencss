@@ -10,12 +10,21 @@
   --ksiega-anime: "Kronika podróży — Anime";
   --ksiega-manga: "Kronika podróży — Manga";
   --ksiega-novel: "Kronika podróży — Nowelki";
-  /* BANER: Holo w złotym polu — grafika z anime Spice and Wolf (2024). */
+  /* ================================================================
+     ŁATWA EDYCJA GRAFIK I BANERA — zmieniaj URL-e tylko w tym bloku.
+     Baner: podmień adres w url("..."). Kadr ustawisz niżej osobno.
+     Tło strony: wklej url("...") zamiast none; gradienty zostaną na wierzchu.
+     Postacie/dekoracje: none wyłącza daną grafikę.
+     ================================================================ */
   --baner: url("https://img10.joyreactor.com/pics/post/full/anime-fandoms-Spice-and-Wolf-208893.jpeg");
-  --baner-proporcje: 1.3333;
-  --baner-krawedz: 1.00;
+  --baner-pos: center;             /* poziome położenie kadru banera */
+  --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
+  --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
-  --postac: none;                /* Holo przy banerze */
+  --tlo-obraz: none;               /* np. url("https://adres/obrazka.jpg") */
+  --tlo-obraz-pozycja: center;
+  --tlo-obraz-rozmiar: cover;
+  --postac: none;                  /* Holo przy banerze */
   --postac-duza: none;           /* Holo przy lewej krawędzi dużego ekranu */
   --postac-prawa: none;          /* opcjonalna druga grafika */
   --postac-siad: .63;
@@ -49,7 +58,9 @@
   --panel: rgba(38, 39, 29, .94); --panel-solid: #26271d;
   --panel-blur: blur(10px); --input-bg: rgba(224, 208, 169, .055);
   --shadow: 0 14px 38px rgba(0,0,0,.24); --radius: 8px; --radius-sm: 5px;
-  --hero-h: 330px;
+  --hero-h-desktop: 330px;       /* wysokość banera na komputerze */
+  --hero-h-mobile: 230px;        /* wysokość banera na telefonie */
+  --hero-h: var(--hero-h-desktop);
   --hero-overlay: linear-gradient(90deg,rgba(var(--bg-rgb),.70) 0%,rgba(var(--bg-rgb),.36) 42%,rgba(var(--bg-rgb),.08) 78%),linear-gradient(to bottom,rgba(var(--bg-rgb),.16),transparent 28%,transparent 75%,rgba(var(--bg-rgb),.32));
   --tile-min: 165px; --tile-gap: 16px; --tile-ratio: auto; --tile-radius: 5px; --luk: 0px;
   --st-in-progress: #a9bd78; --st-completed: #d2b16f; --st-skip: #99958a;
@@ -83,7 +94,7 @@ body.shinden-list #__next::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--bg-image), var(--bg-solid);
+  background: var(--bg-image), var(--tlo-obraz) var(--tlo-obraz-pozycja) / var(--tlo-obraz-rozmiar) no-repeat, var(--bg-solid);
 }
 body.shinden-list * { font-family: var(--font) !important; }
 body.shinden-list h1, body.shinden-list h2, body.shinden-list h3,
@@ -519,7 +530,7 @@ body.shinden-list .hero-image-container::before {
   background:
     var(--lina) left bottom / 28px 14px repeat-x,
     var(--hero-overlay),
-    var(--baner) center calc(var(--hero-h) - var(--bw) / var(--baner-proporcje) * var(--baner-krawedz)) / var(--bw) auto no-repeat;
+    var(--baner) var(--baner-pos) calc(var(--hero-h) - var(--bw) / var(--baner-proporcje) * var(--baner-krawedz)) / var(--bw) auto no-repeat;
 }
 /* dół banera to lina na burcie statku (warstwa w ::before), pod nią cień */
 body.shinden-list .hero-image-container {
@@ -649,7 +660,7 @@ body.shinden-list .header-wrapper::after {
 }
 @media (max-width: 767px) {
   /* na telefonie nogi zwisają w pustym miejscu nad wyszukiwarką */
-  body.shinden-list { --hero-h: 260px; --postac-h: 230px; --postac-x: calc(100% - 165px); --postac-nogi-na-liscie: 0px; --tile-min: 140px; }
+  body.shinden-list { --hero-h: var(--hero-h-mobile); --postac-h: 230px; --postac-x: calc(100% - 165px); --postac-nogi-na-liscie: 0px; --tile-min: 140px; }
   body.shinden-list .header-wrapper::before { bottom: 104px; font-size: 9px; letter-spacing: .08em; padding: 4px 18px 3px; }
   body.shinden-list .header-wrapper::after { font-size: 60px; bottom: 32px; }
 }
@@ -2343,7 +2354,7 @@ body.shinden-list .sidebar-list-counter { font-size: 14px !important; }
 /* Pseudo-elementy postaci pozostają gotowe — pojawią się po wklejeniu URL-i w zmienne. */
 body.shinden-list::before,
 body.shinden-list .page-wrapper::before { display: none !important; }
-body.shinden-list .hero-image-container::before { background: var(--hero-overlay), var(--baner) center / cover no-repeat !important; }
+/* Nie nadpisujemy tu tła banera: skalowanie i kadr kontroluje blok przy linii 516. */
 body.shinden-list .hero-image-container { border-bottom: 1px solid var(--line) !important; box-shadow: 0 8px 28px rgba(0,0,0,.24) !important; }
 body.shinden-list .navigation-list-item a.is-active {
  color: var(--gold-light) !important;
@@ -2376,4 +2387,4 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowMobile-wrapper::before { border-radius: 3px !important; letter-spacing: .06em !important; text-shadow: none !important; }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-content:hover { background: linear-gradient(90deg,rgba(var(--accent-rgb),.16),rgba(var(--accent-rgb),.025)) !important; box-shadow: inset 2px 0 0 var(--gold) !important; }
 body.shinden-list .cellLink-link:hover, body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; }
-@media (max-width: 767px) { body.shinden-list { --hero-h: 230px; } body.shinden-list .view-content-wrapper { padding: 13px !important; } }
+@media (max-width: 767px) { body.shinden-list { --hero-h: var(--hero-h-mobile); } body.shinden-list .view-content-wrapper { padding: 13px !important; } }
