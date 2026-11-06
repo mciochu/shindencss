@@ -23,7 +23,9 @@
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
   --tlo-obraz: url("https://images.cybersport.ru/images/og-jpg/plain/39/3941234d-0a6e-453b-bcba-b129581292c1.jpg"); /* tło strony */
-  --tlo-obraz-pozycja: center;
+  --tlo-obraz-pozycja-x: center; /* poziomo: left, center, right lub procent */
+  --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
+  --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
   --tlo-obraz-rozmiar: cover;
   --postac: none;                  /* Holo przy banerze */
   --postac-duza: none;           /* Holo przy lewej krawędzi dużego ekranu */
@@ -95,7 +97,7 @@ body.shinden-list #__next::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(rgba(var(--bg-rgb), .88), rgba(var(--bg-rgb), .94)), var(--tlo-obraz) var(--tlo-obraz-pozycja) / var(--tlo-obraz-rozmiar) no-repeat, var(--bg-solid);
+  background: linear-gradient(rgba(var(--bg-rgb), .88), rgba(var(--bg-rgb), .94)), var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat, var(--bg-solid);
 }
 body.shinden-list * { font-family: var(--font) !important; }
 body.shinden-list h1, body.shinden-list h2, body.shinden-list h3,
