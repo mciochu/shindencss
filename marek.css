@@ -23,7 +23,7 @@
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
-  --tlo-obraz: url("https://static.animecorner.me/2022/08/Fa2q6AGVEAAEQIn.jpg"); /* tło strony */
+  --tlo-obraz: url("https://pbs.twimg.com/media/FXN8k2faAAEKl3e?format=jpg&name=large"); /* wnętrze Café LycoReco — ciepłe światło i drewno */
   --tlo-obraz-pozycja-x: center; /* poziomo: left, center, right lub procent */
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
   --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
@@ -3301,4 +3301,38 @@ body.shinden-list .sidebar-list-counter {
 }
 body.shinden-list .sidebar-list-item > a.is-active span {
   color: #fff0dc !important;
+}
+
+
+/* =====================================================================
+   CAFÉ LYCORECO — nowe tło i elegancki podpis profilu
+   ===================================================================== */
+
+/* Wnętrze kawiarni jest teraz widoczne, ale przygaszone tak, by nie walczyć
+   z kartami. Delikatne ciepłe światło zamiast czerwono-zielonej smugi. */
+body.shinden-list #__next::before {
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.10), transparent 48%),
+    linear-gradient(rgba(25,19,16,.68), rgba(25,19,16,.82)),
+    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
+    #191310 !important;
+}
+
+/* Zamiast przerywanej kreski: subtelne, ciągłe podkreślenie pod nickiem.
+   Ciepły mosiądz z miękkim cieniem, bez ciężkiego paska. */
+body.shinden-list .header-wrapper::after {
+  text-decoration-line: underline !important;
+  text-decoration-style: solid !important;
+  text-decoration-color: rgba(231,189,120,.72) !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 17px !important;
+  text-decoration-skip-ink: auto !important;
+  filter: drop-shadow(0 0 9px rgba(201,169,110,.24))
+          drop-shadow(0 3px 2px rgba(0,0,0,.72)) !important;
+}
+@media (max-width: 767px) {
+  body.shinden-list .header-wrapper::after {
+    text-underline-offset: 10px !important;
+    text-decoration-thickness: 1px !important;
+  }
 }
