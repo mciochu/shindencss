@@ -28,12 +28,12 @@
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
   --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
   --tlo-obraz-rozmiar: cover;
-  --postac: none;                /* brak grafiki postać z poprzedniego motywu wyłączona */
-  --postac-duza: none;           /* bez dodatkowej postaci na dużym ekranie */
+  --postac: url("https://lycorisrecoil.com/assets/img/character/chara_chisato-02.png"); /* oficjalna, pełna postać Chisato z przezroczystym tłem */
+  --postac-duza: none;           /* bez dodatkowej postaci w panelu bocznym */
   --postac-prawa: none;          /* opcjonalna druga grafika */
-  --postac-siad: .6;
-  --postac-proporcje: .7111;
-  --postac-h: 300px;
+  --postac-siad: .28;
+  --postac-proporcje: .59;
+  --postac-h: 390px;
   --postac-nogi-na-liscie: 60px;
   --postac-x: calc(65% - 200px);
   --postac-uniesienie: 5px;
