@@ -588,6 +588,7 @@ body.shinden-list .hero-image-container::after {
   mask-image: var(--postac-maska) !important;
   background-color: transparent !important;
   filter: var(--side-filter) !important;
+  animation: postac-wejscie 1s cubic-bezier(.2, .8, .2, 1) .5s backwards;
   opacity: 1 !important;
   mix-blend-mode: normal !important;
   z-index: 5 !important;
@@ -1209,7 +1210,6 @@ body.shinden-list .rowTitleInfo-inner .ctd-description {
    zwykłym stylom (np. uniesieniu kafelka po najechaniu). */
 body.shinden-list .sidebar-wrapper { animation: start-z-lewej .8s cubic-bezier(.2, .8, .2, 1) .15s backwards; }
 body.shinden-list .view-content-wrapper { animation: start-z-dolu .8s cubic-bezier(.2, .8, .2, 1) .3s backwards; }
-body.shinden-list .hero-image-container::after { animation: postac-wejscie 1s cubic-bezier(.2, .8, .2, 1) .5s backwards; }
 /* kafelki pojawiają się po kolei (pierwsze 24, dalsze razem) */
 body.shinden-list .cell-tile-item { animation: kafel-wejscie .6s cubic-bezier(.2, .8, .2, 1) 1.1s backwards; }
 body.shinden-list .cell-tile-item:nth-child(1)  { animation-delay: .38s; }
@@ -2776,14 +2776,6 @@ body.shinden-list .navigation-list-item a.is-active {
     background: linear-gradient(180deg,#3b2b21,#251b16) !important;
     border-bottom: 1px solid rgba(var(--gold-rgb),.32);
   }
-}
-
-body.shinden-list .hero-image-container::before {
-  background:
-    var(--lina) left bottom / 28px 14px repeat-x,
-    linear-gradient(90deg, rgba(25,17,13,.58), rgba(25,17,13,.16) 58%, rgba(25,17,13,.035)),
-    linear-gradient(0deg, rgba(25,17,13,.34), transparent 62%),
-    var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat !important;
 }
 
 /* Główne powierzchnie — nie metaliczny panel sci-fi, lecz przytulne drewno */
