@@ -63,7 +63,9 @@
   --font-title: "Cormorant Garamond", Georgia, serif;
   --font: "Nunito Sans", Arial, sans-serif;
   --font-label: "Nunito Sans", Arial, sans-serif;
-  --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif; /* rodzaj fontu nicku */
+  --nick-font-size: clamp(66px, 6.8vw, 104px); /* rozmiar nicku na komputerze */
+  --nick-font-size-mobile: clamp(42px, 10vw, 68px); /* rozmiar nicku na telefonie */
 
   /* ── Paleta Café LycoReco ───────────────────────────────────────── */
   --accent: #c85b55;
@@ -3203,7 +3205,7 @@ body.shinden-list .header-wrapper::after {
   font-family: var(--font-nick) !important;
   font-weight: 400 !important;
   letter-spacing: .045em !important;
-  font-size: clamp(66px, 6.8vw, 104px) !important;
+  font-size: var(--nick-font-size) !important;
   line-height: 1.04 !important;
   filter:
     drop-shadow(0 2px 1px rgba(24,15,12,.85))
@@ -3212,7 +3214,7 @@ body.shinden-list .header-wrapper::after {
 @media (max-width: 767px) {
   body.shinden-list .header-wrapper::after {
     letter-spacing: .025em !important;
-    font-size: clamp(42px, 10vw, 68px) !important;
+    font-size: var(--nick-font-size-mobile) !important;
   }
 }
 
