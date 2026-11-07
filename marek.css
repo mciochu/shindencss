@@ -31,11 +31,11 @@
   --postac: url("https://cdn.discordapp.com/attachments/685477357531955218/1568426001363509358/Gemini_Generated_Image_g12fe1g12fe1g12f.png?ex=6aefc60a&is=6aee748a&hm=3babb62f0b4ec72bc197accded9ef8e9ce23af7920845141eb9a713579835de5&"); /* oficjalna, pełna postać Chisato z przezroczystym tłem */
   --postac-duza: none;           /* bez dodatkowej postaci w panelu bocznym */
   --postac-prawa: none;          /* opcjonalna druga grafika */
-  --postac-siad: .28;
+  --postac-siad: .8;
   --postac-proporcje: .59;
-  --postac-h: 390px;
-  --postac-nogi-na-liscie: 60px;
-  --postac-x: calc(65% - 200px);
+  --postac-h: 490px;
+  --postac-nogi-na-liscie: 40px;
+  --postac-x: calc(75% - 250px);
   --postac-uniesienie: 5px;
   --postac-maska: none;
   --postac-duza-maska: none;
