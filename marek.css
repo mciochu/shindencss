@@ -94,7 +94,6 @@
   --hero-h-desktop: 330px;
   --hero-h-mobile: 230px;
   --hero-h: var(--hero-h-desktop);
-  --hero-overlay: linear-gradient(90deg, rgba(25,18,15,.76), rgba(25,18,15,.28) 58%, rgba(25,18,15,.08)), linear-gradient(0deg, rgba(25,18,15,.62), transparent 58%);
   --tile-min: 165px;
   --tile-gap: 16px;
   --tile-ratio: auto;
@@ -128,12 +127,21 @@ body.shinden-list {
 }
 /* tło w osobnej, nieruchomej warstwie pod całą stroną. background-attachment: fixed na <body>
    kazało przeglądarce przerysowywać całe tło przy każdym przewinięciu, co dawało przycięcia */
+body.shinden-list #__next {
+  position: relative !important;
+  isolation: isolate !important;
+}
 body.shinden-list #__next::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -1 !important;
   pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.10), transparent 48%),
+    linear-gradient(rgba(25,19,16,.68), rgba(25,19,16,.82)),
+    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
+    #191310 !important;
 }
 body.shinden-list * { font-family: var(--font) !important; }
 body.shinden-list h1, body.shinden-list h2, body.shinden-list h3,
@@ -156,12 +164,33 @@ body.shinden-list .header-wrapper { position: relative; }
 body.shinden-list .hero-image-container {
   position: relative;
   height: var(--hero-h) !important;
+  overflow: visible !important;
+  isolation: auto !important;
+  border-bottom: 2px solid transparent !important;
+  border-image: linear-gradient(90deg,
+    rgba(201,169,110,0) 0%,
+    rgba(201,169,110,.48) 12%,
+    #c9a96e 32%,
+    #f0dfc5 50%,
+    #c9a96e 68%,
+    rgba(135,151,122,.58) 86%,
+    rgba(201,169,110,0) 100%) 1 !important;
+  box-shadow:
+    0 7px 22px rgba(0,0,0,.38),
+    0 2px 9px rgba(201,169,110,.13) !important;
   background-position: var(--baner-pos) !important;
 }
 /* warstwa: własny baner (jeśli ustawiony) + przyciemnienie */
 body.shinden-list .hero-image-container::before {
   content: "";
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
+  --bw: max(100vw, calc(var(--hero-h) / var(--baner-krawedz) * var(--baner-proporcje)));
+  background:
+    var(--lina) left bottom / 28px 14px repeat-x,
+    linear-gradient(90deg, rgba(25,17,13,.58), rgba(25,17,13,.16) 58%, rgba(25,17,13,.035)),
+    linear-gradient(0deg, rgba(25,17,13,.34), transparent 62%),
+    var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat !important;
 }
 
 /* ---------- układ i panele ---------- */
@@ -548,22 +577,21 @@ body.shinden-list .navigation-background {
 /* --pad: margines wokół obrazka, żeby poświata nie była ucinana przez maskę */
 body.shinden-list .hero-image-container::after {
   --pad: 32px;
-  content: "";
+  content: "" !important;
   position: absolute;
   left: calc(var(--postac-x) - var(--pad));
   top: calc(100% - var(--postac-h) * var(--postac-siad) - var(--pad) - var(--postac-uniesienie));
   width: calc(var(--postac-h) * var(--postac-proporcje) + 2 * var(--pad));
   height: calc(var(--postac-h) + 2 * var(--pad));
-  background: var(--postac) center / auto calc(100% - 2 * var(--pad)) no-repeat;
-  -webkit-mask-image: var(--postac-maska);
-          mask-image: var(--postac-maska);
-  filter: var(--side-filter, none);
-  z-index: 5;
-  pointer-events: none;
-}
-/* baner skalowany tak, żeby linia --baner-krawedz (mur) wypadała na dolnej krawędzi banera */
-body.shinden-list .hero-image-container::before {
-  --bw: max(100vw, calc(var(--hero-h) / var(--baner-krawedz) * var(--baner-proporcje)));
+  background: var(--postac) center bottom / auto calc(100% - 2 * var(--pad)) no-repeat !important;
+  -webkit-mask-image: var(--postac-maska) !important;
+  mask-image: var(--postac-maska) !important;
+  background-color: transparent !important;
+  filter: var(--side-filter) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
 }
 
 /* lista odsuwa się w dół, żeby nogi zwisały nad nagłówkiem panelu, a nie nad okładkami */
@@ -3115,26 +3143,6 @@ body.shinden-list ::-webkit-scrollbar-thumb {
    KOREKTA PO TEŚCIE W PRZEGLĄDARCE — postać, nagłówek i czytelność listy
    ===================================================================== */
 
-/* WAŻNE: wcześniejsza warstwa Lycoris ustawiła na ::after gradient zamiast
-   obrazka. Ten pseudo-element jest postacią, więc gradient tworzył pionowy pas
-   zasłaniający listę i przyciski. Przywróć właściwy obraz PNG. */
-body.shinden-list .hero-image-container {
-  overflow: visible !important;
-  isolation: auto !important;
-}
-body.shinden-list .hero-image-container::after {
-  content: "" !important;
-  background: var(--postac) center bottom / auto calc(100% - 2 * var(--pad)) no-repeat !important;
-  -webkit-mask-image: var(--postac-maska) !important;
-  mask-image: var(--postac-maska) !important;
-  background-color: transparent !important;
-  filter: var(--side-filter) !important;
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
-}
-
 /* Nagłówek listy jest celowo wysunięty nad panel. Nie może być obcinany
    przez overflow:hidden na samym panelu. Dekorację zostawiamy na ::before. */
 body.shinden-list .view-content-wrapper {
@@ -3199,23 +3207,6 @@ body.shinden-list .sidebar-list-item > a.is-active span {
    CAFÉ LYCORECO — elegancki podpis profilu
    ===================================================================== */
 
-/* Elegancka krawędź banera: pojedyncza, ciągła linia z ciepłym złotym
-   środkiem i delikatnym czerwono-szałwiowym przejściem. Bez pasków. */
-body.shinden-list .hero-image-container {
-  border-bottom: 2px solid transparent !important;
-  border-image: linear-gradient(90deg,
-    rgba(201,169,110,0) 0%,
-    rgba(201,169,110,.48) 12%,
-    #c9a96e 32%,
-    #f0dfc5 50%,
-    #c9a96e 68%,
-    rgba(135,151,122,.58) 86%,
-    rgba(201,169,110,0) 100%) 1 !important;
-  box-shadow:
-    0 7px 22px rgba(0,0,0,.38),
-    0 2px 9px rgba(201,169,110,.13) !important;
-}
-
 body.shinden-list .header-wrapper::after {
   font-family: var(--font-nick) !important;
   font-weight: 400 !important;
@@ -3233,17 +3224,3 @@ body.shinden-list .header-wrapper::after {
   }
 }
 
-/* KOREKTA TŁA: warstwa obrazu musi pozostać wewnątrz stosu #__next.
-   Bez isolation: isolate element z z-index:-1 może wylądować pod tłem dokumentu. */
-body.shinden-list #__next {
-  position: relative !important;
-  isolation: isolate !important;
-}
-body.shinden-list #__next::before {
-  z-index: -1 !important;
-  background:
-    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.10), transparent 48%),
-    linear-gradient(rgba(25,19,16,.68), rgba(25,19,16,.82)),
-    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
-    #191310 !important;
-}
