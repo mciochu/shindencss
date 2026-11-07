@@ -3207,3 +3207,98 @@ body.shinden-list ::-webkit-scrollbar-thumb {
     transform: none !important;
   }
 }
+
+
+/* =====================================================================
+   KOREKTA PO TEŚCIE W PRZEGLĄDARCE — postać, nagłówek i czytelność listy
+   ===================================================================== */
+
+/* WAŻNE: wcześniejsza warstwa Lycoris ustawiła na ::after gradient zamiast
+   obrazka. Ten pseudo-element jest postacią, więc gradient tworzył pionowy pas
+   zasłaniający listę i przyciski. Przywróć właściwy obraz PNG. */
+body.shinden-list .hero-image-container {
+  overflow: visible !important;
+  isolation: auto !important;
+}
+body.shinden-list .hero-image-container::after {
+  content: "" !important;
+  background: var(--postac) center bottom / auto calc(100% - 2 * var(--pad)) no-repeat !important;
+  -webkit-mask-image: var(--postac-maska) !important;
+  mask-image: var(--postac-maska) !important;
+  background-color: transparent !important;
+  filter: drop-shadow(0 9px 16px rgba(0,0,0,.48)) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+}
+
+/* Nagłówek listy jest celowo wysunięty nad panel. Nie może być obcinany
+   przez overflow:hidden na samym panelu. Dekorację zostawiamy na ::before. */
+body.shinden-list .view-content-wrapper {
+  overflow: visible !important;
+}
+body.shinden-list .view-content-header {
+  position: static !important;
+  min-height: 0 !important;
+}
+body.shinden-list .view-content-h3 {
+  color: #fff0d7 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.9), 0 0 18px rgba(201,169,110,.22) !important;
+  z-index: 4 !important;
+}
+body.shinden-list .view-content-view-changer,
+body.shinden-list .view-content-header-options {
+  z-index: 4 !important;
+}
+body.shinden-list .view-content-header-options,
+body.shinden-list .view-content-header-options :is(button,a,.button,.dropdown-button) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #f2e5cf !important;
+}
+
+/* Spokojniejsze tło: bez wielkiej czerwono-zielonej poświaty na środku ekranu. */
+body.shinden-list #__next::before {
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(200,91,85,.075), transparent 38%),
+    radial-gradient(ellipse at 88% 18%, rgba(135,151,122,.065), transparent 42%),
+    linear-gradient(rgba(29,23,20,.84), rgba(29,23,20,.94)),
+    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
+    #1d1714 !important;
+}
+
+/* Mocniejsza czytelność kart anime i ich opisów. */
+body.shinden-list .cell-tile-info {
+  background: linear-gradient(to top,
+    rgba(20,14,11,.98) 0%,
+    rgba(25,18,14,.88) 62%,
+    rgba(25,18,14,.05) 100%) !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,.9);
+}
+body.shinden-list .cell-tile-info .cell-tile-title {
+  color: #fff1dc !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,.95) !important;
+}
+body.shinden-list .cell-tile-info .cell-tile-epInfo span {
+  color: #e6d5bc !important;
+}
+body.shinden-list .cell-tile-episodes::before { color: #f19a89 !important; }
+body.shinden-list .cell-tile-rate::before { color: #e4c486 !important; }
+
+/* Przyciski i etykiety listy: czytelne również na ciemnym drewnie. */
+body.shinden-list :is(.view-content-header-button,.dropdown-button,.view-changer-button) {
+  color: #f1e4d0 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+body.shinden-list .table-header-label {
+  color: #e2c99e !important;
+}
+body.shinden-list .sidebar-list-item > a span,
+body.shinden-list .sidebar-list-counter {
+  color: #eee2d0 !important;
+}
+body.shinden-list .sidebar-list-item > a.is-active span {
+  color: #fff0dc !important;
+}
