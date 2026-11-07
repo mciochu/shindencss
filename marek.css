@@ -16,14 +16,14 @@
      Tło strony: wklej url("...") zamiast none; gradienty zostaną na wierzchu.
      Postacie/dekoracje: none wyłącza daną grafikę.
      ================================================================ */
-  --baner: url("https://images.squarespace-cdn.com/content/v1/60167355d5e6a55235d6abe6/3f7b52fc-36f6-4436-9111-49a66b8aea99/FH6epOJakAEDuHk.jpeg");
+  --baner: url("https://i.imgur.com/mcDKjkV.jpeg");
   --baner-pos: center;             /* poziome położenie kadru banera */
   --baner-pos-y: 0%;               /* pionowo: 0% = góra, 50% = środek, 100% = dół */
   --baner-przesuniecie-y: 18%;       /* dodatkowa korekta pionowa: np. -5% w górę, 5% w dół */
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
-  --tlo-obraz: url("https://pbs.twimg.com/media/FXN8k2faAAEKl3e?format=jpg&name=large"); /* wnętrze Café LycoReco — ciepłe światło i drewno */
+  --tlo-obraz: url("https://i.imgur.com/1DViavB.jpeg"); /* wnętrze Café LycoReco — ciepłe światło i drewno */
   --tlo-obraz-pozycja-x: center; /* poziomo: left, center, right lub procent */
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
   --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
