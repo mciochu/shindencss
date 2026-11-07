@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Marcellus:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Marcellus:wght@400;500;600&display=swap");
 /* SHINDEN — LYcoris Recoil. Zachowany oryginalny układ i mechanika motywu. */
 :root {
   --nick: "Dretwyandrzej";
@@ -46,26 +46,26 @@
   --side-opacity: 1;
   --side-filter: drop-shadow(0 8px 24px rgba(26, 19, 12, .35));
   --pyl-widok: none; --pyl-sila: .35; --babelki-ruch: paused;
-  --font-display: "Playfair Display", "Georgia", serif;
-  --font-title: "Playfair Display", "Georgia", serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-title: "Cormorant Garamond", Georgia, serif;
   --font: "Nunito Sans", "Arial", sans-serif;
   --font-label: "Nunito Sans", "Arial", sans-serif;
-  --accent: #d94b5b; --accent-rgb: 217, 75, 91; --accent-light: #ff9aa5;
-  --accent-2: #2b9c9a; --accent-2-rgb: 43, 156, 154;
-  --gold: #e7bd78; --gold-rgb: 231, 189, 120; --gold-light: #ffe3b1;
-  --sea: #4b9d9b; --sea-rgb: 75, 157, 155;
-  --text: #eee9e5; --muted: #aaa5a5; --heading: #fff5f0;
-  --line: rgba(231, 189, 120, .22);
-  --bg-rgb: 18, 24, 35; --bg-solid: #121823;
-  --bg-image: radial-gradient(ellipse at 12% 8%, rgba(217,75,91,.18), transparent 42%), radial-gradient(ellipse at 88% 30%, rgba(43,156,154,.16), transparent 44%), radial-gradient(ellipse at 50% 100%, rgba(231,189,120,.07), transparent 55%), linear-gradient(145deg,#1c2635 0%,#111722 52%,#20202a 100%);
-  --nav-bg: rgba(17, 24, 36, .95);
-  --panel: rgba(31, 40, 54, .95); --panel-solid: #1f2836;
-  --panel-blur: blur(12px); --input-bg: rgba(238, 233, 229, .055);
-  --shadow: 0 14px 38px rgba(0,0,0,.24); --radius: 8px; --radius-sm: 5px;
+  --accent: #c85b55; --accent-rgb: 200, 91, 85; --accent-light: #f19a89;
+  --accent-2: #87977a; --accent-2-rgb: 135, 151, 122;
+  --gold: #c9a96e; --gold-rgb: 201, 169, 110; --gold-light: #f0d9a8;
+  
+  --text: #eee4d5; --muted: #b7aa98; --heading: #fff3df;
+  --line: rgba(201, 169, 110, .24);
+  --bg-rgb: 29, 23, 20; --bg-solid: #1d1714;
+  
+  --nav-bg: rgba(34, 26, 21, .97);
+  --panel: rgba(48, 38, 31, .97); --panel-solid: #30261f;
+  --panel-blur: blur(14px); --input-bg: rgba(16, 13, 11, .48);
+  --shadow: 0 18px 48px rgba(8, 5, 3, .38); --radius: 13px; --radius-sm: 8px;
   --hero-h-desktop: 330px;       /* wysokość banera na komputerze */
   --hero-h-mobile: 230px;        /* wysokość banera na telefonie */
   --hero-h: var(--hero-h-desktop);
-  --hero-overlay: linear-gradient(90deg,rgba(var(--bg-rgb),.70) 0%,rgba(var(--bg-rgb),.36) 42%,rgba(var(--bg-rgb),.08) 78%),linear-gradient(to bottom,rgba(var(--bg-rgb),.16),transparent 28%,transparent 75%,rgba(var(--bg-rgb),.32));
+  --hero-overlay: linear-gradient(90deg, rgba(25,18,15,.76), rgba(25,18,15,.28) 58%, rgba(25,18,15,.08)), linear-gradient(0deg, rgba(25,18,15,.62), transparent 58%);
   --tile-min: 165px; --tile-gap: 16px; --tile-ratio: auto; --tile-radius: 5px; --luk: 0px;
   --st-in-progress: #a9bd78; --st-completed: #d2b16f; --st-skip: #99958a;
   --st-hold: #c58c55; --st-dropped: #b96c60; --st-plan: #829c9a;
@@ -2368,15 +2368,6 @@ body.shinden-list .settingsContent-wrapper .button:not(.button--danger),
 body.shinden-list .unmatched-btn[aria-pressed="true"] {
  background: linear-gradient(135deg,#65794d,#8e7548) !important; border-color: var(--gold) !important; color: #f6ecd5 !important;
 }
-body.shinden-list .view-content-wrapper::before,
-body.shinden-list .settingsContent-wrapper::before {
- background: linear-gradient(90deg,transparent 8%,rgba(var(--gold-rgb),.55) 50%,transparent 92%) center top / 100% 1px no-repeat, radial-gradient(ellipse 60% 120px at 50% 0,rgba(var(--accent-rgb),.09),transparent),var(--panel) !important;
- box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb),.10),0 14px 40px rgba(0,0,0,.32) !important;
-}
-body.shinden-list .footer-wrapper .wrapper-container::before {
- background: linear-gradient(var(--gold),var(--gold)) top / 100% 1px no-repeat,linear-gradient(var(--gold),var(--gold)) bottom / 100% 1px no-repeat,linear-gradient(90deg,#39452d,#65794d 50%,#39452d) !important;
- clip-path: none !important;
-}
 body.shinden-list .footer-wrapper::after { display: none !important; }
 body.shinden-list .view-content-h3::after,
 body.shinden-list .settingsContent-header h3::after,
@@ -2394,20 +2385,7 @@ body.shinden-list .cellLink-link:hover, body.shinden-list .footer-text a:hover {
 /* =====================================================================
    LYCORIS RECOIL — warstwa końcowa motywu
    Czerwony akcent Chisato + granat Takiny + turkus Café LycoReco.
-   ===================================================================== */
-:root {
-  --hero-overlay: linear-gradient(90deg,rgba(var(--bg-rgb),.78) 0%,rgba(var(--bg-rgb),.42) 45%,rgba(var(--bg-rgb),.08) 82%),linear-gradient(to bottom,rgba(var(--bg-rgb),.12),transparent 30%,transparent 72%,rgba(var(--bg-rgb),.48));
-  --radius: 12px;
-  --radius-sm: 8px;
-}
-body.shinden-list .hero-image-container {
-  border-bottom: 2px solid rgba(var(--accent-rgb), .7) !important;
-  box-shadow: 0 8px 30px rgba(0,0,0,.38), 0 0 24px rgba(var(--accent-2-rgb),.12) !important;
-}
-body.shinden-list .hero-image-container::after {
-  background: linear-gradient(90deg, transparent, rgba(var(--accent-2-rgb),.75), rgba(var(--accent-rgb),.85), transparent) !important;
-}
-body.shinden-list .footer-text a::before { content: "✿ "; color: var(--accent); }
+   ===================================================================== */body.shinden-list .footer-text a::before { content: "✿ "; color: var(--accent); }
 body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; text-shadow: 0 0 8px rgba(var(--accent-rgb), .55); }
 body.shinden-list .sidebar-list-item > a:hover,
 body.shinden-list .listRowDesktop-content:hover {
@@ -2434,6 +2412,7 @@ body.shinden-list :is(a, a *, button, button *, label, select, [role="button"], 
 }
 body.shinden-list :is(input[type="text"], input:not([type]), textarea) { cursor: text; }
 body.shinden-list .footer-wrapper .wrapper-container::before {
+  clip-path: none !important;
   background:
     linear-gradient(var(--gold), var(--gold)) top / 100% 1px no-repeat,
     linear-gradient(var(--gold), var(--gold)) bottom / 100% 1px no-repeat,
@@ -2449,45 +2428,11 @@ body.shinden-list .footer-wrapper::after {
    Café LycoReco: ciepłe, przygaszone powierzchnie + czerwień Chisato
    i chłodny granat Takiny. Warstwa nadpisująca wcześniejsze reguły.
    ===================================================================== */
-:root {
-  --accent: #d94b5b;
-  --accent-rgb: 217, 75, 91;
-  --accent-light: #ff9aa5;
-  --accent-2: #397f91;
-  --accent-2-rgb: 57, 127, 145;
-  --gold: #d9b879;
-  --gold-rgb: 217, 184, 121;
-  --gold-light: #f5dfb3;
-  --sea: #397f91;
-  --sea-rgb: 57, 127, 145;
-  --text: #f1ece8;
-  --muted: #b2adb0;
-  --heading: #fff7f1;
-  --line: rgba(217, 184, 121, .2);
-  --bg-rgb: 17, 23, 34;
-  --bg-solid: #111722;
-  --panel: rgba(27, 35, 49, .96);
-  --panel-solid: #1b2331;
-  --input-bg: rgba(7, 12, 21, .48);
-  --shadow: 0 18px 48px rgba(0, 0, 0, .34);
-  --radius: 12px;
-  --radius-sm: 8px;
-}
-body.shinden-list {
-  --hero-overlay: linear-gradient(90deg, rgba(12,17,27,.78), rgba(12,17,27,.30) 55%, rgba(12,17,27,.08)),
-                  linear-gradient(0deg, rgba(12,17,27,.48), transparent 55%);
-}
 body.shinden-list :is(.view-content-wrapper, .settingsContent-wrapper, .modal-inner,
   .MuiPopover-paper, .MuiMenu-paper, .MuiDialog-paper, .MuiDrawer-paper) {
   color: var(--text) !important;
 }
 
-/* Panele: głęboki granat, ciepła cienka krawędź i czerwony refleks */
-body.shinden-list .view-content-wrapper,
-body.shinden-list .settingsContent-wrapper {
-  border-color: rgba(var(--gold-rgb), .2) !important;
-  box-shadow: 0 16px 44px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.025) !important;
-}
 body.shinden-list .view-content-wrapper::before,
 body.shinden-list .settingsContent-wrapper::before {
   background:
@@ -2743,41 +2688,6 @@ body.shinden-list ::-webkit-scrollbar-thumb {
    To warstwa końcowa: zachowuje układ Shindena i dotychczasowe grafiki.
    ===================================================================== */
 
-:root {
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-title: "Cormorant Garamond", Georgia, serif;
-  --font: "Nunito Sans", Arial, sans-serif;
-  --font-label: "Nunito Sans", Arial, sans-serif;
-
-  /* Paleta Café LycoReco */
-  --accent: #c85b55;
-  --accent-rgb: 200, 91, 85;
-  --accent-light: #f19a89;
-  --accent-2: #87977a;
-  --accent-2-rgb: 135, 151, 122;
-  --sea: #87977a;
-  --sea-rgb: 135, 151, 122;
-  --gold: #c9a96e;
-  --gold-rgb: 201, 169, 110;
-  --gold-light: #f0d9a8;
-  --text: #eee4d5;
-  --muted: #b7aa98;
-  --heading: #fff3df;
-  --line: rgba(201, 169, 110, .24);
-  --bg-rgb: 29, 23, 20;
-  --bg-solid: #1d1714;
-  --panel: rgba(48, 38, 31, .97);
-  --panel-solid: #30261f;
-  --input-bg: rgba(16, 13, 11, .48);
-  --shadow: 0 18px 48px rgba(8, 5, 3, .38);
-  --radius: 13px;
-  --radius-sm: 8px;
-  --nav-bg: rgba(34, 26, 21, .97);
-  --panel-blur: blur(14px);
-  --hero-overlay:
-    linear-gradient(90deg, rgba(25,18,15,.76), rgba(25,18,15,.28) 58%, rgba(25,18,15,.08)),
-    linear-gradient(0deg, rgba(25,18,15,.62), transparent 58%);
-}
 
 html:root {
   background: #1d1714;
@@ -2794,14 +2704,6 @@ body.shinden-list :is(h1,h2,h3,h4,h5,h6,.view-content-h3,.settingsContent-header
   font-weight: 700 !important;
   letter-spacing: .025em;
   color: var(--heading) !important;
-}
-body.shinden-list #__next::before {
-  background:
-    radial-gradient(ellipse at 12% 8%, rgba(200,91,85,.12), transparent 38%),
-    radial-gradient(ellipse at 88% 18%, rgba(135,151,122,.12), transparent 42%),
-    linear-gradient(rgba(29,23,20,.78), rgba(29,23,20,.92)),
-    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
-    #1d1714;
 }
 
 /* Górna nawigacja — ciemne drewno i subtelna mosiężna krawędź */
@@ -2835,25 +2737,12 @@ body.shinden-list .navigation-list-item a.is-active {
   }
 }
 
-/* Baner — ciepłe światło wnętrza, cienki pasek jak krawędź markizy */
-body.shinden-list .hero-image-container {
-  /* Nie przycinaj: ::after zawiera pełną postać wystającą poniżej banera. */
-  overflow: visible !important;
-  border-bottom: 7px solid transparent !important;
-  border-image: repeating-linear-gradient(90deg,
-    #c85b55 0 34px, #f0dfc5 34px 68px, #87977a 68px 102px, #f0dfc5 102px 136px) 7 !important;
-  box-shadow: 0 12px 32px rgba(0,0,0,.36) !important;
-}
 body.shinden-list .hero-image-container::before {
   background:
     var(--lina) left bottom / 28px 14px repeat-x,
     linear-gradient(90deg, rgba(25,17,13,.58), rgba(25,17,13,.16) 58%, rgba(25,17,13,.035)),
     linear-gradient(0deg, rgba(25,17,13,.34), transparent 62%),
     var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat !important;
-}
-/* ::after pozostaje zarezerwowane dla postaci Chisato — nie nakładaj na nie dekoracyjnego paska. */
-body.shinden-list .hero-image-container::after {
-  filter: drop-shadow(0 8px 18px rgba(0,0,0,.58)) brightness(1.08) saturate(1.12) !important;
 }
 
 /* Główne powierzchnie — nie metaliczny panel sci-fi, lecz przytulne drewno */
@@ -3259,15 +3148,6 @@ body.shinden-list .view-content-header-options :is(button,a,.button,.dropdown-bu
   color: #f2e5cf !important;
 }
 
-/* Spokojniejsze tło: bez wielkiej czerwono-zielonej poświaty na środku ekranu. */
-body.shinden-list #__next::before {
-  background:
-    radial-gradient(ellipse at 12% 8%, rgba(200,91,85,.075), transparent 38%),
-    radial-gradient(ellipse at 88% 18%, rgba(135,151,122,.065), transparent 42%),
-    linear-gradient(rgba(29,23,20,.84), rgba(29,23,20,.94)),
-    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
-    #1d1714 !important;
-}
 
 /* Mocniejsza czytelność kart anime i ich opisów. */
 body.shinden-list .cell-tile-info {
@@ -3309,41 +3189,7 @@ body.shinden-list .sidebar-list-item > a.is-active span {
    CAFÉ LYCORECO — nowe tło i elegancki podpis profilu
    ===================================================================== */
 
-/* Wnętrze kawiarni jest teraz widoczne, ale przygaszone tak, by nie walczyć
-   z kartami. Delikatne ciepłe światło zamiast czerwono-zielonej smugi. */
-body.shinden-list #__next::before {
-  background:
-    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.10), transparent 48%),
-    linear-gradient(rgba(25,19,16,.68), rgba(25,19,16,.82)),
-    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
-    #191310 !important;
-}
 
-/* Zamiast przerywanej kreski: subtelne, ciągłe podkreślenie pod nickiem.
-   Ciepły mosiądz z miękkim cieniem, bez ciężkiego paska. */
-body.shinden-list .header-wrapper::after {
-  text-decoration-line: underline !important;
-  text-decoration-style: solid !important;
-  text-decoration-color: rgba(231,189,120,.72) !important;
-  text-decoration-thickness: 1px !important;
-  text-underline-offset: 17px !important;
-  text-decoration-skip-ink: auto !important;
-  filter: drop-shadow(0 0 9px rgba(201,169,110,.24))
-          drop-shadow(0 3px 2px rgba(0,0,0,.72)) !important;
-}
-@media (max-width: 767px) {
-  body.shinden-list .header-wrapper::after {
-    text-underline-offset: 10px !important;
-    text-decoration-thickness: 1px !important;
-  }
-}
-
-
-/* KOREKTA: separator należy do dolnej krawędzi BANERA, nie do nicku. */
-body.shinden-list .header-wrapper::after {
-  text-decoration: none !important;
-  text-decoration-line: none !important;
-}
 
 /* Elegancka krawędź banera: pojedyncza, ciągła linia z ciepłym złotym
    środkiem i delikatnym czerwono-szałwiowym przejściem. Bez pasków. */
@@ -3363,11 +3209,6 @@ body.shinden-list .hero-image-container {
 }
 
 
-/* Nick profilu — Marcellus: elegancki, lekko klasyczny krój
-   pasujący do szyldów i identyfikacji wizualnej Café LycoReco. */
-:root {
-  --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif;
-}
 body.shinden-list .header-wrapper::after {
   font-family: var(--font-nick) !important;
   font-weight: 400 !important;
