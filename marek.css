@@ -3393,8 +3393,8 @@ body.shinden-list #__next {
 body.shinden-list #__next::before {
   z-index: -1 !important;
   background:
-    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.08), transparent 48%),
-    linear-gradient(rgba(25,19,16,.32), rgba(25,19,16,.48)),
+    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.10), transparent 48%),
+    linear-gradient(rgba(25,19,16,.68), rgba(25,19,16,.82)),
     var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
     #191310 !important;
 }
