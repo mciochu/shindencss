@@ -3383,3 +3383,18 @@ body.shinden-list .header-wrapper::after {
     font-size: clamp(42px, 10vw, 68px) !important;
   }
 }
+
+/* KOREKTA TŁA: warstwa obrazu musi pozostać wewnątrz stosu #__next.
+   Bez isolation: isolate element z z-index:-1 może wylądować pod tłem dokumentu. */
+body.shinden-list #__next {
+  position: relative !important;
+  isolation: isolate !important;
+}
+body.shinden-list #__next::before {
+  z-index: -1 !important;
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(201,169,110,.08), transparent 48%),
+    linear-gradient(rgba(25,19,16,.32), rgba(25,19,16,.48)),
+    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
+    #191310 !important;
+}
