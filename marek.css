@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Marcellus:wght@400;500;600&display=swap");
 /* SHINDEN — LYcoris Recoil. Zachowany oryginalny układ i mechanika motywu. */
 :root {
   --nick: "Dretwyandrzej";
@@ -3359,4 +3359,27 @@ body.shinden-list .hero-image-container {
   box-shadow:
     0 7px 22px rgba(0,0,0,.38),
     0 2px 9px rgba(201,169,110,.13) !important;
+}
+
+
+/* Nick profilu — Marcellus: elegancki, lekko klasyczny krój
+   pasujący do szyldów i identyfikacji wizualnej Café LycoReco. */
+:root {
+  --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif;
+}
+body.shinden-list .header-wrapper::after {
+  font-family: var(--font-nick) !important;
+  font-weight: 400 !important;
+  letter-spacing: .045em !important;
+  font-size: clamp(66px, 6.8vw, 104px) !important;
+  line-height: 1.04 !important;
+  filter:
+    drop-shadow(0 2px 1px rgba(24,15,12,.85))
+    drop-shadow(0 0 10px rgba(201,169,110,.25)) !important;
+}
+@media (max-width: 767px) {
+  body.shinden-list .header-wrapper::after {
+    letter-spacing: .025em !important;
+    font-size: clamp(42px, 10vw, 68px) !important;
+  }
 }
