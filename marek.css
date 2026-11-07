@@ -134,7 +134,6 @@ body.shinden-list #__next::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(rgba(var(--bg-rgb), .88), rgba(var(--bg-rgb), .94)), var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat, var(--bg-solid);
 }
 body.shinden-list * { font-family: var(--font) !important; }
 body.shinden-list h1, body.shinden-list h2, body.shinden-list h3,
@@ -157,14 +156,12 @@ body.shinden-list .header-wrapper { position: relative; }
 body.shinden-list .hero-image-container {
   position: relative;
   height: var(--hero-h) !important;
-  box-shadow: none !important;
   background-position: var(--baner-pos) !important;
 }
 /* warstwa: własny baner (jeśli ustawiony) + przyciemnienie */
 body.shinden-list .hero-image-container::before {
   content: "";
   position: absolute; inset: 0;
-  background: var(--hero-overlay), var(--baner) var(--baner-pos) / cover no-repeat;
 }
 
 /* ---------- układ i panele ---------- */
@@ -567,16 +564,8 @@ body.shinden-list .hero-image-container::after {
 /* baner skalowany tak, żeby linia --baner-krawedz (mur) wypadała na dolnej krawędzi banera */
 body.shinden-list .hero-image-container::before {
   --bw: max(100vw, calc(var(--hero-h) / var(--baner-krawedz) * var(--baner-proporcje)));
-  background:
-    var(--lina) left bottom / 28px 14px repeat-x,
-    var(--hero-overlay),
-    var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat;
 }
-/* dół banera to lina na burcie statku (warstwa w ::before), pod nią cień */
-body.shinden-list .hero-image-container {
-  border-bottom: 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .55), 0 2px 26px rgba(var(--accent-rgb), .25) !important;
-}
+
 /* lista odsuwa się w dół, żeby nogi zwisały nad nagłówkiem panelu, a nie nad okładkami */
 body.shinden-list .columns-wrapper {
   padding-top: max(30px, calc(var(--postac-h) * (1 - var(--postac-siad)) - var(--postac-nogi-na-liscie)));
@@ -699,13 +688,6 @@ body.shinden-list .header-wrapper::after {
   body.shinden-list .cell-tile-wrapper:hover .cell-tile-link::after { animation: none !important; }
 }
 @media (max-width: 767px) {
-  /* Baner na telefonie zaczyna się od samej góry kadru; nie centruj pionowo. */
-  body.shinden-list .hero-image-container::before {
-    background:
-      var(--lina) left bottom / 28px 14px repeat-x,
-      var(--hero-overlay),
-      var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat;
-  }
   /* na telefonie nogi zwisają w pustym miejscu nad wyszukiwarką */
   body.shinden-list { --hero-h: var(--hero-h-mobile); --postac-h: 230px; --postac-x: calc(100% - 165px); --postac-nogi-na-liscie: 0px; --tile-min: 140px; }
   body.shinden-list .header-wrapper::before { bottom: 104px; font-size: 9px; letter-spacing: .08em; padding: 4px 18px 3px; }
@@ -1064,7 +1046,6 @@ body.shinden-list .cell-tile-wrapper {
 body.shinden-list .cell-tile-wrapper:hover {
   filter: drop-shadow(0 0 1px var(--st)) drop-shadow(0 0 1px var(--st)) drop-shadow(0 0 16px var(--st));
 }
-
 
 /* ---------- podgląd okładki po najechaniu na tytuł (widok tabeli) ----------
    Shinden sam doczytuje okładkę do okienka .rowTitleInfo — tu tylko wygląd „lunety”
@@ -2392,7 +2373,6 @@ body.shinden-list .sidebar-list-counter { font-size: 14px !important; }
 body.shinden-list::before,
 body.shinden-list .page-wrapper::before { display: none !important; }
 /* Nie nadpisujemy tu tła banera: skalowanie i kadr kontroluje blok przy linii 516. */
-body.shinden-list .hero-image-container { border-bottom: 1px solid var(--line) !important; box-shadow: 0 8px 28px rgba(0,0,0,.24) !important; }
 body.shinden-list .navigation-list-item a.is-active {
  color: var(--gold-light) !important;
  background: linear-gradient(180deg,rgba(var(--accent-rgb),.30),rgba(var(--accent-rgb),.12)) !important;
@@ -2417,7 +2397,6 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
 body.shinden-list .cellLink-link:hover, body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; }
 @media (max-width: 767px) { body.shinden-list { --hero-h: var(--hero-h-mobile); } body.shinden-list .view-content-wrapper { padding: 13px !important; } }
 
-
 /* =====================================================================
    LYCORIS RECOIL — warstwa końcowa motywu
    Czerwony akcent Chisato + granat Takiny + turkus Café LycoReco.
@@ -2438,7 +2417,6 @@ body.shinden-list .button:hover {
   box-shadow: 0 0 18px rgba(var(--accent-2-rgb), .16) !important;
 }
 
-
 /* Lycoris Recoil — dopasowanie detali, kursora i stopki */
 body.shinden-list,
 body.shinden-list * {
@@ -2458,7 +2436,6 @@ body.shinden-list .footer-wrapper .wrapper-container::before {
 body.shinden-list .footer-wrapper::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='12'%3E%3Cpath d='M0 10Q8 0 16 10T32 10T48 10' fill='none' stroke='%23d94b5b' stroke-width='1.4'/%3E%3C/svg%3E") !important;
 }
-
 
 /* =====================================================================
    LYCORIS RECOIL — PEŁNE WYKOŃCZENIE INTERFEJSU
@@ -2724,7 +2701,6 @@ body.shinden-list ::-webkit-scrollbar-thumb {
    kremowe menu, szałwiowa zieleń, truskawkowa czerwień i mosiądz.
    To warstwa końcowa: zachowuje układ Shindena i dotychczasowe grafiki.
    ===================================================================== */
-
 
 html:root {
   background: #1d1714;
@@ -3135,7 +3111,6 @@ body.shinden-list ::-webkit-scrollbar-thumb {
   }
 }
 
-
 /* =====================================================================
    KOREKTA PO TEŚCIE W PRZEGLĄDARCE — postać, nagłówek i czytelność listy
    ===================================================================== */
@@ -3185,7 +3160,6 @@ body.shinden-list .view-content-header-options :is(button,a,.button,.dropdown-bu
   color: #f2e5cf !important;
 }
 
-
 /* Mocniejsza czytelność kart anime i ich opisów. */
 body.shinden-list .cell-tile-info {
   background: linear-gradient(to top,
@@ -3221,12 +3195,9 @@ body.shinden-list .sidebar-list-item > a.is-active span {
   color: #fff0dc !important;
 }
 
-
 /* =====================================================================
    CAFÉ LYCORECO — elegancki podpis profilu
    ===================================================================== */
-
-
 
 /* Elegancka krawędź banera: pojedyncza, ciągła linia z ciepłym złotym
    środkiem i delikatnym czerwono-szałwiowym przejściem. Bez pasków. */
@@ -3244,7 +3215,6 @@ body.shinden-list .hero-image-container {
     0 7px 22px rgba(0,0,0,.38),
     0 2px 9px rgba(201,169,110,.13) !important;
 }
-
 
 body.shinden-list .header-wrapper::after {
   font-family: var(--font-nick) !important;
