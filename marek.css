@@ -12,6 +12,7 @@
   --ksiega-manga: "Dziennik LycoReco — Manga";
   --ksiega-novel: "Dziennik LycoReco — Nowelki";
 
+
   /* ── Baner: grafika i kadrowanie ───────────────────────────────── */
   --baner: url("https://i.imgur.com/mcDKjkV.jpeg");
   --baner-pos: center;             /* poziome położenie */
@@ -20,12 +21,14 @@
   --baner-proporcje: 1.3333;       /* proporcja używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0.01–1 (nie ustawiaj 0) */
 
+
   /* ── Tło strony ────────────────────────────────────────────────── */
   --tlo-obraz: url("https://i.imgur.com/1DViavB.jpeg");
   --tlo-obraz-pozycja-x: center;   /* left, center, right lub procent */
   --tlo-obraz-pozycja-y: 0%;       /* 0% = góra, 50% = środek, 100% = dół */
   --tlo-obraz-przesuniecie-y: 0%;  /* dodatkowa korekta pionowa */
   --tlo-obraz-rozmiar: cover;
+
 
   /* ── Postacie i grafiki dodatkowe ───────────────────────────────── */
   --postac: url("https://cdn.discordapp.com/attachments/685477357531955218/1568426001363509358/Gemini_Generated_Image_g12fe1g12fe1g12f.png?ex=6aefc60a&is=6aee748a&hm=3babb62f0b4ec72bc197accded9ef8e9ce23af7920845141eb9a713579835de5&");
@@ -39,6 +42,7 @@
   --postac-uniesienie: 5px;
   --postac-maska: none;
   --postac-prawa-widok: none;
+
 
   /* ── Dekoracje i efekty ─────────────────────────────────────────── */
   --side-display: none;
@@ -58,14 +62,16 @@
   --lina: none;
   --babelki-maska: none;
 
+
   /* ── Typografia ─────────────────────────────────────────────────── */
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-title: "Cormorant Garamond", Georgia, serif;
   --font: "Nunito Sans", Arial, sans-serif;
   --font-label: "Nunito Sans", Arial, sans-serif;
   --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif; /* rodzaj fontu nicku */
-  --nick-font-size: clamp(66px, 6.8vw, 104px); /* rozmiar nicku na komputerze */
-  --nick-font-size-mobile: clamp(42px, 10vw, 68px); /* rozmiar nicku na telefonie */
+  --nick-font-size: clamp(30px, 6.8vw, 70px); /* rozmiar nicku na komputerze */
+  --nick-font-size-mobile: clamp(32px, 10vw, 40px); /* rozmiar nicku na telefonie */
+
 
   /* ── Paleta Café LycoReco ───────────────────────────────────────── */
   --accent: #c85b55;
@@ -92,6 +98,7 @@
   --radius: 13px;
   --radius-sm: 8px;
 
+
   /* ── Wymiary i układ ────────────────────────────────────────────── */
   --hero-h-desktop: 330px;
   --hero-h-mobile: 230px;
@@ -109,9 +116,11 @@
   --st-plan: #829c9a;
 }
 
+
 /* =====================================================================
    RDZEŃ — wspólny dla wszystkich motywów (nie trzeba tu nic zmieniać)
    ===================================================================== */
+
 
 /* ---------- statusy: kolor + etykieta (działa w kafelkach i tabeli) ---------- */
 body.shinden-list .in-progress { --st: var(--st-in-progress); --st-label: "Oglądam"; --st-caption: "W trakcie"; }
@@ -120,6 +129,7 @@ body.shinden-list .skip        { --st: var(--st-skip);        --st-label: "Pomij
 body.shinden-list .hold        { --st: var(--st-hold);        --st-label: "Wstrzymane"; --st-caption: "Wstrzymane"; }
 body.shinden-list .dropped     { --st: var(--st-dropped);     --st-label: "Porzucone"; --st-caption: "Porzucone"; }
 body.shinden-list .plan        { --st: var(--st-plan);        --st-label: "Planuję"; --st-caption: "Planowane"; }
+
 
 /* ---------- tło i typografia ---------- */
 html:root { background: var(--bg-solid); scrollbar-color: rgba(var(--accent-rgb), .6) var(--bg-solid); }
@@ -150,6 +160,7 @@ body.shinden-list h1, body.shinden-list h2, body.shinden-list h3,
 body.shinden-list h4, body.shinden-list h5, body.shinden-list h6 { color: var(--heading) !important; }
 body.shinden-list ::selection { background: rgba(var(--accent-2-rgb), .45); color: #fff; }
 
+
 /* ---------- nawigacja ---------- */
 body.shinden-list .navigation-background { background: var(--nav-bg) !important; opacity: 1 !important; border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
 body.shinden-list .navigation-list-item a,
@@ -160,6 +171,7 @@ body.shinden-list .navigation-button:hover { color: var(--gold-light) !important
   body.shinden-list .navigation-inner { background: var(--bg-solid) !important; }
   body.shinden-list .hamburger svg { color: var(--gold-light); }
 }
+
 
 /* ---------- baner (hero) ---------- */
 body.shinden-list .header-wrapper { position: relative; }
@@ -195,6 +207,7 @@ body.shinden-list .hero-image-container::before {
     var(--baner) var(--baner-pos) calc(var(--baner-pos-y) + var(--baner-przesuniecie-y)) / var(--bw) auto no-repeat !important;
 }
 
+
 /* ---------- układ i panele ---------- */
 body.shinden-list .content-wrapper { position: relative; z-index: 2; }
 body.shinden-list .view-content-wrapper {
@@ -206,6 +219,7 @@ body.shinden-list .view-content-wrapper {
   padding: 20px !important;
 }
 body.shinden-list .view-content-h3 { color: var(--heading) !important; }
+
 
 /* ---------- sidebar ---------- */
 body.shinden-list .sidebarList-header,
@@ -237,6 +251,7 @@ body.shinden-list .accordion-wrapper--sidebar .MuiPaper-root { background: trans
 body.shinden-list .accordion-wrapper--sidebar .MuiPaper-root::before { display: none; }
 body.shinden-list .MuiIconButton-root { color: var(--muted) !important; }
 
+
 /* ---------- pola, dropdowny, przyciski ---------- */
 body.shinden-list .input-wrapper {
   background: var(--input-bg) !important;
@@ -247,6 +262,7 @@ body.shinden-list .input-element { border-color: transparent !important; border-
 body.shinden-list .input-placeholder,
 body.shinden-list .input-icon { color: var(--muted) !important; }
 body.shinden-list .input-wrapper:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .2); }
+
 
 body.shinden-list .custom-dropdown-control {
   background: var(--input-bg) !important;
@@ -268,6 +284,7 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="multiVa
 body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="menu"] { background: var(--panel-solid) !important; border: 1px solid var(--line); border-radius: var(--radius-sm); }
 body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"] { color: var(--text) !important; background: transparent !important; }
 body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]:hover { background: rgba(var(--accent-rgb), .2) !important; }
+
 
 /* sidebar: nagłówki sekcji — zamiast szarego podkreślenia Shindena */
 body.shinden-list .sidebarList-header::before,
@@ -321,6 +338,7 @@ body.shinden-list .premiereManualChanger-cta {
 }
 body.shinden-list .premiereManualChanger-cta:hover { color: var(--accent-light) !important; }
 
+
 /* przełącznik widoku: w środku panelu (oryginalnie wystaje 32px ponad niego) i mniejszy */
 body.shinden-list .view-content-view-changer { top: -1px; right: 0; }
 body.shinden-list .view-content-header-options { margin-top: 8px; }
@@ -346,10 +364,12 @@ body.shinden-list .view-changer-button:hover {
   border-color: var(--gold) !important;
 }
 
+
 body.shinden-list .view-content-header-button,
 body.shinden-list .view-content-header-button span { color: var(--muted) !important; }
 body.shinden-list .view-content-header-button:hover,
 body.shinden-list .view-content-header-button:hover span { color: var(--gold-light) !important; }
+
 
 body.shinden-list .dropdown-button {
   background: transparent !important;
@@ -358,6 +378,7 @@ body.shinden-list .dropdown-button {
   color: var(--text) !important;
 }
 body.shinden-list .dropdown-button:hover { background: var(--accent) !important; border-color: var(--accent) !important; }
+
 
 /* ---------- widok tabeli / listy z okładkami ---------- */
 body.shinden-list .table-header { border-color: var(--line) !important; box-shadow: none !important; }
@@ -385,6 +406,7 @@ body.shinden-list .cellLink-link:hover { color: var(--accent-light) !important; 
 body.shinden-list .cellProgress-progress { font-family: var(--font) !important;
   font-variant-numeric: lining-nums tabular-nums; color: var(--accent-light) !important; }
 body.shinden-list .cellCover-image { border-radius: var(--radius-sm); }
+
 
 /* ---------- KAFELKI ---------- */
 body.shinden-list .tiles-wrapper { padding: 0; }
@@ -453,6 +475,7 @@ body.shinden-list .cell-tile-info .cell-tile-epInfo span {
 body.shinden-list .cell-tile-episodes::before { content: "EP "; color: var(--accent-light); }
 body.shinden-list .cell-tile-rate::before { content: "★ "; color: var(--gold); }
 
+
 /* ---------- duża postać z boku (na szerokich ekranach) ---------- */
 body.shinden-list::after {
   content: "";
@@ -475,6 +498,7 @@ body.shinden-list::after {
 }
 @media (max-width: 1599px) { body.shinden-list::after { display: none; } }
 
+
 /* ---------- stopka i reszta ---------- */
 body.shinden-list .footer-wrapper { background: transparent !important; border-top: 1px solid var(--line); position: relative; z-index: 2; }
 body.shinden-list .footer-text, body.shinden-list .footer-text a { color: var(--muted) !important; font-family: var(--font-label) !important; font-size: 11px; letter-spacing: .12em; }
@@ -486,6 +510,7 @@ body.shinden-list .back-to-top-btn {
 }
 body.shinden-list .modal-wrapper > * { color: var(--text); }
 
+
 /* =====================================================================
    MOTYW LYCORIS RECOIL — dodatki
    ===================================================================== */
@@ -493,6 +518,7 @@ body.shinden-list {
   /* kafelek z zaokrąglonymi rogami */
   --tile-shape: inset(0 round 8px);
 }
+
 
 /* ---------- bąbelki w głębinie ----------
    dwie warstwy bąbelków: dalsze, większe (body::before) i bliższe, drobniejsze (.page-wrapper::before).
@@ -548,6 +574,7 @@ body.shinden-list .page-wrapper::before {
   body.shinden-list .page-wrapper::before { animation: none; opacity: .7; }
 }
 
+
 /* ---------- nawigacja ---------- */
 @media (min-width: 1024px) {
   body.shinden-list .navigation-list-item a {
@@ -573,6 +600,7 @@ body.shinden-list .navigation-background {
   border-image: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), .7) 20%, rgba(var(--gold-rgb), .7) 80%, transparent) 1 !important;
 }
 
+
 /* ---------- baner: branding LycoReco ---------- */
 /* linia „siedzenia” obrazka wypada dokładnie na dolnej krawędzi banera,
    a nogi wystają poniżej, ponad listą (z-index wyżej niż treść) */
@@ -596,6 +624,7 @@ body.shinden-list .hero-image-container::after {
   z-index: 5 !important;
   pointer-events: none !important;
 }
+
 
 /* lista odsuwa się w dół, żeby nogi zwisały nad nagłówkiem panelu, a nie nad okładkami */
 body.shinden-list .columns-wrapper {
@@ -626,6 +655,7 @@ body.shinden-list .columns-wrapper {
   }
   body.shinden-list .view-content-header-options { margin-top: 0; }
 }
+
 
 /* ---------- szukajka: taka sama jak pola w panelu (Tag…, Typ…) ----------
    tło i ramka biorą się z reguł .input-wrapper wyżej; tu tylko wysokość pól,
@@ -725,6 +755,7 @@ body.shinden-list .header-wrapper::after {
   body.shinden-list .header-wrapper::after { font-size: 60px; bottom: 32px; }
 }
 
+
 /* ---------- panele: złota ramka z ozdobnymi narożnikami ----------
    Tło i ramka są na osobnej warstwie (::before), tak jak w motywie bazowym —
    dzięki temu okienko podglądu okładki (position: fixed) nie jest niczym ucinane. */
@@ -800,6 +831,7 @@ body.shinden-list .statsPanel-item-title { color: var(--muted) !important; font-
 body.shinden-list .statsPanel-item-count { order: 2; font-family: var(--font) !important;
   font-variant-numeric: lining-nums tabular-nums; color: #fff !important; }
 
+
 /* ---------- sidebar: ramka, kolory statusów ----------
    Tło i ramka na osobnej warstwie (::before), jak w panelu listy — nic, co wychodzi z panelu
    (rozwijane listy, dymek z rokiem na suwaku, okno zaawansowanych tagów), nie jest ucinane. */
@@ -860,6 +892,7 @@ body.shinden-list .sidebar-list-item > a.is-active {
 }
 body.shinden-list .sidebar-list-item > a.is-active .sidebar-list-counter { color: var(--st, var(--accent)) !important; }
 
+
 /* checkbox i suwak daty */
 body.shinden-list .checkbox-label::before {
   background: transparent !important;
@@ -915,6 +948,7 @@ body.shinden-list .MuiSlider-valueLabel > span > span {
   color: var(--gold-light) !important;
 }
 
+
 /* przyciski nad listą */
 body.shinden-list .view-content-header-button {
   font-family: var(--font-label) !important;
@@ -923,6 +957,7 @@ body.shinden-list .view-content-header-button {
   letter-spacing: .12em;
   text-transform: uppercase;
 }
+
 
 /* ---------- widok tabeli i listy z okładkami ---------- */
 body.shinden-list .table-header-label {
@@ -936,6 +971,7 @@ body.shinden-list .listRowDesktop-content:hover {
   background: linear-gradient(90deg, rgba(var(--accent-rgb), .14), transparent 70%) !important;
 }
 body.shinden-list .cellLink-link { font-size: 16px; font-weight: 600 !important; }
+
 
 /* status: świecący klejnot zamiast kolorowego paska */
 body.shinden-list .listRowDesktop-wrapper { border-left: 1px solid var(--line) !important; }
@@ -960,6 +996,7 @@ body.shinden-list .listRowDesktop-wrapper:is(.plan, .skip)::before {
 }
 body.shinden-list .listRowDesktop-item:first-child { padding-left: 24px !important; }
 
+
 /* okładki: pionowe, zaokrąglone; po najechaniu tylko podświetlenie (duży podgląd jest po lewej) */
 body.shinden-list .cellCover-image {
   width: 38px !important;
@@ -977,6 +1014,7 @@ body.shinden-list .listRowDesktop-content:hover .cellCover-image {
   outline-color: var(--gold);
 }
 
+
 /* przycisk opcji „•••” */
 body.shinden-list .dropdown-button {
   display: flex;
@@ -993,6 +1031,7 @@ body.shinden-list .dropdown-button {
 body.shinden-list .listRowDesktop-content:hover .dropdown-button { color: var(--accent-light) !important; background: rgba(var(--accent-rgb), .12) !important; }
 body.shinden-list .dropdown-button:hover { background: var(--accent) !important; color: #fff !important; }
 body.shinden-list .cell-options-icon { width: 16px !important; height: 16px !important; }
+
 
 /* ---------- karty: okładka + podpis POD nią na pergaminie, jak list gończy ---------- */
 body.shinden-list .cell-tile-wrapper { height: 100%; transition: transform .2s, filter .2s; }
@@ -1052,6 +1091,7 @@ body.shinden-list .cell-tile-wrapper:hover .cell-tile-link::after { animation: k
 }
 body.shinden-list .cell-tile-episodes::before { content: "EP "; color: #a3142b; }
 
+
 /* przycisk „•••” na kafelku (widoczny po zalogowaniu) — pojawia się po najechaniu */
 body.shinden-list .cell-tile-options { top: calc(var(--luk) * .5 + 6px) !important; right: 8px !important; }
 body.shinden-list .cell-tile-options .dropdown-button {
@@ -1070,6 +1110,7 @@ body.shinden-list .cell-tile-options .dropdown-button:hover { background: var(--
   body.shinden-list .cell-tile-options .dropdown-button:focus-visible { opacity: 1; }
 }
 
+
 /* status: poświata w kolorze statusu wokół całej karty */
 body.shinden-list .cell-tile-wrapper {
   filter: drop-shadow(0 0 1px var(--st)) drop-shadow(0 0 1px var(--st)) drop-shadow(0 0 7px color-mix(in srgb, var(--st) 45%, transparent));
@@ -1077,6 +1118,7 @@ body.shinden-list .cell-tile-wrapper {
 body.shinden-list .cell-tile-wrapper:hover {
   filter: drop-shadow(0 0 1px var(--st)) drop-shadow(0 0 1px var(--st)) drop-shadow(0 0 16px var(--st));
 }
+
 
 /* ---------- podgląd okładki po najechaniu na tytuł (widok tabeli) ----------
    Shinden sam doczytuje okładkę do okienka .rowTitleInfo — tu tylko wygląd „lunety”
@@ -1203,9 +1245,11 @@ body.shinden-list .rowTitleInfo-inner .ctd-description {
           mask-image: linear-gradient(to bottom, #000 60%, transparent);
 }
 
+
 /* =====================================================================
    EFEKTY: wejście strony, złoty pył, kursor-serce, pasek przewijania, menu
    ===================================================================== */
+
 
 /* ---------- wejście strony: panele wyłaniają się z rozmycia ----------
    „backwards” — animacja trzyma tylko stan początkowy, potem oddaje kontrolę
@@ -1246,6 +1290,7 @@ body.shinden-list .cell-tile-item:nth-child(24) { animation-delay: 1.07s; }
   60%  { opacity: 1; filter: blur(0) brightness(1.2); }
 }
 
+
 /* ---------- złoty pył w promieniach słońca na banerze ----------
    warstwa nad banerem, ale pod nickiem i postacią; dwie warstwy drobinek wolno unoszą się i dryfują.
    Każda warstwa przesuwa się o wielokrotność swojego kafla, więc pętla jest płynna */
@@ -1273,6 +1318,7 @@ body.shinden-list .layout-wrapper::before {
   to   { background-position: 160px -320px, -200px -170px; }
 }
 
+
 /* ---------- pasek przewijania (Chrome, Edge, Opera, Safari) ----------
    scrollbar-color z rdzenia wyłącza ::-webkit-scrollbar, więc tu go zerujemy;
    Firefox nie zna ::-webkit-scrollbar i zostaje przy scrollbar-color z rdzenia */
@@ -1288,6 +1334,7 @@ body.shinden-list .layout-wrapper::before {
   ::-webkit-scrollbar-thumb:hover { background: #ffd98a; }
   ::-webkit-scrollbar-corner { background: #0a0e1c; }
 }
+
 
 /* ---------- menu „•••” i rozwijane listy ---------- */
 body.shinden-list .MuiPopover-root:has(.dropdown-list) {
@@ -1367,6 +1414,7 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]
   to   { clip-path: inset(0 0 0 0 round 8px); opacity: 1; }
 }
 
+
 @media (prefers-reduced-motion: reduce) {
   body.shinden-list :is(.sidebar-wrapper, .view-content-wrapper, .cell-tile-item, .dropdown-list),
   body.shinden-list .hero-image-container::after,
@@ -1374,10 +1422,12 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]
   body.shinden-list .layout-wrapper::before { display: none; }
 }
 
+
 /* =====================================================================
    PRAWA KOLUMNA (szerokie ekrany): dekoracja + podgląd okładki
    środek prawej kolumny = 75% + 325px (strona Shindena ma 1300px szerokości)
    ===================================================================== */
+
 
 /* ---------- podgląd okładki: na ≥1800px w prawej kolumnie zamiast nad panelem bocznym ---------- */
 @media (min-width: 1800px) {
@@ -1388,6 +1438,7 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]
   from { opacity: 0; transform: translateX(14px) scale(.96); }
   to   { opacity: 1; transform: none; }
 }
+
 
 /* ---------- dekoracja przy prawej krawędzi ----------
    stoi w prawej kolumnie na dole ekranu i lekko kołysze się jak na pokładzie */
@@ -1418,6 +1469,7 @@ body.shinden-list .layout-wrapper::after {
   body.shinden-list .layout-wrapper::after { animation: none; }
   body.shinden-list .rowTitleInfo-wrapper.is-visible .rowTitleInfo-inner { animation: none; }
 }
+
 
 /* =====================================================================
    OKNO „ZAAWANSOWANY WYBÓR TAGÓW” (przycisk „•••” obok pola Tag…) i inne okna Shindena
@@ -1488,6 +1540,7 @@ body.shinden-list .modal-content {
 }
 body.shinden-list .modal-wrapper > .modal-inner:not(.modal-size--xl) .modal-content { padding: 16px 20px !important; }
 
+
 /* zakładki: rząd przycisków nad listą, lista przewija się pod nimi */
 body.shinden-list .advanced-tags-wrapper {
   height: 100%;
@@ -1535,6 +1588,7 @@ body.shinden-list .advanced-tags-wrapper .tab-content {
   scrollbar-width: thin;
 }
 
+
 /* tagi: siatka kafelków z ramką, zaznaczony = podświetlony */
 body.shinden-list .advanced-tags-list {
   display: grid !important;
@@ -1570,6 +1624,7 @@ body.shinden-list .advanced-tag-item .checkbox-label.checked {
 body.shinden-list .advanced-tag-item .checkbox-label.checked::before { background: rgba(var(--accent-rgb), .25) !important; box-shadow: 0 0 6px var(--accent); }
 body.shinden-list .advanced-tag-item .checkbox-label.checked .checkbox-label-text { color: #fff !important; }
 
+
 /* stopka: Anuluj / Filtruj */
 body.shinden-list .modal-footer {
   flex: none;
@@ -1599,6 +1654,7 @@ body.shinden-list .modal-footer-button--save {
 }
 body.shinden-list .modal-footer-button--save:hover { color: #fff !important; box-shadow: inset 0 0 0 1px var(--gold-light), 0 0 16px rgba(var(--accent-rgb), .7); }
 
+
 @media (max-width: 767px) {
   body.shinden-list .modal-inner { max-width: 100% !important; }
   body.shinden-list .advanced-tags-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
@@ -1609,6 +1665,7 @@ body.shinden-list .modal-footer-button--save:hover { color: #fff !important; box
   body.shinden-list .modal-header h4::after { animation: none; }
 }
 
+
 /* =====================================================================
    WIDOK TABELI (pierwszy przycisk nad listą) — DZIENNIK POKŁADOWY
    karta dziennika z ozdobnym tytułem, status jako etykieta statusu („W trakcie”, „Za burtą”…),
@@ -1618,6 +1675,7 @@ body.shinden-list .modal-footer-button--save:hover { color: #fff !important; box
 body.shinden-list       { --ksiega: var(--ksiega-anime); }
 body.shinden-list.manga { --ksiega: var(--ksiega-manga); }
 body.shinden-list.novel { --ksiega: var(--ksiega-novel); }
+
 
 /* karta dziennika */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-wrapper {
@@ -1655,6 +1713,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
   color: rgba(var(--gold-rgb), .6);
 }
 
+
 /* nagłówek kolumn */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-header {
   border: 0 !important;
@@ -1670,6 +1729,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
 }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-header-item:first-child .table-header-label { padding-left: 116px !important; }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-header-item:last-child .table-header-label { justify-content: center; }
+
 
 /* wiersze: bez pionowych linii, cienka linia między wierszami */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-wrapper {
@@ -1738,6 +1798,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
   animation: kotwica 2s ease-in-out infinite;
 }
 
+
 /* ---------- animacje pojawiania się wierszy (tabela i lista z okładkami) ----------
    --d = opóźnienie dla kolejnych wierszy. Shinden od razu rysuje ok. 38 wierszy (na wysokim
    ekranie widać ich ponad 25), więc kolejka obejmuje pierwsze 40; wiersze doczytane później
@@ -1783,6 +1844,7 @@ body.shinden-list :is(.listRowDesktop-wrapper, .listRowMobile-wrapper):nth-child
 body.shinden-list :is(.listRowDesktop-wrapper, .listRowMobile-wrapper):nth-child(39) { --d: 1.18s; }
 body.shinden-list :is(.listRowDesktop-wrapper, .listRowMobile-wrapper):nth-child(40) { --d: 1.21s; }
 
+
 /* tabela: wiersz „wpisuje się atramentem” od lewej */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-wrapper {
   animation: atrament .7s cubic-bezier(.3, .7, .3, 1) var(--d, 0s) backwards;
@@ -1798,6 +1860,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .
 @keyframes kadr-wejscie {
   from { opacity: 0; transform: translateY(10px); filter: blur(6px) brightness(1.6); }
 }
+
 
 /* =====================================================================
    WIDOK LISTY Z OKŁADKAMI (drugi przycisk) — KADR W TLE
@@ -1861,6 +1924,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .
 /* status: ten sam świecący klejnot co w innych widokach, tuż przed tytułem */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-wrapper::before { left: 13px; }
 
+
 /* ramka: cienka obwódka wokół całej listy, bez pionowych linii między kolumnami
    (bez clip-path — w tej ramce siedzi okienko podglądu okładki i zostałoby ucięte) */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .table-wrapper {
@@ -1892,6 +1956,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-item { border: 0 !important; }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-wrapper { border-bottom-color: rgba(var(--gold-rgb), .09) !important; }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-item:nth-child(n + 3) .listRowDesktop-item-value { text-align: center; }
+
 
 /* ogólna: gwiazdka + ocena */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) :is(.listRowDesktop-item, .listRowMobile-item):nth-child(3) .cellDefault-value {
@@ -1955,6 +2020,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .
 }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-content:hover .listRowDesktop-item:nth-child(5) .cellDefault-value { box-shadow: inset 0 0 0 1px var(--accent); }
 
+
 /* =====================================================================
    TELEFON (węższe niż 768px) — Shinden podmienia wtedy wiersze na karty
    .listRowMobile-*, z podpisami „Tytuł:”, „Ogólna:” jeden pod drugim.
@@ -1973,6 +2039,7 @@ body.shinden-list .listRowMobile-content {
   align-items: center;
   gap: 6px 12px;
 }
+
 
 /* --- dziennik: etykieta statusu, tytuł, a pod spodem „ogólna: - postęp: 0 / 12 typ: TV” --- */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowMobile-wrapper {
@@ -2029,6 +2096,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
 }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowMobile-item:has(.cell-options-wrapper) { margin-left: auto !important; }
 
+
 /* --- kadr w tle: plakat na całą kartę, klejnot przed tytułem, wartości w jednym rzędzie --- */
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowMobile-wrapper {
   overflow: hidden;
@@ -2070,11 +2138,13 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowMobile-item:has(.cell-options-wrapper) { margin-left: auto !important; }
 body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowMobile-wrapper .dropdown-button { opacity: .8; }
 
+
 @media (prefers-reduced-motion: reduce) {
   body.shinden-list .listRowDesktop-wrapper,
   body.shinden-list .listRowDesktop-wrapper::before,
   body.shinden-list .cellCover-image { animation: none !important; }
 }
+
 
 /* =====================================================================
    STOPKA — „SHINDEN 2026” po lewej, „LYCO RECO · DZIENNIK” po prawej
@@ -2165,6 +2235,7 @@ body.shinden-list .footer-wrapper .wrapper-container::after {
   body.shinden-list .footer-wrapper .wrapper-container::after { animation: none; }
 }
 
+
 /* =====================================================================
    USTAWIENIA (po zalogowaniu: /settings/…) — ogólne, generator wyglądu,
    własny CSS, import z MAL, listy własne, oceny skinów
@@ -2211,6 +2282,7 @@ body.shinden-list .settingsContent-wrapper .title-wrapper :is(h2, h3, h4, h5) {
   color: var(--gold) !important;
 }
 
+
 /* fioletowe ramki z informacjami → notatka z pomarańczową kreską */
 body.shinden-list .description-box {
   padding: 12px 16px !important;
@@ -2235,6 +2307,7 @@ body.shinden-list .description-box :is(p, span, a) { font-size: 14px !important;
 body.shinden-list .description-box :is(strong, b) { color: #fff; }
 body.shinden-list .description-box a { color: var(--accent-light) !important; }
 
+
 /* przyciski radio: klejnoty jak uchwyty suwaka */
 body.shinden-list .radio-label::before {
   width: 11px !important;
@@ -2255,6 +2328,7 @@ body.shinden-list .radio-label::after {
   transform: rotate(45deg);
 }
 body.shinden-list .radio-label { color: var(--text); }
+
 
 /* przyciski: Zapisz = szkarłatno-pomarańczowy, Przywróć do domyślnych = pomarańczowa obwódka */
 body.shinden-list .settingsContent-wrapper .button {
@@ -2282,6 +2356,7 @@ body.shinden-list .settingsContent-wrapper .resetToDefaultBtn .button:hover {
   background: var(--accent-2) !important;
   box-shadow: 0 0 16px rgba(var(--accent-2-rgb), .55);
 }
+
 
 /* generator wyglądu: etykiety stref („Obrazek nad listą”), próbki kolorów, okno wyboru koloru */
 body.shinden-list .descriptionLine-wrapper::before { background: var(--line) !important; }
@@ -2320,6 +2395,7 @@ body.shinden-list .sketch-picker input {
 body.shinden-list .sketch-picker :is(label, span) { color: var(--muted) !important; }
 body.shinden-list [class*="Zone-value"] { font-family: var(--font-label) !important; color: var(--gold-light) !important; }
 
+
 /* import z MAL: pole do upuszczenia pliku */
 body.shinden-list .MuiDropzoneArea-root {
   background: rgba(8, 10, 20, .6) !important;
@@ -2335,6 +2411,7 @@ body.shinden-list .MuiDropzoneArea-text {
   color: var(--text) !important;
 }
 body.shinden-list .MuiDropzoneArea-icon { color: var(--accent) !important; filter: drop-shadow(0 0 6px var(--accent)); }
+
 
 /* oceny skinów: „Importuj wygląd” jako mały przycisk w jednej linii */
 body.shinden-list .settingsContent-wrapper .listRowDesktop-item:last-child { padding-left: 4px !important; padding-right: 4px !important; }
@@ -2387,6 +2464,7 @@ body.shinden-list .unmatched-input:focus { box-shadow: inset 0 0 0 1px var(--acc
   body.shinden-list .settingsContent-header h3::after { animation: none; }
 }
 
+
 /* =====================================================================
    LICZBY — krój etykiet (IM Fell) ma drobne cyfry nautyczne, więc liczniki, postęp,
    oceny i statystyki dostają czytelną Alegreyę z cyframi równej wysokości
@@ -2397,6 +2475,7 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
   font-variant-numeric: lining-nums tabular-nums;
 }
 body.shinden-list .sidebar-list-counter { font-size: 14px !important; }
+
 
 /* LYCORIS RECOIL — wykończenie inspirowane Café LycoReco. */
 /* Pseudo-elementy postaci pozostają gotowe — pojawią się po wklejeniu URL-i w zmienne. */
@@ -2427,6 +2506,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
 body.shinden-list .cellLink-link:hover, body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; }
 @media (max-width: 767px) { body.shinden-list { --hero-h: var(--hero-h-mobile); } body.shinden-list .view-content-wrapper { padding: 13px !important; } }
 
+
 /* =====================================================================
    LYCORIS RECOIL — warstwa końcowa motywu
    Czerwony akcent Chisato + granat Takiny + turkus Café LycoReco.
@@ -2446,6 +2526,7 @@ body.shinden-list .view-content-header-button:hover,
 body.shinden-list .button:hover {
   box-shadow: 0 0 18px rgba(var(--accent-2-rgb), .16) !important;
 }
+
 
 /* Lycoris Recoil — dopasowanie detali, kursora i stopki */
 body.shinden-list,
@@ -2467,6 +2548,7 @@ body.shinden-list .footer-wrapper::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='12'%3E%3Cpath d='M0 10Q8 0 16 10T32 10T48 10' fill='none' stroke='%23d94b5b' stroke-width='1.4'/%3E%3C/svg%3E") !important;
 }
 
+
 /* =====================================================================
    LYCORIS RECOIL — PEŁNE WYKOŃCZENIE INTERFEJSU
    Café LycoReco: ciepłe, przygaszone powierzchnie + czerwień Chisato
@@ -2477,6 +2559,7 @@ body.shinden-list :is(.view-content-wrapper, .settingsContent-wrapper, .modal-in
   color: var(--text) !important;
 }
 
+
 body.shinden-list .view-content-wrapper::before,
 body.shinden-list .settingsContent-wrapper::before {
   background:
@@ -2484,6 +2567,7 @@ body.shinden-list .settingsContent-wrapper::before {
     linear-gradient(180deg, rgba(37,48,65,.98), rgba(24,32,46,.98)) !important;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.025), 0 16px 38px rgba(0,0,0,.28) !important;
 }
+
 
 /* Okna modalne i ich tło */
 body.shinden-list .modal-wrapper {
@@ -2556,6 +2640,7 @@ body.shinden-list .modal-footer-button--save:hover {
   box-shadow: 0 7px 22px rgba(var(--accent-rgb), .3) !important;
 }
 
+
 /* Wszystkie popovery, menu i listy wyboru */
 body.shinden-list .MuiPopover-paper,
 body.shinden-list .MuiMenu-paper,
@@ -2596,6 +2681,7 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="control
   box-shadow: 0 0 0 3px rgba(var(--accent-2-rgb), .12) !important;
 }
 
+
 /* Przyciski: główne akcje w czerwieni, drugorzędne w granacie */
 body.shinden-list :is(button, .button, .dropdown-button, .view-content-header-button, .unmatched-btn) {
   border-radius: 8px !important;
@@ -2621,6 +2707,7 @@ body.shinden-list .unmatched-btn:not([aria-pressed="true"]) {
   color: var(--text) !important;
 }
 
+
 /* Pola, wyszukiwarki, pola tekstowe i focus */
 body.shinden-list :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select,
   .input-wrapper, .unmatched-input) {
@@ -2638,6 +2725,7 @@ body.shinden-list .unmatched-input:focus {
 }
 body.shinden-list :is(input, textarea, select)::placeholder { color: #8f9aa8 !important; opacity: 1; }
 
+
 /* Checkboxy, radio i przełączniki */
 body.shinden-list :is(input[type="checkbox"], input[type="radio"]) {
   accent-color: var(--accent);
@@ -2651,6 +2739,7 @@ body.shinden-list .MuiSwitch-switchBase.Mui-checked { color: var(--accent) !impo
 body.shinden-list .MuiSwitch-track { background: #647184 !important; opacity: .65 !important; }
 body.shinden-list .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track { background: var(--accent-2) !important; opacity: 1 !important; }
 
+
 /* Tooltipy, dymki i etykiety */
 body.shinden-list :is(.MuiTooltip-tooltip, [role="tooltip"], .MuiSlider-valueLabel) {
   color: #fff7f1 !important;
@@ -2661,6 +2750,7 @@ body.shinden-list :is(.MuiTooltip-tooltip, [role="tooltip"], .MuiSlider-valueLab
   font-family: var(--font-label) !important;
 }
 body.shinden-list .MuiSlider-valueLabel { background: #202b3d !important; }
+
 
 /* Karty, wiersze, accordion i komunikaty */
 body.shinden-list .MuiAccordion-root,
@@ -2686,6 +2776,7 @@ body.shinden-list :is(.MuiAlert-root, .alert, .description-box) {
   border-radius: 8px !important;
 }
 
+
 /* Pasek postępu, suwaki, przełączniki widoku i aktywne zakładki */
 body.shinden-list .MuiSlider-root { color: var(--accent) !important; }
 body.shinden-list .MuiSlider-track { background: linear-gradient(90deg, var(--accent-2), var(--accent)) !important; }
@@ -2698,6 +2789,7 @@ body.shinden-list .navigation-list-item a.is-active {
 }
 body.shinden-list .cellProgress-progress { color: var(--accent-light) !important; }
 
+
 /* Scrollbary w oknach i całej stronie */
 body.shinden-list :is(*, *::before, *::after) { scrollbar-color: #8f5365 #131c2a; }
 body.shinden-list ::-webkit-scrollbar-thumb {
@@ -2705,6 +2797,7 @@ body.shinden-list ::-webkit-scrollbar-thumb {
   border: 2px solid #131c2a !important;
   border-radius: 10px !important;
 }
+
 
 /* Responsywność: modal i menu nie mogą wyjść poza ekran */
 @media (max-width: 767px) {
@@ -2724,6 +2817,7 @@ body.shinden-list ::-webkit-scrollbar-thumb {
     .sidebar-list-item > a, .listRowDesktop-content) { transition: none !important; }
 }
 
+
  
 /* =====================================================================
    CAFÉ LYCORECO — dopracowany motyw kawiarenki
@@ -2731,6 +2825,7 @@ body.shinden-list ::-webkit-scrollbar-thumb {
    kremowe menu, szałwiowa zieleń, truskawkowa czerwień i mosiądz.
    To warstwa końcowa: zachowuje układ Shindena i dotychczasowe grafiki.
    ===================================================================== */
+
 
 html:root {
   background: #1d1714;
@@ -2748,6 +2843,7 @@ body.shinden-list :is(h1,h2,h3,h4,h5,h6,.view-content-h3,.settingsContent-header
   letter-spacing: .025em;
   color: var(--heading) !important;
 }
+
 
 /* Górna nawigacja — ciemne drewno i subtelna mosiężna krawędź */
 body.shinden-list .navigation-background {
@@ -2779,6 +2875,7 @@ body.shinden-list .navigation-list-item a.is-active {
     border-bottom: 1px solid rgba(var(--gold-rgb),.32);
   }
 }
+
 
 /* Główne powierzchnie — nie metaliczny panel sci-fi, lecz przytulne drewno */
 body.shinden-list .view-content-wrapper,
@@ -2821,6 +2918,7 @@ body.shinden-list .view-content-h3::after {
   font-size: .72em;
 }
 
+
 /* Nagłówki sekcji — mała tabliczka menu */
 body.shinden-list .sidebarList-header,
 body.shinden-list .MuiAccordionSummary-content {
@@ -2838,6 +2936,7 @@ body.shinden-list .sidebarList-header::after {
   margin-top: 8px;
   background: linear-gradient(90deg, rgba(var(--gold-rgb),.5), transparent);
 }
+
 
 /* Sidebar — półki i etykiety w kawiarni */
 body.shinden-list .accordion-wrapper--sidebar .MuiPaper-root {
@@ -2868,6 +2967,7 @@ body.shinden-list .sidebar-list-item > a.is-active {
   box-shadow: inset 3px 0 0 #c85b55;
 }
 body.shinden-list .sidebar-list-counter { color: #c4b49d !important; }
+
 
 /* Filtry, wyszukiwarka i dropdowny — ceramiczne pola */
 body.shinden-list .input-wrapper,
@@ -2904,6 +3004,7 @@ body.shinden-list :is(.custom-dropdown,.custom-async-dropdown) [id*="-option-"]:
   color: #fff4e7 !important;
 }
 
+
 /* Przyciski — czerwony akcent jak szyld lokalu, zieleń dla spokojnych akcji */
 body.shinden-list :is(button,.button,.dropdown-button,.view-content-header-button,.unmatched-btn) {
   border-radius: 8px !important;
@@ -2935,6 +3036,7 @@ body.shinden-list .view-content-header-button:hover {
   border-color: rgba(var(--gold-rgb),.48) !important;
 }
 
+
 /* Przełącznik widoku — mała mosiężna listwa */
 body.shinden-list .view-changer-button {
   color: #c8b79f !important;
@@ -2947,6 +3049,7 @@ body.shinden-list .view-changer-button:hover {
   background: linear-gradient(135deg,rgba(var(--accent-rgb),.82),rgba(135,151,122,.68)) !important;
   border-color: #d7bb83 !important;
 }
+
 
 /* Lista i kafelki — papierowe etykiety, delikatne podświetlenie */
 body.shinden-list .table-header {
@@ -3011,6 +3114,7 @@ body.shinden-list .cell-tile-info::after {
   letter-spacing: .13em;
 }
 
+
 /* Statusy — bardziej naturalne, zgaszone odcienie */
 body.shinden-list {
   --st-in-progress: #a8bd88;
@@ -3020,6 +3124,7 @@ body.shinden-list {
   --st-dropped: #cb7568;
   --st-plan: #91aaa0;
 }
+
 
 /* Okna dialogowe — wnętrze kawiarni zamiast futurystycznego panelu */
 body.shinden-list .modal-wrapper {
@@ -3069,6 +3174,7 @@ body.shinden-list .modal-footer {
   border-top: 1px solid rgba(var(--gold-rgb),.22) !important;
 }
 
+
 /* Drobne elementy budujące klimat: dekoracyjne linie, linki i stopka */
 body.shinden-list .footer-wrapper .wrapper-container::before {
   background:
@@ -3093,6 +3199,7 @@ body.shinden-list .back-to-top-btn {
   border: 1px solid rgba(var(--gold-rgb),.55) !important;
 }
 
+
 /* Zaznaczenia i paski przewijania */
 body.shinden-list ::selection {
   color: #fff8ed;
@@ -3106,6 +3213,7 @@ body.shinden-list ::-webkit-scrollbar-thumb {
   border: 2px solid #241a14 !important;
   border-radius: 10px !important;
 }
+
 
 /* Telefon: zachowaj czytelność i nie dokładaj poziomego przewijania */
 @media (max-width: 767px) {
@@ -3133,9 +3241,11 @@ body.shinden-list ::-webkit-scrollbar-thumb {
   }
 }
 
+
 /* =====================================================================
    KOREKTA PO TEŚCIE W PRZEGLĄDARCE — nagłówek i czytelność listy
    ===================================================================== */
+
 
 /* Nagłówek listy jest celowo wysunięty nad panel. Nie może być obcinany
    przez overflow:hidden na samym panelu. Dekorację zostawiamy na ::before. */
@@ -3162,6 +3272,7 @@ body.shinden-list .view-content-header-options :is(button,a,.button,.dropdown-bu
   color: #f2e5cf !important;
 }
 
+
 /* Mocniejsza czytelność kart anime i ich opisów. */
 body.shinden-list .cell-tile-info {
   background: linear-gradient(to top,
@@ -3180,6 +3291,7 @@ body.shinden-list .cell-tile-info .cell-tile-epInfo span {
 body.shinden-list .cell-tile-episodes::before { color: #f19a89 !important; }
 body.shinden-list .cell-tile-rate::before { color: #e4c486 !important; }
 
+
 /* Przyciski i etykiety listy: czytelne również na ciemnym drewnie. */
 body.shinden-list :is(.view-content-header-button,.dropdown-button,.view-changer-button) {
   color: #f1e4d0 !important;
@@ -3197,9 +3309,11 @@ body.shinden-list .sidebar-list-item > a.is-active span {
   color: #fff0dc !important;
 }
 
+
 /* =====================================================================
    CAFÉ LYCORECO — elegancki podpis profilu
    ===================================================================== */
+
 
 body.shinden-list .header-wrapper::after {
   font-family: var(--font-nick) !important;
@@ -3217,4 +3331,3 @@ body.shinden-list .header-wrapper::after {
     font-size: var(--nick-font-size-mobile) !important;
   }
 }
-
