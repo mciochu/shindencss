@@ -3336,3 +3336,27 @@ body.shinden-list .header-wrapper::after {
     text-decoration-thickness: 1px !important;
   }
 }
+
+
+/* KOREKTA: separator należy do dolnej krawędzi BANERA, nie do nicku. */
+body.shinden-list .header-wrapper::after {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+/* Elegancka krawędź banera: pojedyncza, ciągła linia z ciepłym złotym
+   środkiem i delikatnym czerwono-szałwiowym przejściem. Bez pasków. */
+body.shinden-list .hero-image-container {
+  border-bottom: 2px solid transparent !important;
+  border-image: linear-gradient(90deg,
+    rgba(201,169,110,0) 0%,
+    rgba(201,169,110,.48) 12%,
+    #c9a96e 32%,
+    #f0dfc5 50%,
+    #c9a96e 68%,
+    rgba(135,151,122,.58) 86%,
+    rgba(201,169,110,0) 100%) 1 !important;
+  box-shadow:
+    0 7px 22px rgba(0,0,0,.38),
+    0 2px 9px rgba(201,169,110,.13) !important;
+}
