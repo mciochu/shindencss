@@ -2734,3 +2734,470 @@ body.shinden-list ::-webkit-scrollbar-thumb {
   body.shinden-list :is(button, .button, .dropdown-button, .view-changer-button,
     .sidebar-list-item > a, .listRowDesktop-content) { transition: none !important; }
 }
+
+ 
+/* =====================================================================
+   CAFÉ LYCORECO — dopracowany motyw kawiarenki
+   Kierunek: przytulna tokijska kawiarnia po zmroku, drewno espresso,
+   kremowe menu, szałwiowa zieleń, truskawkowa czerwień i mosiądz.
+   To warstwa końcowa: zachowuje układ Shindena i dotychczasowe grafiki.
+   ===================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap");
+
+:root {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-title: "Cormorant Garamond", Georgia, serif;
+  --font: "Nunito Sans", Arial, sans-serif;
+  --font-label: "Nunito Sans", Arial, sans-serif;
+
+  /* Paleta Café LycoReco */
+  --accent: #c85b55;
+  --accent-rgb: 200, 91, 85;
+  --accent-light: #f19a89;
+  --accent-2: #87977a;
+  --accent-2-rgb: 135, 151, 122;
+  --sea: #87977a;
+  --sea-rgb: 135, 151, 122;
+  --gold: #c9a96e;
+  --gold-rgb: 201, 169, 110;
+  --gold-light: #f0d9a8;
+  --text: #eee4d5;
+  --muted: #b7aa98;
+  --heading: #fff3df;
+  --line: rgba(201, 169, 110, .24);
+  --bg-rgb: 29, 23, 20;
+  --bg-solid: #1d1714;
+  --panel: rgba(48, 38, 31, .97);
+  --panel-solid: #30261f;
+  --input-bg: rgba(16, 13, 11, .48);
+  --shadow: 0 18px 48px rgba(8, 5, 3, .38);
+  --radius: 13px;
+  --radius-sm: 8px;
+  --nav-bg: rgba(34, 26, 21, .97);
+  --panel-blur: blur(14px);
+  --hero-overlay:
+    linear-gradient(90deg, rgba(25,18,15,.76), rgba(25,18,15,.28) 58%, rgba(25,18,15,.08)),
+    linear-gradient(0deg, rgba(25,18,15,.62), transparent 58%);
+}
+
+html:root {
+  background: #1d1714;
+  scrollbar-color: #8d6751 #211914;
+}
+body.shinden-list {
+  color: var(--text);
+  background: #1d1714;
+  font-family: var(--font) !important;
+}
+body.shinden-list * { font-family: var(--font) !important; }
+body.shinden-list :is(h1,h2,h3,h4,h5,h6,.view-content-h3,.settingsContent-header h3) {
+  font-family: var(--font-title) !important;
+  font-weight: 700 !important;
+  letter-spacing: .025em;
+  color: var(--heading) !important;
+}
+body.shinden-list #__next::before {
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(200,91,85,.12), transparent 38%),
+    radial-gradient(ellipse at 88% 18%, rgba(135,151,122,.12), transparent 42%),
+    linear-gradient(rgba(29,23,20,.78), rgba(29,23,20,.92)),
+    var(--tlo-obraz) var(--tlo-obraz-pozycja-x) calc(var(--tlo-obraz-pozycja-y) + var(--tlo-obraz-przesuniecie-y)) / var(--tlo-obraz-rozmiar) no-repeat,
+    #1d1714;
+}
+
+/* Górna nawigacja — ciemne drewno i subtelna mosiężna krawędź */
+body.shinden-list .navigation-background {
+  background:
+    linear-gradient(180deg, rgba(67,48,36,.97), rgba(39,29,23,.98)) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb),.42) !important;
+  box-shadow: 0 5px 22px rgba(0,0,0,.24);
+  backdrop-filter: blur(16px) saturate(.85);
+}
+body.shinden-list .navigation-list-item a,
+body.shinden-list .navigation-button {
+  color: #eadbc4 !important;
+  letter-spacing: .035em;
+  transition: color .2s ease, background .2s ease;
+}
+body.shinden-list .navigation-list-item a:hover,
+body.shinden-list .navigation-button:hover {
+  color: #ffd7bd !important;
+}
+body.shinden-list .navigation-list-item a.is-active {
+  color: #ffe5bd !important;
+  background: linear-gradient(180deg, rgba(200,91,85,.22), rgba(200,91,85,.07)) !important;
+  border-bottom: 2px solid #d4b477 !important;
+  box-shadow: inset 0 -8px 16px rgba(200,91,85,.06);
+}
+@media (max-width: 1023px) {
+  body.shinden-list .navigation-inner {
+    background: linear-gradient(180deg,#3b2b21,#251b16) !important;
+    border-bottom: 1px solid rgba(var(--gold-rgb),.32);
+  }
+}
+
+/* Baner — ciepłe światło wnętrza, cienki pasek jak krawędź markizy */
+body.shinden-list .hero-image-container {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(var(--gold-rgb),.52) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.36) !important;
+}
+body.shinden-list .hero-image-container::before {
+  background:
+    linear-gradient(90deg, rgba(25,17,13,.72), rgba(25,17,13,.22) 58%, rgba(25,17,13,.08)),
+    linear-gradient(0deg, rgba(25,17,13,.58), transparent 62%),
+    var(--baner) var(--baner-pos) / cover no-repeat !important;
+}
+body.shinden-list .hero-image-container::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  left: 0; right: 0; bottom: 0;
+  height: 7px;
+  background: repeating-linear-gradient(90deg,
+    #c85b55 0 34px, #f0dfc5 34px 68px, #87977a 68px 102px, #f0dfc5 102px 136px);
+  opacity: .86;
+  box-shadow: 0 -2px 12px rgba(0,0,0,.16);
+}
+
+/* Główne powierzchnie — nie metaliczny panel sci-fi, lecz przytulne drewno */
+body.shinden-list .view-content-wrapper,
+body.shinden-list .settingsContent-wrapper {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255,239,213,.035), transparent 42%),
+    linear-gradient(180deg, rgba(63,48,37,.98), rgba(43,33,27,.98)) !important;
+  border: 1px solid rgba(var(--gold-rgb),.28) !important;
+  border-radius: 13px !important;
+  box-shadow: 0 17px 42px rgba(8,5,3,.30), inset 0 1px 0 rgba(255,239,213,.055) !important;
+  backdrop-filter: blur(12px);
+}
+body.shinden-list .view-content-wrapper::before,
+body.shinden-list .settingsContent-wrapper::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #c85b55 24%, #c9a96e 50%, #87977a 76%, transparent);
+  box-shadow: 0 2px 14px rgba(201,169,110,.12);
+}
+body.shinden-list .view-content-wrapper > *,
+body.shinden-list .settingsContent-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+body.shinden-list .view-content-h3 {
+  color: #f8e9d1 !important;
+  font-family: var(--font-title) !important;
+  font-size: 25px !important;
+  letter-spacing: .035em;
+}
+body.shinden-list .view-content-h3::after {
+  content: "  ✿" !important;
+  color: #d58a72 !important;
+  font-size: .72em;
+}
+
+/* Nagłówki sekcji — mała tabliczka menu */
+body.shinden-list .sidebarList-header,
+body.shinden-list .MuiAccordionSummary-content {
+  color: #d9bd8b !important;
+  font-family: var(--font) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .19em !important;
+  text-transform: uppercase;
+}
+body.shinden-list .sidebarList-header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, rgba(var(--gold-rgb),.5), transparent);
+}
+
+/* Sidebar — półki i etykiety w kawiarni */
+body.shinden-list .accordion-wrapper--sidebar .MuiPaper-root {
+  background: rgba(25,19,15,.24) !important;
+  border: 1px solid rgba(var(--gold-rgb),.10);
+  border-radius: 9px !important;
+  box-shadow: none !important;
+}
+body.shinden-list .sidebar-list-item > a {
+  border: 1px solid transparent !important;
+  border-radius: 7px !important;
+  margin: 3px 0;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+body.shinden-list .sidebar-list-item > a span {
+  color: #e8dcc9 !important;
+}
+body.shinden-list .sidebar-list-item > a:hover {
+  background: rgba(var(--accent-2-rgb),.13) !important;
+  border-color: rgba(var(--accent-2-rgb),.24) !important;
+  transform: translateX(2px);
+}
+body.shinden-list .sidebar-list-item > a.is-active {
+  background: linear-gradient(90deg, rgba(var(--accent-rgb),.22), rgba(var(--gold-rgb),.07)) !important;
+  border-color: rgba(var(--gold-rgb),.32) !important;
+  box-shadow: inset 3px 0 0 #c85b55;
+}
+body.shinden-list .sidebar-list-counter { color: #c4b49d !important; }
+
+/* Filtry, wyszukiwarka i dropdowny — ceramiczne pola */
+body.shinden-list .input-wrapper,
+body.shinden-list .custom-dropdown-control,
+body.shinden-list :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select,.unmatched-input) {
+  color: #f2e7d7 !important;
+  background: rgba(22,16,13,.62) !important;
+  border: 1px solid rgba(var(--gold-rgb),.24) !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
+}
+body.shinden-list .input-wrapper:focus-within,
+body.shinden-list .custom-dropdown-control:focus-within,
+body.shinden-list :is(input,textarea,select):focus {
+  border-color: rgba(var(--accent-2-rgb),.8) !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent-2-rgb),.16) !important;
+  outline: none !important;
+}
+body.shinden-list :is(input,textarea,select)::placeholder {
+  color: #a99a86 !important;
+  opacity: 1;
+}
+body.shinden-list :is(.custom-dropdown,.custom-async-dropdown) [class*="menu"] {
+  background: #382a21 !important;
+  border: 1px solid rgba(var(--gold-rgb),.38) !important;
+  border-radius: 9px !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,.42) !important;
+}
+body.shinden-list :is(.custom-dropdown,.custom-async-dropdown) [id*="-option-"] {
+  color: #eee2d0 !important;
+}
+body.shinden-list :is(.custom-dropdown,.custom-async-dropdown) [id*="-option-"]:hover {
+  background: rgba(var(--accent-rgb),.2) !important;
+  color: #fff4e7 !important;
+}
+
+/* Przyciski — czerwony akcent jak szyld lokalu, zieleń dla spokojnych akcji */
+body.shinden-list :is(button,.button,.dropdown-button,.view-content-header-button,.unmatched-btn) {
+  border-radius: 8px !important;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease !important;
+}
+body.shinden-list :is(.button,.modal-footer-button--save,.back-to-top-btn,
+  .settingsContent-wrapper .button:not(.button--danger)) {
+  color: #fff2e4 !important;
+  background: linear-gradient(135deg,#b84d49,#d36b5e) !important;
+  border: 1px solid rgba(231,196,137,.52) !important;
+  box-shadow: 0 4px 12px rgba(112,43,37,.22) !important;
+}
+body.shinden-list :is(.button,.modal-footer-button--save,.back-to-top-btn):hover {
+  background: linear-gradient(135deg,#cc6258,#e17b68) !important;
+  box-shadow: 0 6px 18px rgba(200,91,85,.27) !important;
+  transform: translateY(-1px);
+}
+body.shinden-list .dropdown-button,
+body.shinden-list .view-content-header-button,
+body.shinden-list .unmatched-btn:not([aria-pressed="true"]) {
+  color: #e8dcc9 !important;
+  background: rgba(var(--accent-2-rgb),.10) !important;
+  border: 1px solid rgba(var(--accent-2-rgb),.32) !important;
+}
+body.shinden-list .dropdown-button:hover,
+body.shinden-list .view-content-header-button:hover {
+  color: #fff1d8 !important;
+  background: rgba(var(--accent-2-rgb),.2) !important;
+  border-color: rgba(var(--gold-rgb),.48) !important;
+}
+
+/* Przełącznik widoku — mała mosiężna listwa */
+body.shinden-list .view-changer-button {
+  color: #c8b79f !important;
+  background: rgba(20,15,12,.52) !important;
+  border-color: rgba(var(--gold-rgb),.22) !important;
+}
+body.shinden-list .view-changer-button.is-active,
+body.shinden-list .view-changer-button:hover {
+  color: #fff1dc !important;
+  background: linear-gradient(135deg,rgba(var(--accent-rgb),.82),rgba(135,151,122,.68)) !important;
+  border-color: #d7bb83 !important;
+}
+
+/* Lista i kafelki — papierowe etykiety, delikatne podświetlenie */
+body.shinden-list .table-header {
+  border-color: rgba(var(--gold-rgb),.25) !important;
+}
+body.shinden-list .table-header-label {
+  color: #cdbb9f !important;
+  background: rgba(17,13,10,.48) !important;
+  font-size: 10px !important;
+  letter-spacing: .16em !important;
+}
+body.shinden-list .listRowDesktop-wrapper,
+body.shinden-list .listRowMobile-wrapper {
+  background: rgba(27,21,17,.22) !important;
+  border-color: rgba(var(--gold-rgb),.16) !important;
+}
+body.shinden-list .listRowDesktop-wrapper {
+  border-left: 3px solid var(--st,var(--line)) !important;
+}
+body.shinden-list .listRowDesktop-content:hover,
+body.shinden-list .listRowMobile-wrapper:hover {
+  background: linear-gradient(90deg,rgba(var(--accent-rgb),.13),rgba(var(--accent-2-rgb),.08)) !important;
+  box-shadow: inset 2px 0 0 rgba(var(--gold-rgb),.72);
+}
+body.shinden-list .listRowDesktop-item-value,
+body.shinden-list .cellLink-link {
+  color: #eee2d0 !important;
+}
+body.shinden-list .cellLink-link:hover {
+  color: #f3a18f !important;
+}
+body.shinden-list .cellCover-image {
+  border: 1px solid rgba(var(--gold-rgb),.24);
+  box-shadow: 0 3px 9px rgba(0,0,0,.22);
+}
+body.shinden-list .cell-tile-link {
+  border: 1px solid rgba(var(--gold-rgb),.22);
+  box-shadow: 0 7px 18px rgba(0,0,0,.22);
+}
+body.shinden-list .cell-tile-link:hover {
+  border-color: rgba(var(--gold-rgb),.66);
+  box-shadow: 0 10px 24px rgba(0,0,0,.32),0 0 0 2px rgba(var(--accent-rgb),.12);
+  transform: translateY(-3px);
+}
+body.shinden-list .cell-tile-info {
+  background: linear-gradient(to top,rgba(20,14,11,.96),rgba(20,14,11,.62) 62%,transparent) !important;
+}
+body.shinden-list .cell-tile-info::after {
+  color: var(--st) !important;
+  letter-spacing: .13em;
+}
+
+/* Statusy — bardziej naturalne, zgaszone odcienie */
+body.shinden-list {
+  --st-in-progress: #a8bd88;
+  --st-completed: #d7b574;
+  --st-skip: #b4a999;
+  --st-hold: #d39a68;
+  --st-dropped: #cb7568;
+  --st-plan: #91aaa0;
+}
+
+/* Okna dialogowe — wnętrze kawiarni zamiast futurystycznego panelu */
+body.shinden-list .modal-wrapper {
+  background: rgba(12,8,6,.78) !important;
+  backdrop-filter: blur(8px) saturate(.75);
+}
+body.shinden-list .modal-inner,
+body.shinden-list .MuiDialog-paper,
+body.shinden-list .MuiDrawer-paper {
+  color: #eee3d2 !important;
+  background:
+    linear-gradient(135deg,rgba(var(--accent-rgb),.10),transparent 42%),
+    linear-gradient(180deg,#403026,#2a201a) !important;
+  border: 1px solid rgba(var(--gold-rgb),.42) !important;
+  border-radius: 13px !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,240,215,.06) !important;
+}
+body.shinden-list .modal-header {
+  background: linear-gradient(90deg,rgba(var(--accent-rgb),.18),rgba(var(--accent-2-rgb),.12),transparent) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb),.25) !important;
+}
+body.shinden-list .modal-header h4 {
+  color: #fff0db !important;
+  font-family: var(--font-title) !important;
+  font-size: 24px !important;
+}
+body.shinden-list .modal-header h4::before {
+  content: "CAFÉ LYCORECO  /  " !important;
+  display: block;
+  margin-bottom: 1px;
+  color: #d6b77e !important;
+  font-family: var(--font) !important;
+  font-size: 9px !important;
+  letter-spacing: .2em !important;
+}
+body.shinden-list .modal-close {
+  background: rgba(20,14,11,.32) !important;
+  border: 1px solid rgba(var(--gold-rgb),.28) !important;
+  border-radius: 8px !important;
+}
+body.shinden-list .modal-close:hover {
+  background: rgba(var(--accent-rgb),.2) !important;
+  border-color: rgba(var(--accent-rgb),.65) !important;
+}
+body.shinden-list .modal-footer {
+  background: rgba(18,13,10,.24) !important;
+  border-top: 1px solid rgba(var(--gold-rgb),.22) !important;
+}
+
+/* Drobne elementy budujące klimat: dekoracyjne linie, linki i stopka */
+body.shinden-list .footer-wrapper .wrapper-container::before {
+  background:
+    linear-gradient(var(--gold),var(--gold)) top / 100% 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) bottom / 100% 1px no-repeat,
+    linear-gradient(90deg,#453126,#80634a 50%,#453126) !important;
+}
+body.shinden-list .footer-text,
+body.shinden-list .footer-text a {
+  color: #cdbb9f !important;
+}
+body.shinden-list .footer-text a::before {
+  content: "✿  " !important;
+  color: #d77b6c !important;
+}
+body.shinden-list .footer-text a:hover {
+  color: #ffe3bd !important;
+  text-shadow: 0 0 8px rgba(var(--gold-rgb),.24);
+}
+body.shinden-list .back-to-top-btn {
+  border-radius: 50% !important;
+  border: 1px solid rgba(var(--gold-rgb),.55) !important;
+}
+
+/* Zaznaczenia i paski przewijania */
+body.shinden-list ::selection {
+  color: #fff8ed;
+  background: rgba(var(--accent-rgb),.58);
+}
+body.shinden-list :is(*,*::before,*::after) {
+  scrollbar-color: #9a6a52 #241a14;
+}
+body.shinden-list ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,#c85b55,#87977a) !important;
+  border: 2px solid #241a14 !important;
+  border-radius: 10px !important;
+}
+
+/* Telefon: zachowaj czytelność i nie dokładaj poziomego przewijania */
+@media (max-width: 767px) {
+  body.shinden-list { --hero-h: var(--hero-h-mobile); }
+  body.shinden-list .view-content-wrapper,
+  body.shinden-list .settingsContent-wrapper {
+    padding: 13px !important;
+    border-radius: 10px !important;
+  }
+  body.shinden-list .view-content-h3 { font-size: 21px !important; }
+  body.shinden-list .modal-wrapper { padding: 10px !important; }
+  body.shinden-list .modal-inner,
+  body.shinden-list .MuiDialog-paper,
+  body.shinden-list .MuiDrawer-paper {
+    max-width: calc(100vw - 20px) !important;
+    max-height: calc(100dvh - 20px) !important;
+    border-radius: 11px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.shinden-list :is(button,.button,.dropdown-button,.view-changer-button,
+    .sidebar-list-item > a,.listRowDesktop-content,.cell-tile-link) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
