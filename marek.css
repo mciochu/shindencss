@@ -18,7 +18,7 @@
   --baner-pos-y: 0%;               /* 0% = góra, 50% = środek, 100% = dół */
   --baner-przesuniecie-y: 18%;     /* niezależna korekta pionowa */
   --baner-proporcje: 1.3333;       /* proporcja używana do skalowania */
-  --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
+  --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0.01–1 (nie ustawiaj 0) */
 
   /* ── Tło strony ────────────────────────────────────────────────── */
   --tlo-obraz: url("https://i.imgur.com/1DViavB.jpeg");
@@ -50,7 +50,7 @@
   --side-size: contain;
   --side-mask: none;
   --side-opacity: 1;
-  --side-filter: drop-shadow(0 8px 24px rgba(26, 19, 12, .35));
+  --side-filter: drop-shadow(0 9px 16px rgba(0, 0, 0, .48));
   --pyl-widok: none;
   --pyl-sila: .35;
   --babelki-ruch: paused;
@@ -2421,7 +2421,8 @@ body.shinden-list .cellLink-link:hover, body.shinden-list .footer-text a:hover {
 /* =====================================================================
    LYCORIS RECOIL — warstwa końcowa motywu
    Czerwony akcent Chisato + granat Takiny + turkus Café LycoReco.
-   ===================================================================== */body.shinden-list .footer-text a::before { content: "✿ "; color: var(--accent); }
+   ===================================================================== */
+body.shinden-list .footer-text a::before { content: "✿ "; color: var(--accent); }
 body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; text-shadow: 0 0 8px rgba(var(--accent-rgb), .55); }
 body.shinden-list .sidebar-list-item > a:hover,
 body.shinden-list .listRowDesktop-content:hover {
@@ -3152,7 +3153,7 @@ body.shinden-list .hero-image-container::after {
   -webkit-mask-image: var(--postac-maska) !important;
   mask-image: var(--postac-maska) !important;
   background-color: transparent !important;
-  filter: drop-shadow(0 9px 16px rgba(0,0,0,.48)) !important;
+  filter: var(--side-filter) !important;
   opacity: 1 !important;
   mix-blend-mode: normal !important;
   z-index: 5 !important;
@@ -3222,7 +3223,7 @@ body.shinden-list .sidebar-list-item > a.is-active span {
 
 
 /* =====================================================================
-   CAFÉ LYCORECO — nowe tło i elegancki podpis profilu
+   CAFÉ LYCORECO — elegancki podpis profilu
    ===================================================================== */
 
 
