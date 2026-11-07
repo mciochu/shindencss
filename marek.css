@@ -2442,3 +2442,295 @@ body.shinden-list .footer-wrapper .wrapper-container::before {
 body.shinden-list .footer-wrapper::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='12'%3E%3Cpath d='M0 10Q8 0 16 10T32 10T48 10' fill='none' stroke='%23d94b5b' stroke-width='1.4'/%3E%3C/svg%3E") !important;
 }
+
+
+/* =====================================================================
+   LYCORIS RECOIL — PEŁNE WYKOŃCZENIE INTERFEJSU
+   Café LycoReco: ciepłe, przygaszone powierzchnie + czerwień Chisato
+   i chłodny granat Takiny. Warstwa nadpisująca wcześniejsze reguły.
+   ===================================================================== */
+:root {
+  --accent: #d94b5b;
+  --accent-rgb: 217, 75, 91;
+  --accent-light: #ff9aa5;
+  --accent-2: #397f91;
+  --accent-2-rgb: 57, 127, 145;
+  --gold: #d9b879;
+  --gold-rgb: 217, 184, 121;
+  --gold-light: #f5dfb3;
+  --sea: #397f91;
+  --sea-rgb: 57, 127, 145;
+  --text: #f1ece8;
+  --muted: #b2adb0;
+  --heading: #fff7f1;
+  --line: rgba(217, 184, 121, .2);
+  --bg-rgb: 17, 23, 34;
+  --bg-solid: #111722;
+  --panel: rgba(27, 35, 49, .96);
+  --panel-solid: #1b2331;
+  --input-bg: rgba(7, 12, 21, .48);
+  --shadow: 0 18px 48px rgba(0, 0, 0, .34);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+body.shinden-list {
+  --hero-overlay: linear-gradient(90deg, rgba(12,17,27,.78), rgba(12,17,27,.30) 55%, rgba(12,17,27,.08)),
+                  linear-gradient(0deg, rgba(12,17,27,.48), transparent 55%);
+}
+body.shinden-list :is(.view-content-wrapper, .settingsContent-wrapper, .modal-inner,
+  .MuiPopover-paper, .MuiMenu-paper, .MuiDialog-paper, .MuiDrawer-paper) {
+  color: var(--text) !important;
+}
+
+/* Panele: głęboki granat, ciepła cienka krawędź i czerwony refleks */
+body.shinden-list .view-content-wrapper,
+body.shinden-list .settingsContent-wrapper {
+  border-color: rgba(var(--gold-rgb), .2) !important;
+  box-shadow: 0 16px 44px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+body.shinden-list .view-content-wrapper::before,
+body.shinden-list .settingsContent-wrapper::before {
+  background:
+    linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .55), rgba(var(--accent-2-rgb), .5), transparent) top / 100% 2px no-repeat,
+    linear-gradient(180deg, rgba(37,48,65,.98), rgba(24,32,46,.98)) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.025), 0 16px 38px rgba(0,0,0,.28) !important;
+}
+
+/* Okna modalne i ich tło */
+body.shinden-list .modal-wrapper {
+  background: rgba(5, 9, 16, .76) !important;
+  backdrop-filter: blur(7px) saturate(.8);
+}
+body.shinden-list .modal-inner {
+  background:
+    linear-gradient(115deg, rgba(var(--accent-rgb), .10), transparent 38%),
+    linear-gradient(180deg, #202a3b 0%, #151d2b 100%) !important;
+  border: 1px solid rgba(var(--gold-rgb), .42) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,.58), 0 0 32px rgba(var(--accent-rgb),.13),
+              inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+body.shinden-list .modal-header {
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .18), rgba(var(--accent-2-rgb), .09) 72%, transparent) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .24) !important;
+  padding: 14px 18px 12px 22px !important;
+}
+body.shinden-list .modal-header h4 {
+  color: var(--heading) !important;
+  font-family: var(--font-title) !important;
+  font-size: 22px !important;
+  letter-spacing: .025em !important;
+}
+body.shinden-list .modal-header h4::before {
+  content: "LYCORECO /" !important;
+  color: var(--accent-light) !important;
+  font-size: 9px !important;
+  letter-spacing: .16em !important;
+}
+body.shinden-list .modal-header h4::after {
+  color: var(--gold-light) !important;
+  text-shadow: 0 0 9px rgba(var(--gold-rgb), .38) !important;
+}
+body.shinden-list .modal-close {
+  border: 1px solid rgba(var(--gold-rgb), .2) !important;
+  border-radius: 8px !important;
+  background: rgba(5,10,18,.28) !important;
+}
+body.shinden-list .modal-close-icon { color: #d8c9c2 !important; }
+body.shinden-list .modal-close:hover {
+  background: rgba(var(--accent-rgb), .18) !important;
+  border-color: rgba(var(--accent-rgb), .6) !important;
+}
+body.shinden-list .modal-close:hover .modal-close-icon { color: #fff !important; }
+body.shinden-list .modal-footer {
+  background: rgba(7, 12, 20, .22) !important;
+  border-top: 1px solid rgba(var(--gold-rgb), .2) !important;
+}
+body.shinden-list .modal-footer-button {
+  border: 1px solid rgba(var(--gold-rgb), .25) !important;
+  background: rgba(255,255,255,.025) !important;
+  color: var(--text) !important;
+}
+body.shinden-list .modal-footer-button:hover {
+  background: rgba(var(--accent-2-rgb), .15) !important;
+  border-color: rgba(var(--accent-2-rgb), .7) !important;
+  color: #fff !important;
+}
+body.shinden-list .modal-footer-button--save {
+  background: linear-gradient(110deg, #b9364b, #d94b5b 58%, #397f91) !important;
+  border: 1px solid rgba(var(--gold-rgb), .6) !important;
+  color: #fff !important;
+  box-shadow: 0 5px 16px rgba(var(--accent-rgb), .18) !important;
+}
+body.shinden-list .modal-footer-button--save:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 7px 22px rgba(var(--accent-rgb), .3) !important;
+}
+
+/* Wszystkie popovery, menu i listy wyboru */
+body.shinden-list .MuiPopover-paper,
+body.shinden-list .MuiMenu-paper,
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class$="-menu"] {
+  color: var(--text) !important;
+  background: linear-gradient(145deg, #222d40, #151e2c) !important;
+  border: 1px solid rgba(var(--gold-rgb), .34) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 16px 42px rgba(0,0,0,.48), 0 0 18px rgba(var(--accent-2-rgb),.12) !important;
+  overflow: hidden;
+}
+body.shinden-list .MuiPopover-paper:has(.dropdown-list) { background: #1b2535 !important; }
+body.shinden-list .dropdown-list::before { color: var(--accent-light) !important; }
+body.shinden-list .dropdown-list .list-button,
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"] {
+  color: var(--text) !important;
+  transition: background .16s ease, color .16s ease, padding-left .16s ease;
+}
+body.shinden-list .dropdown-list .list-button:hover,
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]:hover {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .24), rgba(var(--accent-2-rgb), .12)) !important;
+}
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="multiValue"] {
+  background: rgba(var(--accent-2-rgb), .2) !important;
+  border: 1px solid rgba(var(--accent-2-rgb), .3) !important;
+}
+body.shinden-list .custom-dropdown-control,
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="control"] {
+  background: rgba(7,12,21,.48) !important;
+  border-color: rgba(var(--gold-rgb), .24) !important;
+  border-radius: 8px !important;
+}
+body.shinden-list .custom-dropdown-control:hover,
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="control"]:hover,
+body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="control"]:focus-within {
+  border-color: rgba(var(--accent-2-rgb), .75) !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent-2-rgb), .12) !important;
+}
+
+/* Przyciski: główne akcje w czerwieni, drugorzędne w granacie */
+body.shinden-list :is(button, .button, .dropdown-button, .view-content-header-button, .unmatched-btn) {
+  border-radius: 8px !important;
+  transition: color .18s ease, background .18s ease, border-color .18s ease,
+              box-shadow .18s ease, transform .18s ease !important;
+}
+body.shinden-list :is(.button, .modal-footer-button--save, .back-to-top-btn,
+  .settingsContent-wrapper .button:not(.button--danger)) {
+  background: linear-gradient(110deg, #b9364b, #d94b5b 62%, #397f91) !important;
+  border: 1px solid rgba(var(--gold-rgb), .48) !important;
+  color: #fff !important;
+}
+body.shinden-list :is(button, .button, .dropdown-button):hover {
+  border-color: rgba(var(--gold-rgb), .7) !important;
+  box-shadow: 0 5px 18px rgba(var(--accent-rgb), .18) !important;
+}
+body.shinden-list :is(button, .button, .dropdown-button):active { transform: translateY(1px); }
+body.shinden-list .dropdown-button,
+body.shinden-list .view-content-header-button,
+body.shinden-list .unmatched-btn:not([aria-pressed="true"]) {
+  background: rgba(var(--accent-2-rgb), .08) !important;
+  border: 1px solid rgba(var(--accent-2-rgb), .3) !important;
+  color: var(--text) !important;
+}
+
+/* Pola, wyszukiwarki, pola tekstowe i focus */
+body.shinden-list :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select,
+  .input-wrapper, .unmatched-input) {
+  color: var(--text) !important;
+  background-color: rgba(7,12,21,.55) !important;
+  border-color: rgba(var(--gold-rgb), .2) !important;
+  border-radius: 8px !important;
+}
+body.shinden-list :is(input, textarea, select):focus,
+body.shinden-list .input-wrapper:focus-within,
+body.shinden-list .unmatched-input:focus {
+  border-color: rgba(var(--accent-2-rgb), .8) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent-2-rgb), .14) !important;
+}
+body.shinden-list :is(input, textarea, select)::placeholder { color: #8f9aa8 !important; opacity: 1; }
+
+/* Checkboxy, radio i przełączniki */
+body.shinden-list :is(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--accent);
+}
+body.shinden-list .MuiCheckbox-root,
+body.shinden-list .MuiRadio-root,
+body.shinden-list .MuiSwitch-switchBase { color: #a7b2c0 !important; }
+body.shinden-list .MuiCheckbox-root.Mui-checked,
+body.shinden-list .MuiRadio-root.Mui-checked,
+body.shinden-list .MuiSwitch-switchBase.Mui-checked { color: var(--accent) !important; }
+body.shinden-list .MuiSwitch-track { background: #647184 !important; opacity: .65 !important; }
+body.shinden-list .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track { background: var(--accent-2) !important; opacity: 1 !important; }
+
+/* Tooltipy, dymki i etykiety */
+body.shinden-list :is(.MuiTooltip-tooltip, [role="tooltip"], .MuiSlider-valueLabel) {
+  color: #fff7f1 !important;
+  background: #202b3d !important;
+  border: 1px solid rgba(var(--gold-rgb), .42) !important;
+  border-radius: 7px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.38) !important;
+  font-family: var(--font-label) !important;
+}
+body.shinden-list .MuiSlider-valueLabel { background: #202b3d !important; }
+
+/* Karty, wiersze, accordion i komunikaty */
+body.shinden-list .MuiAccordion-root,
+body.shinden-list .MuiAccordionSummary-root,
+body.shinden-list .MuiAccordionDetails-root {
+  color: var(--text) !important;
+  background: rgba(18,26,39,.72) !important;
+  border-color: rgba(var(--gold-rgb), .16) !important;
+}
+body.shinden-list .MuiAccordion-root::before { background: rgba(var(--gold-rgb), .16) !important; }
+body.shinden-list .listRowDesktop-wrapper,
+body.shinden-list .listRowMobile-wrapper {
+  border-color: rgba(var(--gold-rgb), .16) !important;
+}
+body.shinden-list .listRowDesktop-content:hover,
+body.shinden-list .listRowMobile-wrapper:hover {
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .12), rgba(var(--accent-2-rgb), .07)) !important;
+}
+body.shinden-list :is(.MuiAlert-root, .alert, .description-box) {
+  color: var(--text) !important;
+  background: rgba(var(--accent-2-rgb), .09) !important;
+  border-color: rgba(var(--accent-2-rgb), .42) !important;
+  border-radius: 8px !important;
+}
+
+/* Pasek postępu, suwaki, przełączniki widoku i aktywne zakładki */
+body.shinden-list .MuiSlider-root { color: var(--accent) !important; }
+body.shinden-list .MuiSlider-track { background: linear-gradient(90deg, var(--accent-2), var(--accent)) !important; }
+body.shinden-list .view-changer-button.is-active,
+body.shinden-list .view-changer-button:hover,
+body.shinden-list .navigation-list-item a.is-active {
+  color: #fff !important;
+  background: linear-gradient(110deg, rgba(var(--accent-rgb), .3), rgba(var(--accent-2-rgb), .22)) !important;
+  border-color: var(--gold) !important;
+}
+body.shinden-list .cellProgress-progress { color: var(--accent-light) !important; }
+
+/* Scrollbary w oknach i całej stronie */
+body.shinden-list :is(*, *::before, *::after) { scrollbar-color: #8f5365 #131c2a; }
+body.shinden-list ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d94b5b, #397f91) !important;
+  border: 2px solid #131c2a !important;
+  border-radius: 10px !important;
+}
+
+/* Responsywność: modal i menu nie mogą wyjść poza ekran */
+@media (max-width: 767px) {
+  body.shinden-list .modal-wrapper { padding: 10px !important; }
+  body.shinden-list .modal-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 20px) !important;
+    border-radius: 12px !important;
+  }
+  body.shinden-list .modal-header { padding: 12px 12px 10px 15px !important; }
+  body.shinden-list .modal-header h4 { font-size: 19px !important; }
+  body.shinden-list .modal-footer { padding: 10px 12px !important; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.shinden-list :is(button, .button, .dropdown-button, .view-changer-button,
+    .sidebar-list-item > a, .listRowDesktop-content) { transition: none !important; }
+}
