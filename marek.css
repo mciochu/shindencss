@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Marcellus:wght@400;500;600&display=swap");
 /* SHINDEN — LYcoris Recoil. Zachowany oryginalny układ i mechanika motywu. */
 :root {
+  /* ── Profil i podpisy ─────────────────────────────────────────── */
   --nick: "Dretwyandrzej";
   --nick-sub-anime: "✦ CAFÉ LYCORECO · ANIME ✦";
   --nick-sub-manga: "✦ NOTATNIK LYCORECO · MANGA ✦";
@@ -10,27 +11,26 @@
   --ksiega-anime: "Dziennik LycoReco — Anime";
   --ksiega-manga: "Dziennik LycoReco — Manga";
   --ksiega-novel: "Dziennik LycoReco — Nowelki";
-  /* ================================================================
-     ŁATWA EDYCJA GRAFIK I BANERA — zmieniaj URL-e tylko w tym bloku.
-     Baner: podmień adres w url("..."). Kadr ustawisz niżej osobno.
-     Tło strony: wklej url("...") zamiast none; gradienty zostaną na wierzchu.
-     Postacie/dekoracje: none wyłącza daną grafikę.
-     ================================================================ */
+
+  /* ── Baner: grafika i kadrowanie ───────────────────────────────── */
   --baner: url("https://i.imgur.com/mcDKjkV.jpeg");
-  --baner-pos: center;             /* poziome położenie kadru banera */
-  --baner-pos-y: 0%;               /* pionowo: 0% = góra, 50% = środek, 100% = dół */
-  --baner-przesuniecie-y: 18%;       /* dodatkowa korekta pionowa: np. -5% w górę, 5% w dół */
-  --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
+  --baner-pos: center;             /* poziome położenie */
+  --baner-pos-y: 0%;               /* 0% = góra, 50% = środek, 100% = dół */
+  --baner-przesuniecie-y: 18%;     /* niezależna korekta pionowa */
+  --baner-proporcje: 1.3333;       /* proporcja używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
 
-  --tlo-obraz: url("https://i.imgur.com/1DViavB.jpeg"); /* wnętrze Café LycoReco — ciepłe światło i drewno */
-  --tlo-obraz-pozycja-x: center; /* poziomo: left, center, right lub procent */
-  --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
-  --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
+  /* ── Tło strony ────────────────────────────────────────────────── */
+  --tlo-obraz: url("https://i.imgur.com/1DViavB.jpeg");
+  --tlo-obraz-pozycja-x: center;   /* left, center, right lub procent */
+  --tlo-obraz-pozycja-y: 0%;       /* 0% = góra, 50% = środek, 100% = dół */
+  --tlo-obraz-przesuniecie-y: 0%;  /* dodatkowa korekta pionowa */
   --tlo-obraz-rozmiar: cover;
-  --postac: url("https://cdn.discordapp.com/attachments/685477357531955218/1568426001363509358/Gemini_Generated_Image_g12fe1g12fe1g12f.png?ex=6aefc60a&is=6aee748a&hm=3babb62f0b4ec72bc197accded9ef8e9ce23af7920845141eb9a713579835de5&"); /* oficjalna, pełna postać Chisato z przezroczystym tłem */
-  --postac-duza: none;           /* bez dodatkowej postaci w panelu bocznym */
-  --postac-prawa: none;          /* opcjonalna druga grafika */
+
+  /* ── Postacie i grafiki dodatkowe ───────────────────────────────── */
+  --postac: url("https://cdn.discordapp.com/attachments/685477357531955218/1568426001363509358/Gemini_Generated_Image_g12fe1g12fe1g12f.png?ex=6aefc60a&is=6aee748a&hm=3babb62f0b4ec72bc197accded9ef8e9ce23af7920845141eb9a713579835de5&");
+  --postac-duza: none;
+  --postac-prawa: none;
   --postac-siad: .8;
   --postac-proporcje: .59;
   --postac-h: 490px;
@@ -38,40 +38,74 @@
   --postac-x: calc(75% - 250px);
   --postac-uniesienie: 5px;
   --postac-maska: none;
-
   --postac-prawa-widok: none;
+
+  /* ── Dekoracje i efekty ─────────────────────────────────────────── */
   --side-display: none;
-  --side-left: 0; --side-right: auto; --side-w: 360px; --side-h: 720px;
-  --side-pos: center bottom; --side-size: contain; --side-mask: none;
+  --side-left: 0;
+  --side-right: auto;
+  --side-w: 360px;
+  --side-h: 720px;
+  --side-pos: center bottom;
+  --side-size: contain;
+  --side-mask: none;
   --side-opacity: 1;
   --side-filter: drop-shadow(0 8px 24px rgba(26, 19, 12, .35));
-  --pyl-widok: none; --pyl-sila: .35; --babelki-ruch: paused;
+  --pyl-widok: none;
+  --pyl-sila: .35;
+  --babelki-ruch: paused;
+  --narozniki: none;
+  --lina: none;
+  --babelki-maska: none;
+
+  /* ── Typografia ─────────────────────────────────────────────────── */
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-title: "Cormorant Garamond", Georgia, serif;
-  --font: "Nunito Sans", "Arial", sans-serif;
-  --font-label: "Nunito Sans", "Arial", sans-serif;
+  --font: "Nunito Sans", Arial, sans-serif;
+  --font-label: "Nunito Sans", Arial, sans-serif;
   --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif;
-  --accent: #c85b55; --accent-rgb: 200, 91, 85; --accent-light: #f19a89;
-  --accent-2: #87977a; --accent-2-rgb: 135, 151, 122;
-  --gold: #c9a96e; --gold-rgb: 201, 169, 110; --gold-light: #f0d9a8;
+
+  /* ── Paleta Café LycoReco ───────────────────────────────────────── */
+  --accent: #c85b55;
+  --accent-rgb: 200, 91, 85;
+  --accent-light: #f19a89;
+  --accent-2: #87977a;
+  --accent-2-rgb: 135, 151, 122;
+  --gold: #c9a96e;
+  --gold-rgb: 201, 169, 110;
+  --gold-light: #f0d9a8;
   --sea-rgb: 135, 151, 122;
-  
-  --text: #eee4d5; --muted: #b7aa98; --heading: #fff3df;
+  --text: #eee4d5;
+  --muted: #b7aa98;
+  --heading: #fff3df;
   --line: rgba(201, 169, 110, .24);
-  --bg-rgb: 29, 23, 20; --bg-solid: #1d1714;
-  
+  --bg-rgb: 29, 23, 20;
+  --bg-solid: #1d1714;
   --nav-bg: rgba(34, 26, 21, .97);
-  --panel: rgba(48, 38, 31, .97); --panel-solid: #30261f;
-  --panel-blur: blur(14px); --input-bg: rgba(16, 13, 11, .48);
-  --shadow: 0 18px 48px rgba(8, 5, 3, .38); --radius: 13px; --radius-sm: 8px;
-  --hero-h-desktop: 330px;       /* wysokość banera na komputerze */
-  --hero-h-mobile: 230px;        /* wysokość banera na telefonie */
+  --panel: rgba(48, 38, 31, .97);
+  --panel-solid: #30261f;
+  --panel-blur: blur(14px);
+  --input-bg: rgba(16, 13, 11, .48);
+  --shadow: 0 18px 48px rgba(8, 5, 3, .38);
+  --radius: 13px;
+  --radius-sm: 8px;
+
+  /* ── Wymiary i układ ────────────────────────────────────────────── */
+  --hero-h-desktop: 330px;
+  --hero-h-mobile: 230px;
   --hero-h: var(--hero-h-desktop);
   --hero-overlay: linear-gradient(90deg, rgba(25,18,15,.76), rgba(25,18,15,.28) 58%, rgba(25,18,15,.08)), linear-gradient(0deg, rgba(25,18,15,.62), transparent 58%);
-  --tile-min: 165px; --tile-gap: 16px; --tile-ratio: auto; --tile-radius: 5px; --luk: 0px;
-  --st-in-progress: #a9bd78; --st-completed: #d2b16f; --st-skip: #99958a;
-  --st-hold: #c58c55; --st-dropped: #b96c60; --st-plan: #829c9a;
-  --narozniki: none; --lina: none; --babelki-maska: none;
+  --tile-min: 165px;
+  --tile-gap: 16px;
+  --tile-ratio: auto;
+  --tile-radius: 5px;
+  --luk: 0px;
+  --st-in-progress: #a9bd78;
+  --st-completed: #d2b16f;
+  --st-skip: #99958a;
+  --st-hold: #c58c55;
+  --st-dropped: #b96c60;
+  --st-plan: #829c9a;
 }
 
 /* =====================================================================
