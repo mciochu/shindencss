@@ -28,7 +28,7 @@
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
   --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
   --tlo-obraz-rozmiar: cover;
-  --postac: none;                /* brak grafiki Holo — motyw Lycoris Recoil */
+  --postac: none;                /* brak grafiki postać z poprzedniego motywu wyłączona */
   --postac-duza: none;           /* bez dodatkowej postaci na dużym ekranie */
   --postac-prawa: none;          /* opcjonalna druga grafika */
   --postac-siad: .6;
@@ -423,7 +423,7 @@ body.shinden-list .back-to-top-btn {
 body.shinden-list .modal-wrapper > * { color: var(--text); }
 
 /* =====================================================================
-   MOTYW SPICE & WOLF — dodatki
+   MOTYW LYCORIS RECOIL — dodatki
    ===================================================================== */
 body.shinden-list {
   /* kafelek z zaokrąglonymi rogami */
@@ -1340,7 +1340,7 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]
 }
 
 /* =====================================================================
-   PRAWA KOLUMNA (szerokie ekrany): biegnąca Holo + podgląd okładki
+   PRAWA KOLUMNA (szerokie ekrany): dekoracja + podgląd okładki
    środek prawej kolumny = 75% + 325px (strona Shindena ma 1300px szerokości)
    ===================================================================== */
 
@@ -1354,7 +1354,7 @@ body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]
   to   { opacity: 1; transform: none; }
 }
 
-/* ---------- biegnąca Holo przy prawej krawędzi ----------
+/* ---------- dekoracja przy prawej krawędzi ----------
    stoi w prawej kolumnie na dole ekranu i lekko kołysze się jak na pokładzie */
 body.shinden-list .layout-wrapper::after {
   content: "";
@@ -2042,7 +2042,7 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .
 }
 
 /* =====================================================================
-   STOPKA — „SHINDEN 2026” po lewej, „WOLF & SPICE · KRONIKA PODRÓŻY” po prawej
+   STOPKA — „SHINDEN 2026” po lewej, „LYCO RECO · DZIENNIK” po prawej
    ===================================================================== */
 body.shinden-list .footer-wrapper {
   position: relative;
@@ -2433,4 +2433,24 @@ body.shinden-list button {
 body.shinden-list .view-content-header-button:hover,
 body.shinden-list .button:hover {
   box-shadow: 0 0 18px rgba(var(--accent-2-rgb), .16) !important;
+}
+
+
+/* Lycoris Recoil — dopasowanie detali, kursora i stopki */
+body.shinden-list,
+body.shinden-list * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 2C18 8 24 9 29 11C23 14 22 20 16 30C10 20 9 14 3 11C8 9 14 8 16 2Z' fill='%23d94b5b' stroke='%23fff0e8' stroke-width='1.4'/%3E%3Ccircle cx='16' cy='15' r='3' fill='%23f4cf91'/%3E%3C/svg%3E") 16 15, auto;
+}
+body.shinden-list :is(a, a *, button, button *, label, select, [role="button"], [role="slider"], .custom-dropdown-control, .custom-dropdown-control *, [class*="-option"], .table-header-label, .table-header-label *, .premiereManualChanger-cta, .view-changer-button, .list-button) {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23121823' stroke='%23e7bd78' stroke-width='2'/%3E%3Cpath d='M16 5C18 10 23 11 26 13C21 15 20 21 16 27C12 21 11 15 6 13C9 11 14 10 16 5Z' fill='%23d94b5b' stroke='%23ff9aa5' stroke-width='1'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23f4cf91'/%3E%3C/svg%3E") 16 16, pointer;
+}
+body.shinden-list :is(input[type="text"], input:not([type]), textarea) { cursor: text; }
+body.shinden-list .footer-wrapper .wrapper-container::before {
+  background:
+    linear-gradient(var(--gold), var(--gold)) top / 100% 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) bottom / 100% 1px no-repeat,
+    linear-gradient(90deg, #812b43, #d94b5b 48%, #2b9c9a) !important;
+}
+body.shinden-list .footer-wrapper::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='12'%3E%3Cpath d='M0 10Q8 0 16 10T32 10T48 10' fill='none' stroke='%23d94b5b' stroke-width='1.4'/%3E%3C/svg%3E") !important;
 }
