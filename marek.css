@@ -22,7 +22,7 @@
   --baner-przesuniecie-y: 18%;       /* dodatkowa korekta pionowa: np. -5% w górę, 5% w dół */
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
-  --baner-jasnosc: .42;
+
   --tlo-obraz: url("https://i.imgur.com/1DViavB.jpeg"); /* wnętrze Café LycoReco — ciepłe światło i drewno */
   --tlo-obraz-pozycja-x: center; /* poziomo: left, center, right lub procent */
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
@@ -38,7 +38,7 @@
   --postac-x: calc(75% - 250px);
   --postac-uniesienie: 5px;
   --postac-maska: none;
-  --postac-duza-maska: none;
+
   --postac-prawa-widok: none;
   --side-display: none;
   --side-left: 0; --side-right: auto; --side-w: 360px; --side-h: 720px;
@@ -50,9 +50,11 @@
   --font-title: "Cormorant Garamond", Georgia, serif;
   --font: "Nunito Sans", "Arial", sans-serif;
   --font-label: "Nunito Sans", "Arial", sans-serif;
+  --font-nick: "Marcellus", "Cormorant Garamond", Georgia, serif;
   --accent: #c85b55; --accent-rgb: 200, 91, 85; --accent-light: #f19a89;
   --accent-2: #87977a; --accent-2-rgb: 135, 151, 122;
   --gold: #c9a96e; --gold-rgb: 201, 169, 110; --gold-light: #f0d9a8;
+  --sea-rgb: 135, 151, 122;
   
   --text: #eee4d5; --muted: #b7aa98; --heading: #fff3df;
   --line: rgba(201, 169, 110, .24);
