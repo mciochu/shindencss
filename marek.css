@@ -1,35 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap");
-/* SHINDEN — SPICE & WOLF. Zachowany oryginalny układ i mechanika motywu. */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap");
+/* SHINDEN — LYcoris Recoil. Zachowany oryginalny układ i mechanika motywu. */
 :root {
   --nick: "Mciochu";
-  --nick-sub-anime: "✦ DZIENNIK WĘDROWCA · ANIME ✦";
-  --nick-sub-manga: "✦ ZAPISKI Z PODRÓŻY · MANGA ✦";
-  --nick-sub-novel: "✦ OPOWIEŚCI Z PÓŁNOCY · NOWELKI ✦";
-  --stopka-wstega: "WOLF & SPICE";
-  --stopka-podpis: "A journey with Holo";
-  --ksiega-anime: "Kronika podróży — Anime";
-  --ksiega-manga: "Kronika podróży — Manga";
-  --ksiega-novel: "Kronika podróży — Nowelki";
+  --nick-sub-anime: "✦ CAFÉ LYCORECO · ANIME ✦";
+  --nick-sub-manga: "✦ NOTATNIK LYCORECO · MANGA ✦";
+  --nick-sub-novel: "✦ HISTORIE Z TOKIO · NOWELKI ✦";
+  --stopka-wstega: "LYCO RECO";
+  --stopka-podpis: "Every day is a new mission";
+  --ksiega-anime: "Dziennik LycoReco — Anime";
+  --ksiega-manga: "Dziennik LycoReco — Manga";
+  --ksiega-novel: "Dziennik LycoReco — Nowelki";
   /* ================================================================
      ŁATWA EDYCJA GRAFIK I BANERA — zmieniaj URL-e tylko w tym bloku.
      Baner: podmień adres w url("..."). Kadr ustawisz niżej osobno.
      Tło strony: wklej url("...") zamiast none; gradienty zostaną na wierzchu.
      Postacie/dekoracje: none wyłącza daną grafikę.
      ================================================================ */
-  --baner: url("https://img10.joyreactor.com/pics/post/full/anime-fandoms-Spice-and-Wolf-208893.jpeg");
+  --baner: url("https://images.squarespace-cdn.com/content/v1/60167355d5e6a55235d6abe6/3f7b52fc-36f6-4436-9111-49a66b8aea99/FH6epOJakAEDuHk.jpeg");
   --baner-pos: center;             /* poziome położenie kadru banera */
   --baner-pos-y: 0%;               /* pionowo: 0% = góra, 50% = środek, 100% = dół */
   --baner-przesuniecie-y: 18%;       /* dodatkowa korekta pionowa: np. -5% w górę, 5% w dół */
   --baner-proporcje: 1.3333;       /* proporcja obrazu używana do skalowania */
   --baner-krawedz: 1.00;           /* punkt dolnej krawędzi kadru: 0–1 */
   --baner-jasnosc: .42;
-  --tlo-obraz: url("https://images.cybersport.ru/images/og-jpg/plain/39/3941234d-0a6e-453b-bcba-b129581292c1.jpg"); /* tło strony */
+  --tlo-obraz: url("https://static.animecorner.me/2022/08/Fa2q6AGVEAAEQIn.jpg"); /* tło strony */
   --tlo-obraz-pozycja-x: center; /* poziomo: left, center, right lub procent */
   --tlo-obraz-pozycja-y: 0%;     /* pionowo: 0% = top, 50% = center, 100% = bottom */
   --tlo-obraz-przesuniecie-y: 0%; /* korekta pionowa w procentach, np. -5% / 5% */
   --tlo-obraz-rozmiar: cover;
-  --postac: url("https://cdn.discordapp.com/attachments/685477357531955218/1568384841161117757/holo_postac.png?ex=6aef9fb5&is=6aee4e35&hm=c5d17a309dae8dd8c929b32a0e94d2d62868d8f640bfc8138fc2ec10aba25768&");                  /* Holo przy banerze */
-  --postac-duza: none;           /* Holo przy lewej krawędzi dużego ekranu */
+  --postac: none;                /* brak grafiki Holo — motyw Lycoris Recoil */
+  --postac-duza: none;           /* bez dodatkowej postaci na dużym ekranie */
   --postac-prawa: none;          /* opcjonalna druga grafika */
   --postac-siad: .6;
   --postac-proporcje: .7111;
@@ -46,21 +46,21 @@
   --side-opacity: 1;
   --side-filter: drop-shadow(0 8px 24px rgba(26, 19, 12, .35));
   --pyl-widok: none; --pyl-sila: .35; --babelki-ruch: paused;
-  --font-display: "Cinzel", "Georgia", serif;
-  --font-title: "Cinzel", "Georgia", serif;
-  --font: "Alegreya", "Georgia", serif;
-  --font-label: "Cormorant Garamond", "Georgia", serif;
-  --accent: #78905a; --accent-rgb: 120, 144, 90; --accent-light: #c5d49a;
-  --accent-2: #a9683d; --accent-2-rgb: 169, 104, 61;
-  --gold: #c6a66a; --gold-rgb: 198, 166, 106; --gold-light: #ead6a7;
-  --sea: #657b65; --sea-rgb: 101, 123, 101;
-  --text: #e9dfc9; --muted: #b7aa91; --heading: #f3e8cf;
-  --line: rgba(198, 166, 106, .23);
-  --bg-rgb: 24, 27, 21; --bg-solid: #181b15;
-  --bg-image: radial-gradient(ellipse at 12% 8%, rgba(120,144,90,.16), transparent 42%), radial-gradient(ellipse at 88% 30%, rgba(169,104,61,.12), transparent 44%), radial-gradient(ellipse at 50% 100%, rgba(198,166,106,.07), transparent 55%), linear-gradient(145deg,#20251b 0%,#171912 52%,#211a14 100%);
-  --nav-bg: rgba(25, 29, 22, .94);
-  --panel: rgba(38, 39, 29, .94); --panel-solid: #26271d;
-  --panel-blur: blur(10px); --input-bg: rgba(224, 208, 169, .055);
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-title: "Playfair Display", "Georgia", serif;
+  --font: "Nunito Sans", "Arial", sans-serif;
+  --font-label: "Nunito Sans", "Arial", sans-serif;
+  --accent: #d94b5b; --accent-rgb: 217, 75, 91; --accent-light: #ff9aa5;
+  --accent-2: #2b9c9a; --accent-2-rgb: 43, 156, 154;
+  --gold: #e7bd78; --gold-rgb: 231, 189, 120; --gold-light: #ffe3b1;
+  --sea: #4b9d9b; --sea-rgb: 75, 157, 155;
+  --text: #eee9e5; --muted: #aaa5a5; --heading: #fff5f0;
+  --line: rgba(231, 189, 120, .22);
+  --bg-rgb: 18, 24, 35; --bg-solid: #121823;
+  --bg-image: radial-gradient(ellipse at 12% 8%, rgba(217,75,91,.18), transparent 42%), radial-gradient(ellipse at 88% 30%, rgba(43,156,154,.16), transparent 44%), radial-gradient(ellipse at 50% 100%, rgba(231,189,120,.07), transparent 55%), linear-gradient(145deg,#1c2635 0%,#111722 52%,#20202a 100%);
+  --nav-bg: rgba(17, 24, 36, .95);
+  --panel: rgba(31, 40, 54, .95); --panel-solid: #1f2836;
+  --panel-blur: blur(12px); --input-bg: rgba(238, 233, 229, .055);
   --shadow: 0 14px 38px rgba(0,0,0,.24); --radius: 8px; --radius-sm: 5px;
   --hero-h-desktop: 330px;       /* wysokość banera na komputerze */
   --hero-h-mobile: 230px;        /* wysokość banera na telefonie */
@@ -509,7 +509,7 @@ body.shinden-list .navigation-background {
   border-image: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), .7) 20%, rgba(var(--gold-rgb), .7) 80%, transparent) 1 !important;
 }
 
-/* ---------- baner: złoty nick + Holo siedząca na linie burty ---------- */
+/* ---------- baner: branding LycoReco ---------- */
 /* linia „siedzenia” obrazka wypada dokładnie na dolnej krawędzi banera,
    a nogi wystają poniżej, ponad listą (z-index wyżej niż treść) */
 /* --pad: margines wokół obrazka, żeby poświata nie była ucinana przez maskę */
@@ -2096,7 +2096,7 @@ body.shinden-list .footer-text a {
 }
 body.shinden-list .footer-text a::before { content: "✦ "; color: var(--gold); }
 body.shinden-list .footer-text a:hover { color: var(--gold-light) !important; text-shadow: 0 0 8px rgba(var(--gold-rgb), .7); }
-/* po prawej: szkarłatna wstęga „WOLF & SPICE” + złoty napis z blaskiem */
+/* po prawej: czerwono-turkusowa wstęga „LYCO RECO” */
 body.shinden-list .footer-wrapper .wrapper-container::before {
   content: var(--stopka-wstega);
   order: 1;
@@ -2363,7 +2363,7 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 }
 body.shinden-list .sidebar-list-counter { font-size: 14px !important; }
 
-/* SPICE & WOLF — wykończenie i usunięcie marynistycznych ozdobników. */
+/* LYCORIS RECOIL — wykończenie inspirowane Café LycoReco. */
 /* Pseudo-elementy postaci pozostają gotowe — pojawią się po wklejeniu URL-i w zmienne. */
 body.shinden-list::before,
 body.shinden-list .page-wrapper::before { display: none !important; }
@@ -2401,3 +2401,36 @@ body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .
 body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-content:hover { background: linear-gradient(90deg,rgba(var(--accent-rgb),.16),rgba(var(--accent-rgb),.025)) !important; box-shadow: inset 2px 0 0 var(--gold) !important; }
 body.shinden-list .cellLink-link:hover, body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; }
 @media (max-width: 767px) { body.shinden-list { --hero-h: var(--hero-h-mobile); } body.shinden-list .view-content-wrapper { padding: 13px !important; } }
+
+
+/* =====================================================================
+   LYCORIS RECOIL — warstwa końcowa motywu
+   Czerwony akcent Chisato + granat Takiny + turkus Café LycoReco.
+   ===================================================================== */
+:root {
+  --hero-overlay: linear-gradient(90deg,rgba(var(--bg-rgb),.78) 0%,rgba(var(--bg-rgb),.42) 45%,rgba(var(--bg-rgb),.08) 82%),linear-gradient(to bottom,rgba(var(--bg-rgb),.12),transparent 30%,transparent 72%,rgba(var(--bg-rgb),.48));
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+body.shinden-list .hero-image-container {
+  border-bottom: 2px solid rgba(var(--accent-rgb), .7) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,.38), 0 0 24px rgba(var(--accent-2-rgb),.12) !important;
+}
+body.shinden-list .hero-image-container::after {
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-2-rgb),.75), rgba(var(--accent-rgb),.85), transparent) !important;
+}
+body.shinden-list .footer-text a::before { content: "✿ "; color: var(--accent); }
+body.shinden-list .footer-text a:hover { color: var(--accent-light) !important; text-shadow: 0 0 8px rgba(var(--accent-rgb), .55); }
+body.shinden-list .sidebar-list-item > a:hover,
+body.shinden-list .listRowDesktop-content:hover {
+  box-shadow: inset 2px 0 0 var(--accent-2) !important;
+}
+body.shinden-list .view-content-header-button,
+body.shinden-list .button,
+body.shinden-list button {
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+body.shinden-list .view-content-header-button:hover,
+body.shinden-list .button:hover {
+  box-shadow: 0 0 18px rgba(var(--accent-2-rgb), .16) !important;
+}
