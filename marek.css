@@ -2837,27 +2837,22 @@ body.shinden-list .navigation-list-item a.is-active {
 
 /* Baner — ciepłe światło wnętrza, cienki pasek jak krawędź markizy */
 body.shinden-list .hero-image-container {
-  overflow: hidden;
-  border-bottom: 1px solid rgba(var(--gold-rgb),.52) !important;
+  /* Nie przycinaj: ::after zawiera pełną postać wystającą poniżej banera. */
+  overflow: visible !important;
+  border-bottom: 7px solid transparent !important;
+  border-image: repeating-linear-gradient(90deg,
+    #c85b55 0 34px, #f0dfc5 34px 68px, #87977a 68px 102px, #f0dfc5 102px 136px) 7 !important;
   box-shadow: 0 12px 32px rgba(0,0,0,.36) !important;
 }
 body.shinden-list .hero-image-container::before {
   background:
-    linear-gradient(90deg, rgba(25,17,13,.72), rgba(25,17,13,.22) 58%, rgba(25,17,13,.08)),
-    linear-gradient(0deg, rgba(25,17,13,.58), transparent 62%),
+    linear-gradient(90deg, rgba(25,17,13,.58), rgba(25,17,13,.16) 58%, rgba(25,17,13,.035)),
+    linear-gradient(0deg, rgba(25,17,13,.34), transparent 62%),
     var(--baner) var(--baner-pos) / cover no-repeat !important;
 }
+/* ::after pozostaje zarezerwowane dla postaci Chisato — nie nakładaj na nie dekoracyjnego paska. */
 body.shinden-list .hero-image-container::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  left: 0; right: 0; bottom: 0;
-  height: 7px;
-  background: repeating-linear-gradient(90deg,
-    #c85b55 0 34px, #f0dfc5 34px 68px, #87977a 68px 102px, #f0dfc5 102px 136px);
-  opacity: .86;
-  box-shadow: 0 -2px 12px rgba(0,0,0,.16);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.58)) brightness(1.08) saturate(1.12) !important;
 }
 
 /* Główne powierzchnie — nie metaliczny panel sci-fi, lecz przytulne drewno */
@@ -3040,11 +3035,23 @@ body.shinden-list .table-header-label {
 }
 body.shinden-list .listRowDesktop-wrapper,
 body.shinden-list .listRowMobile-wrapper {
-  background: rgba(27,21,17,.22) !important;
-  border-color: rgba(var(--gold-rgb),.16) !important;
+  background: linear-gradient(100deg,
+    color-mix(in srgb, var(--st, #c9a96e) 10%, rgba(39,30,25,.94)),
+    rgba(39,30,25,.82)) !important;
+  border-color: color-mix(in srgb, var(--st, #c9a96e) 34%, rgba(201,169,110,.18)) !important;
 }
 body.shinden-list .listRowDesktop-wrapper {
-  border-left: 3px solid var(--st,var(--line)) !important;
+  border-left: 4px solid var(--st,var(--line)) !important;
+  box-shadow: inset 0 0 22px color-mix(in srgb, var(--st, #c9a96e) 5%, transparent);
+}
+body.shinden-list .listRowDesktop-wrapper :is(.listRowDesktop-item-value,.cellLink-link),
+body.shinden-list .listRowMobile-wrapper :is(.listRowDesktop-item-value,.cellLink-link) {
+  color: #fff0dc !important;
+}
+body.shinden-list .listRowDesktop-wrapper .cellProgress-progress,
+body.shinden-list .listRowMobile-wrapper .cellProgress-progress {
+  background: var(--st) !important;
+  box-shadow: 0 0 7px color-mix(in srgb, var(--st) 42%, transparent);
 }
 body.shinden-list .listRowDesktop-content:hover,
 body.shinden-list .listRowMobile-wrapper:hover {
