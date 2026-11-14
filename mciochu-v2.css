@@ -60,8 +60,8 @@
   --side-mask: none;
   --side-opacity: 1;
   --side-filter: drop-shadow(0 8px 24px rgba(26, 19, 12, .35));
-  --pyl-widok: none;
-  --pyl-sila: .35;
+  --pyl-widok: block;
+  --pyl-sila: .12;
   --babelki-ruch: paused;
   --narozniki: none;
   --lina: none;
@@ -2427,747 +2427,980 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 }
 body.shinden-list .sidebar-list-counter { font-size: 14px !important; }
 
+
+
 /* ==========================================================================
-   MCIOCHU V2 — THE MERCHANT'S JOURNAL
-   Spice & Wolf · końcowa warstwa wizualna
+   MCIOCHU V2.1 — RZEMIOSŁO I INTERAKCJE
+   Rozbudowa istniejących możliwości Shindena, bez HTML i JavaScriptu.
 
-   Układ opracowany według konwencji marek.css:
-   konfiguracja na początku, zachowany rdzeń Shindena i jedna warstwa
-   końcowa porządkująca wszystkie komponenty interfejsu.
+   Kluczowe elementy:
+   - trzy odmienne sposoby przeglądania kolekcji,
+   - numeracja katalogowa generowana przez CSS,
+   - fokus na wybranej okładce,
+   - podgląd tytułu jako karta katalogowa,
+   - rozbudowane menu i okno zaawansowanych tagów,
+   - dopracowane stany sortowania, filtrów i statusów.
 
-   Trzy oryginalne grafiki oraz ich pozycje i kadrowanie są nietknięte.
+   Każdy ornament ma przypisane jedno konkretne miejsce. Nie dokładamy
+   ikon do każdego nagłówka i nie zajmujemy pseudo-elementów używanych
+   przez układ Shindena.
    ========================================================================== */
 
-/* ── 01. Globalne wykończenie ───────────────────────────────────── */
-body.shinden-list,
-body.shinden-list :is(.view-content-wrapper, .settingsContent-wrapper, .modal-inner,
-  .MuiPopover-paper, .MuiMenu-paper, .MuiDialog-paper, .MuiDrawer-paper) {
-  color: var(--text) !important;
-}
-body.shinden-list {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
-body.shinden-list :is(a, button, input, select, textarea) {
-  -webkit-tap-highlight-color: transparent;
-}
-body.shinden-list a {
-  text-decoration-thickness: .06em;
-  text-underline-offset: .18em;
-}
-body.shinden-list :focus-visible {
-  outline: 2px solid var(--gold-light) !important;
-  outline-offset: 3px !important;
-}
-body.shinden-list::before,
-body.shinden-list .page-wrapper::before { display: none !important; }
-body.shinden-list ::selection {
-  background: rgba(var(--accent-2-rgb), .48) !important;
-  color: #fffaf0 !important;
-}
-html:root {
-  background: var(--bg-solid);
-  scrollbar-color: rgba(var(--gold-rgb), .58) var(--bg-solid);
-}
-body.shinden-list ::-webkit-scrollbar { width: 10px; height: 10px; }
-body.shinden-list ::-webkit-scrollbar-track { background: #171b15; }
-body.shinden-list ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #a98b5a, #586548);
-  border: 2px solid #171b15;
-  border-radius: 10px;
-}
-body.shinden-list ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #d0b477, #78845d);
-}
 
+/* ── A. NAPRAWA HIERARCHII DEKORACJI ─────────────────────────────── */
 
-/* ── 02. Nawigacja — indeks dziennika kupieckiego ────────────────── */
-body.shinden-list .navigation-background {
-  background: var(--nav-bg) !important;
-  border-bottom: 1px solid rgba(var(--gold-rgb), .28) !important;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, .2);
-  backdrop-filter: blur(16px) saturate(115%);
-}
-body.shinden-list .navigation-list-item a,
-body.shinden-list .navigation-button {
-  position: relative;
-  color: #d5cbb7 !important;
-  font-family: var(--font-label) !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  letter-spacing: .11em !important;
-  text-transform: uppercase;
-  transition: color .2s ease, background .2s ease;
-}
-body.shinden-list .navigation-list-item a::after {
-  content: "";
-  position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: 5px;
-  height: 1px;
-  transform: scaleX(0);
-  transform-origin: center;
-  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-  transition: transform .22s ease;
-}
-body.shinden-list .navigation-list-item a:hover::after,
-body.shinden-list .navigation-list-item a.is-active::after { transform: scaleX(1); }
-body.shinden-list .navigation-list-item a:hover,
-body.shinden-list .navigation-button:hover {
-  color: var(--gold-light) !important;
-  background: rgba(var(--gold-rgb), .055) !important;
-}
-body.shinden-list .navigation-list-item a.is-active {
-  color: var(--gold-light) !important;
-  background: linear-gradient(180deg, rgba(var(--accent-rgb), .16), rgba(var(--accent-rgb), .035)) !important;
-  border-bottom: 1px solid rgba(var(--gold-rgb), .65) !important;
-  box-shadow: inset 0 -1px 0 rgba(var(--gold-rgb), .2);
-  clip-path: none !important;
-  padding-bottom: 14px !important;
-}
-@media (max-width: 1023px) {
-  body.shinden-list .navigation-inner { background: var(--bg-solid) !important; }
-  body.shinden-list .hamburger svg { color: var(--gold-light) !important; }
-}
-
-
-/* ── 03. Profil — podpis i typografia nicku ──────────────────────── */
-body.shinden-list .header-wrapper::before {
-  padding: 5px 14px 4px 16px !important;
-  color: #dfcda5 !important;
-  font-family: var(--font-label) !important;
-  font-size: 11px !important;
-  font-weight: 700;
-  letter-spacing: .18em !important;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, rgba(31, 39, 28, .9), rgba(31, 39, 28, .28)) !important;
-  border-left: 2px solid var(--gold) !important;
-  border-top: 1px solid rgba(var(--gold-rgb), .24);
-  clip-path: none !important;
-  text-shadow: 0 1px 3px #000;
-  animation: none !important;
-}
-body.shinden-list .header-wrapper::after {
-  font-family: var(--font-nick) !important;
-  font-size: var(--nick-font-size) !important;
-  font-weight: 500 !important;
-  letter-spacing: .025em !important;
-  line-height: 1.05 !important;
-  color: #e8d5a7 !important;
-  background: none !important;
-  -webkit-background-clip: initial !important;
-  background-clip: initial !important;
-  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .82))
-          drop-shadow(0 0 16px rgba(0, 0, 0, .5)) !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .12);
-  animation: none !important;
-}
-
-
-/* ── 04. Panele — oprawa księgi i ornament narożny ──────────────── */
-body.shinden-list .view-content-wrapper,
-body.shinden-list .settingsContent-wrapper {
-  border: 0 !important;
-  border-radius: var(--radius) !important;
-  isolation: isolate;
-}
-body.shinden-list .view-content-wrapper { padding: 23px !important; }
-body.shinden-list .view-content-wrapper::before,
-body.shinden-list .settingsContent-wrapper::before {
-  background:
-    var(--m2-frame) center / 100% 100% no-repeat,
-    radial-gradient(ellipse 80% 180px at 50% 0, rgba(var(--accent-rgb), .10), transparent 72%),
-    linear-gradient(145deg, rgba(39, 44, 33, .985), rgba(27, 31, 24, .985)) !important;
-  border: 1px solid rgba(var(--gold-rgb), .3) !important;
-  border-radius: var(--radius) !important;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .38),
-              inset 0 1px 0 rgba(255, 239, 198, .045),
-              0 18px 48px rgba(0, 0, 0, .32) !important;
-}
-body.shinden-list .view-content-h3 {
-  color: var(--gold-light) !important;
-  font-family: var(--font-title) !important;
-  font-size: clamp(27px, 2.4vw, 36px) !important;
-  font-weight: 500 !important;
-  letter-spacing: .015em !important;
-  line-height: 1.08 !important;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, .35);
-}
+/* Godło wilka ma pojawiać się w karcie podglądu, nie przed każdym nagłówkiem. */
 body.shinden-list .view-content-h3::before,
 body.shinden-list .settingsContent-header h3::before {
-  content: "" !important;
-  display: inline-block !important;
-  width: 24px !important;
-  height: 24px !important;
-  margin-right: 9px;
-  vertical-align: -5px;
-  background: var(--m2-wolf) center / contain no-repeat !important;
-  opacity: .9;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .35));
+  content: none !important;
+  display: none !important;
 }
+
+/* Nagłówki sekcji mają linię prowadzącą wzrok, nie dodatkowy symbol. */
+body.shinden-list .sidebarList-header::before,
+body.shinden-list .MuiAccordionSummary-content::before,
+body.shinden-list .statsPanel-header::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* Główny separator jest tylko pod tytułem panelu. */
 body.shinden-list .view-content-h3::after {
   content: "" !important;
-  display: block;
-  width: min(230px, 62%);
-  height: 15px;
-  margin: 7px 0 0 1px;
+  display: block !important;
+  width: min(250px, 58%) !important;
+  height: 14px !important;
+  margin: 7px 0 0 !important;
   background: var(--m2-divider) left center / 100% 100% no-repeat !important;
-  opacity: .82;
+  opacity: .62 !important;
   animation: none !important;
-  text-shadow: none !important;
 }
-body.shinden-list .settingsContent-wrapper { padding: 23px !important; }
+
+/* W ustawieniach separator nie może rozpychać tytułu na osobny flex-element. */
 body.shinden-list .settingsContent-header h3 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  color: var(--gold-light) !important;
-  font-family: var(--font-title) !important;
-  font-size: 29px !important;
-  font-weight: 500 !important;
-  letter-spacing: .015em !important;
+  display: block !important;
 }
 body.shinden-list .settingsContent-header h3::after {
   content: "" !important;
-  flex: 0 0 min(175px, 100%);
-  display: block;
-  width: 175px;
-  height: 13px;
-  margin: 4px 0 0 33px;
+  display: block !important;
+  width: min(180px, 42%) !important;
+  height: 12px !important;
+  margin: 4px 0 0 !important;
   background: var(--m2-divider) left center / 100% 100% no-repeat !important;
-  opacity: .78;
-  animation: none !important;
+  opacity: .58 !important;
 }
 
 
-/* ── 05. Sidebar — spis treści ───────────────────────────────────── */
-@media (min-width: 1024px) {
-  body.shinden-list .sidebar-wrapper { padding: 17px 15px !important; }
-  body.shinden-list .sidebar-wrapper::before {
-    background:
-      var(--m2-frame) center / 100% 100% no-repeat,
-      linear-gradient(155deg, rgba(35, 41, 30, .98), rgba(25, 29, 22, .98)) !important;
-    border: 1px solid rgba(var(--gold-rgb), .25) !important;
-    border-radius: var(--radius) !important;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .28),
-                0 16px 38px rgba(0, 0, 0, .25) !important;
-  }
+/* ── B. WIDOK DZIENNIKA — numerowane wpisy i rytm czytania ────────── */
+
+/* Kolumny zaczynają się od spokojnego nagłówka rejestru. */
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-wrapper {
+  counter-reset: m2-entry;
+  border-top: 1px solid rgba(var(--gold-rgb), .2);
 }
-body.shinden-list .sidebarList-header,
-body.shinden-list .MuiAccordionSummary-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gold) !important;
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-header {
+  background: linear-gradient(90deg, rgba(var(--gold-rgb), .055), transparent 75%) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .25) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .table-header-label {
+  color: #c9ba99 !important;
   font-family: var(--font-label) !important;
-  font-size: 11px !important;
+  font-size: 9px !important;
   font-weight: 800 !important;
-  letter-spacing: .15em !important;
+  letter-spacing: .14em !important;
   text-transform: uppercase;
 }
-body.shinden-list .sidebarList-header::before,
-body.shinden-list .MuiAccordionSummary-content::before {
-  content: "" !important;
-  position: static !important;
-  display: inline-block !important;
-  flex: 0 0 14px;
-  width: 14px !important;
-  height: 19px !important;
-  background: var(--m2-wheat) center / contain no-repeat !important;
-  opacity: .84;
-}
-body.shinden-list .sidebarList-header::after,
-body.shinden-list .MuiAccordionSummary-content::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(var(--gold-rgb), .36), transparent);
-}
-body.shinden-list .sidebar-list-item > a {
-  min-height: 35px;
-  border: 1px solid transparent !important;
-  border-radius: 5px !important;
-  transition: background .2s ease, border-color .2s ease, color .2s ease;
-}
-body.shinden-list .sidebar-list-item > a:hover {
-  background: rgba(var(--gold-rgb), .065) !important;
-  border-color: rgba(var(--gold-rgb), .16) !important;
-  box-shadow: inset 2px 0 0 var(--accent-2) !important;
-}
-body.shinden-list .sidebar-list-item > a.is-active {
-  background: linear-gradient(90deg, rgba(var(--accent-rgb), .22), rgba(var(--accent-rgb), .045)) !important;
-  border-color: rgba(var(--gold-rgb), .22) !important;
-  box-shadow: inset 2px 0 0 var(--gold);
-}
-body.shinden-list .sidebar-list-item > a.is-active span { color: var(--gold-light) !important; }
-body.shinden-list .sidebar-list-counter {
-  color: #c4b99f !important;
-  font-family: var(--font) !important;
-  font-variant-numeric: tabular-nums;
-}
 
-
-/* ── 06. Statystyki — rejestr kupiecki ───────────────────────────── */
-body.shinden-list .statsPanel-wrapper { gap: 12px !important; margin: 17px 0 7px !important; }
-body.shinden-list .statsPanel-row {
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-wrapper {
   position: relative;
-  padding: 14px 15px !important;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(255,255,255,.025), transparent 55%),
-              rgba(13, 17, 13, .34) !important;
-  border: 1px solid rgba(var(--gold-rgb), .2) !important;
-  border-top: 1px solid rgba(var(--gold-rgb), .4) !important;
-  border-radius: 7px !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.025), 0 8px 20px rgba(0,0,0,.12);
-  transition: border-color .2s ease, transform .2s ease, background .2s ease;
-}
-body.shinden-list .statsPanel-row:hover {
-  transform: translateY(-2px);
-  border-color: rgba(var(--gold-rgb), .42) !important;
-  background-color: rgba(var(--accent-rgb), .06) !important;
-}
-body.shinden-list .statsPanel-header {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--gold) !important;
-  font-family: var(--font-label) !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: .13em !important;
-  text-transform: uppercase;
-}
-body.shinden-list .statsPanel-header::before {
-  content: "";
-  flex: 0 0 12px;
-  width: 12px;
-  height: 18px;
-  background: var(--m2-wheat) center / contain no-repeat;
-  opacity: .8;
-}
-body.shinden-list .statsPanel-list-item {
-  padding: 4px 0 !important;
-  border-bottom: 1px dotted rgba(var(--gold-rgb), .14);
-}
-body.shinden-list .statsPanel-list-item:last-child { border-bottom: 0; }
-body.shinden-list .statsPanel-list-item::after { border-color: rgba(var(--gold-rgb), .28) !important; }
-body.shinden-list .statsPanel-item-title { color: #c5baa5 !important; font-size: 14px !important; }
-body.shinden-list .statsPanel-item-count {
-  color: var(--gold-light) !important;
-  font-weight: 800 !important;
-  font-variant-numeric: tabular-nums;
+  counter-increment: m2-entry;
+  min-height: 48px;
+  padding-right: 34px;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .105) !important;
+  border-radius: 0 !important;
+  transition: background .18s ease;
 }
 
-
-/* ── 07. Listy i tabele — rejestr kolekcji ───────────────────────── */
-body.shinden-list .table-header { border-bottom: 1px solid rgba(var(--gold-rgb), .28) !important; }
-body.shinden-list .table-header-label {
-  color: #c7b895 !important;
-  background: rgba(var(--gold-rgb), .055) !important;
-  font-family: var(--font-label) !important;
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  letter-spacing: .13em !important;
-  text-transform: uppercase;
-}
-body.shinden-list .listRowDesktop-wrapper,
-body.shinden-list .listRowMobile-wrapper {
-  position: relative;
-  margin: 3px 0 !important;
-  background: rgba(12, 16, 12, .16) !important;
-  border: 1px solid rgba(var(--gold-rgb), .11) !important;
-  border-radius: 5px !important;
-  transition: background .2s ease, border-color .2s ease;
-}
-body.shinden-list .listRowDesktop-wrapper::before {
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-wrapper::before {
   left: 0 !important;
-  top: 18% !important;
-  bottom: 18% !important;
+  top: 20% !important;
+  bottom: 20% !important;
   width: 2px !important;
   height: auto !important;
   margin: 0 !important;
   transform: none !important;
   border: 0 !important;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 !important;
   background: var(--st, var(--gold)) !important;
-  box-shadow: 0 0 8px rgba(var(--gold-rgb), .18) !important;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--st, var(--gold)) 32%, transparent) !important;
 }
-body.shinden-list .listRowDesktop-wrapper:is(.plan, .skip)::before {
-  background: rgba(var(--gold-rgb), .35) !important;
-  box-shadow: none !important;
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-wrapper::after {
+  content: counter(m2-entry, decimal-leading-zero);
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: rgba(var(--gold-rgb), .45);
+  font-family: var(--font-label) !important;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
 }
-body.shinden-list .listRowDesktop-wrapper:hover,
-body.shinden-list .listRowMobile-wrapper:hover {
-  background: linear-gradient(90deg, rgba(var(--accent-rgb), .13), rgba(var(--gold-rgb), .025)) !important;
-  border-color: rgba(var(--gold-rgb), .25) !important;
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-content {
+  min-height: 46px;
 }
-body.shinden-list .listRowDesktop-content:hover { box-shadow: inset 2px 0 0 var(--gold) !important; }
-body.shinden-list .listRowDesktop-item,
-body.shinden-list .listRowMobile-item { border-color: rgba(var(--gold-rgb), .09) !important; }
-body.shinden-list .listRowDesktop-item-value { color: #d8cfbd !important; }
-body.shinden-list .cellLink-link {
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowDesktop-content:hover {
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .12), rgba(var(--gold-rgb), .02)) !important;
+  box-shadow: inset 2px 0 0 var(--gold) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .cellLink-link {
   color: #eee4d1 !important;
-  font-family: var(--font) !important;
-  font-size: 15px !important;
   font-weight: 700 !important;
-  text-decoration: none !important;
   transition: color .18s ease;
 }
-body.shinden-list .cellLink-link:hover { color: var(--gold-light) !important; }
-body.shinden-list .cellCover-image {
-  border: 1px solid rgba(var(--gold-rgb), .28);
-  border-radius: 4px !important;
-  filter: saturate(.91) contrast(1.015);
-  box-shadow: 0 3px 9px rgba(0,0,0,.22) !important;
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .cellLink-link:hover {
+  color: var(--gold-light) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .cellProgress-progress {
+  display: inline-block;
+  padding: 3px 9px;
+  color: #e7dfce !important;
+  background: rgba(var(--accent-rgb), .085);
+  border: 1px solid rgba(var(--gold-rgb), .18);
+  border-radius: 4px;
+  font-size: 11px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ta sama numeracja w mobilnym dzienniku. ::before pozostaje etykietą statusu Shindena. */
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listMobile {
+  counter-reset: m2-mobile-entry;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowMobile-wrapper {
+  position: relative;
+  counter-increment: m2-mobile-entry;
+  padding-right: 25px;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--1.is-active) .listRowMobile-wrapper::after {
+  content: counter(m2-mobile-entry, decimal-leading-zero);
+  position: absolute;
+  top: 14px;
+  right: 5px;
+  color: rgba(var(--gold-rgb), .42);
+  font-family: var(--font-label) !important;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .06em;
 }
 
 
-/* ── 08. Kafelki — oprawione okładki kolekcji ────────────────────── */
-body.shinden-list .cell-tile-wrapper { transition: transform .22s ease, filter .22s ease; }
-body.shinden-list .cell-tile-wrapper:hover {
-  transform: translateY(-3px);
-  filter: drop-shadow(0 9px 13px rgba(0,0,0,.26));
-}
-body.shinden-list .cell-tile-link {
+/* ── C. WIDOK KADRU — kinowy plakat w tle wiersza ────────────────── */
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .table-wrapper {
   overflow: hidden;
+  border: 1px solid rgba(var(--gold-rgb), .2);
+  border-radius: 7px;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .table-header {
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .1), transparent) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .28) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-wrapper {
+  position: relative;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .09) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .cellCover-image::before {
+  filter: brightness(.42) saturate(.88) sepia(.1) !important;
+  transition: filter .35s ease, background-position 1s ease !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-content {
+  background: linear-gradient(90deg,
+    rgba(17, 21, 16, .94) 0%,
+    rgba(17, 21, 16, .65) 40%,
+    rgba(17, 21, 16, .76) 76%,
+    rgba(17, 21, 16, .96)) !important;
+  transition: background .3s ease;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-content:hover {
+  background: linear-gradient(90deg,
+    rgba(17, 21, 16, .84) 0%,
+    rgba(17, 21, 16, .24) 42%,
+    rgba(17, 21, 16, .62) 78%,
+    rgba(17, 21, 16, .93)) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-content:hover .cellCover-image::before {
+  filter: brightness(.72) saturate(1.03) sepia(.04) !important;
+  background-position: center 44% !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .cellLink-link {
+  color: #f2e7d2 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 7px rgba(0, 0, 0, .9);
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-wrapper::before {
+  left: 13px !important;
+  top: 50% !important;
+  width: 7px !important;
+  height: 7px !important;
+  margin-top: -4px !important;
+  transform: rotate(45deg) !important;
+  background: var(--st, var(--gold)) !important;
+  border: 0 !important;
+  box-shadow: 0 0 6px var(--st, var(--gold)),
+              0 0 13px color-mix(in srgb, var(--st, var(--gold)) 38%, transparent) !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-wrapper:is(.plan, .skip)::before {
+  background: #171b15 !important;
+  border: 1px solid var(--st) !important;
+  box-shadow: none !important;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .cellProgress-progress {
+  display: inline-block;
+  padding: 4px 10px;
+  color: #f3e7d1 !important;
+  background: rgba(var(--accent-rgb), .16);
+  border: 1px solid rgba(var(--gold-rgb), .26);
+  border-radius: 999px;
+  font-size: 11px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .cellProgress-progress::before {
+  content: "EP ";
+  color: var(--gold-light);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .09em;
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-item:nth-child(3) .cellDefault-value::before {
+  content: "★ ";
+  color: var(--gold-light);
+}
+
+body.shinden-list .view-content-wrapper:has(.view-changer-button--2.is-active) .listRowDesktop-item:nth-child(5) .cellDefault-value {
+  display: inline-block;
+  min-width: 42px;
+  padding: 3px 8px;
+  color: var(--accent-light) !important;
+  border: 1px solid rgba(var(--accent-rgb), .36);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+
+/* ── D. WIDOK GALERII — katalog z numeracją i fokusem ────────────── */
+
+body.shinden-list .cell-tile-list {
+  counter-reset: kafelek;
+  gap: var(--tile-gap);
+  padding: 5px 2px 12px !important;
+}
+
+body.shinden-list .cell-tile-item {
+  counter-increment: kafelek;
+}
+
+body.shinden-list .cell-tile-wrapper {
+  height: 100%;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+body.shinden-list .cell-tile-link {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background: #1b2019 !important;
-  border: 1px solid rgba(var(--gold-rgb), .23);
+  border: 1px solid rgba(var(--gold-rgb), .23) !important;
   border-radius: 7px !important;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.38), 0 5px 15px rgba(0,0,0,.18);
-  transition: border-color .2s ease, box-shadow .2s ease;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .38),
+              0 5px 15px rgba(0, 0, 0, .18);
+  transition: border-color .22s ease, box-shadow .22s ease;
 }
-body.shinden-list .cell-tile-wrapper:hover .cell-tile-link {
-  border-color: rgba(var(--gold-rgb), .62);
-  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), .12), 0 10px 24px rgba(0,0,0,.3);
+
+body.shinden-list .cell-tile-link::before {
+  content: counter(kafelek, decimal-leading-zero);
+  position: absolute;
+  z-index: 9;
+  top: 8px;
+  left: 8px;
+  min-width: 25px;
+  padding: 3px 5px;
+  color: #e7d5ac;
+  background: rgba(20, 25, 19, .84);
+  border: 1px solid rgba(var(--gold-rgb), .48);
+  border-radius: 3px;
+  font-family: var(--font-label) !important;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
 }
-body.shinden-list .cell-tile-background { filter: saturate(.9) brightness(.94); }
+
+body.shinden-list .cell-tile-background {
+  filter: saturate(.9) brightness(.94);
+  transition: filter .35s ease, transform .65s cubic-bezier(.2, .7, .2, 1);
+}
+
 body.shinden-list .cell-tile-info,
 body.shinden-list .cell-tile-info:hover {
   position: relative;
+  flex: 1;
   padding: 9px 10px 11px !important;
-  background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 35%),
-              linear-gradient(145deg, #293025, #1b2019) !important;
-  border-top: 1px solid rgba(var(--gold-rgb), .44) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), inset 0 -1px 0 rgba(0,0,0,.35) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .025), transparent 35%),
+    linear-gradient(145deg, #293025, #1b2019) !important;
+  border-top: 1px solid rgba(var(--gold-rgb), .42) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035),
+              inset 0 -1px 0 rgba(0, 0, 0, .35) !important;
 }
+
 body.shinden-list .cell-tile-info::after {
-  content: var(--st-label);
+  content: var(--st-caption);
   display: inline-flex;
   align-items: center;
+  width: fit-content;
   min-height: 18px;
   margin: 0 0 5px;
-  padding: 1px 7px 1px 23px;
+  padding: 1px 7px 1px 22px;
   color: var(--st, var(--gold-light)) !important;
+  background: var(--m2-seal) left center / 17px 17px no-repeat;
   font-family: var(--font-label) !important;
   font-size: 9px !important;
   font-weight: 800;
-  letter-spacing: .1em !important;
+  letter-spacing: .09em !important;
+  line-height: 1.2;
   text-transform: uppercase;
-  background: var(--m2-seal) left center / 18px 18px no-repeat;
-  text-shadow: 0 1px 2px rgba(0,0,0,.35);
 }
+
 body.shinden-list .cell-tile-info .cell-tile-title {
   color: #eee5d3 !important;
   font-family: var(--font) !important;
   font-size: 14px !important;
   font-weight: 700 !important;
   line-height: 1.24 !important;
+  transition: color .18s ease;
 }
-body.shinden-list .cell-tile-info .cell-tile-title:hover { color: var(--gold-light) !important; }
+
+body.shinden-list .cell-tile-info .cell-tile-title:hover {
+  color: var(--gold-light) !important;
+}
+
 body.shinden-list .cell-tile-info .cell-tile-epInfo span {
   color: #bdb29c !important;
   font-family: var(--font-label) !important;
   font-size: 11px !important;
 }
 
+body.shinden-list .cell-tile-wrapper:hover {
+  transform: translateY(-4px);
+}
 
-/* ── 09. Pola, filtry i przyciski ────────────────────────────────── */
+body.shinden-list .cell-tile-wrapper:hover .cell-tile-link {
+  border-color: rgba(var(--gold-rgb), .65) !important;
+  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), .12),
+              0 12px 25px rgba(0, 0, 0, .3);
+}
+
+body.shinden-list .cell-tile-wrapper:hover .cell-tile-background {
+  filter: saturate(1.04) brightness(1.02);
+  transform: scale(1.035);
+}
+
+/* Tryb skupienia działa tylko na urządzeniach z prawdziwym hoverem. */
+@media (hover: hover) and (pointer: fine) {
+  body.shinden-list .cell-tile-list:has(.cell-tile-wrapper:hover) .cell-tile-wrapper:not(:hover) {
+    opacity: .72;
+  }
+}
+
+body.shinden-list .cell-tile-options .dropdown-button {
+  width: 30px !important;
+  height: 24px !important;
+  color: #f0e4ca !important;
+  background: rgba(20, 25, 19, .84) !important;
+  border: 1px solid rgba(var(--gold-rgb), .42) !important;
+  border-radius: 4px !important;
+  backdrop-filter: blur(5px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.shinden-list .cell-tile-options .dropdown-button {
+    opacity: 0;
+    transition: opacity .18s ease, background .18s ease, color .18s ease;
+  }
+
+  body.shinden-list .cell-tile-wrapper:hover .cell-tile-options .dropdown-button,
+  body.shinden-list .cell-tile-options .dropdown-button:focus-visible {
+    opacity: 1;
+  }
+}
+
+
+/* ── E. Podgląd okładki — karta katalogowa ──────────────────────── */
+
+body.shinden-list .rowTitleInfo-wrapper {
+  width: 246px !important;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .36));
+  transition: opacity .16s ease, visibility .16s ease !important;
+}
+
+body.shinden-list .rowTitleInfo-inner {
+  position: relative;
+  padding: 12px !important;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(var(--accent-rgb), .1), transparent 45%),
+    rgba(24, 29, 22, .98) !important;
+  border: 1px solid rgba(var(--gold-rgb), .4) !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .36),
+              inset 0 0 24px rgba(var(--accent-rgb), .06) !important;
+}
+
+body.shinden-list .rowTitleInfo-inner::before {
+  content: "KARTA KATALOGOWA  /  WOLF & SPICE";
+  display: block;
+  min-height: 25px;
+  margin: 0 0 9px;
+  padding: 2px 34px 7px 0;
+  color: var(--gold-light);
+  background:
+    var(--m2-wolf) right 3px top 0 / 25px 25px no-repeat,
+    linear-gradient(90deg, rgba(var(--gold-rgb), .42), transparent) left bottom / 100% 1px no-repeat;
+  font-family: var(--font-label) !important;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  line-height: 1.45;
+}
+
+body.shinden-list .rowTitleInfo-cover {
+  width: fit-content !important;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+body.shinden-list .rowTitleInfo-cover-background {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(var(--gold-rgb), .42);
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .28);
+}
+
+body.shinden-list .rowTitleInfo-cover-background-image > div {
+  display: block !important;
+}
+
+body.shinden-list .rowTitleInfo-cover-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 238, 198, .12), transparent 30%),
+              linear-gradient(0deg, rgba(0, 0, 0, .2), transparent 38%);
+  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), .2);
+}
+
+body.shinden-list .rowTitleInfo-cover-background-image img:not([aria-hidden]) {
+  animation: dossier-reveal .5s cubic-bezier(.2, .7, .2, 1);
+}
+
+body.shinden-list .rowTitleInfo-inner :is(.ctr-header, .cts-header, .ctd-header) {
+  margin: 10px 0 4px !important;
+  color: var(--gold) !important;
+  font-family: var(--font-label) !important;
+  font-size: 9px !important;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+body.shinden-list .rowTitleInfo-inner :is(.ctr-list-title, .cts-value, .ctd-description, .ctd-description *) {
+  color: var(--text) !important;
+  font-size: 12px !important;
+  line-height: 1.42;
+}
+
+body.shinden-list .rowTitleInfo-inner .ctr-list-ratio {
+  color: var(--gold-light) !important;
+  font-family: var(--font) !important;
+  font-size: 11px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+body.shinden-list .rowTitleInfo-inner .cts-status-value {
+  color: var(--accent-light) !important;
+  font-weight: 700;
+}
+
+body.shinden-list .rowTitleInfo-inner .ctd-description {
+  max-height: 6em;
+  overflow: hidden;
+  line-height: 1.35;
+  -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent);
+          mask-image: linear-gradient(to bottom, #000 75%, transparent);
+}
+
+@keyframes dossier-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+    filter: blur(4px) brightness(1.25);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    filter: none;
+  }
+}
+
+
+/* ── F. Menu kontekstowe — księga czynności ─────────────────────── */
+
+body.shinden-list .MuiPopover-root:has(.dropdown-list) {
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .32));
+}
+
+body.shinden-list .MuiPopover-paper:has(.dropdown-list) {
+  overflow: hidden;
+  background: rgba(24, 29, 22, .985) !important;
+  border: 1px solid rgba(var(--gold-rgb), .34) !important;
+  border-radius: 7px !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .35) !important;
+}
+
+body.shinden-list .dropdown-list {
+  min-width: 205px;
+  margin: 0;
+  padding: 7px 0 !important;
+  animation: menu-ledger-in .2s ease-out;
+}
+
+body.shinden-list .dropdown-list::before {
+  content: "REJESTR  /  CZYNNOŚCI";
+  display: block;
+  margin: 0 12px 5px;
+  padding: 4px 3px 8px;
+  color: var(--gold) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .2);
+  font-family: var(--font-label) !important;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+body.shinden-list .dropdown-list .list-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px 15px 8px 29px !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  text-align: left;
+  font-size: 13px !important;
+  transition: color .16s ease, background .16s ease, padding-left .16s ease;
+}
+
+body.shinden-list .dropdown-list .list-button::before {
+  content: "›";
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+  color: rgba(var(--gold-rgb), .6);
+  font-family: var(--font-title) !important;
+  font-size: 18px;
+  line-height: 1;
+  transition: color .16s ease, transform .16s ease;
+}
+
+body.shinden-list .dropdown-list .list-button:hover {
+  padding-left: 33px !important;
+  color: var(--gold-light) !important;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .17), transparent) !important;
+}
+
+body.shinden-list .dropdown-list .list-button:hover::before {
+  color: var(--gold-light);
+  transform: translate(3px, -50%);
+}
+
+@keyframes menu-ledger-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── G. Zaawansowane tagi — tablica filtrów ─────────────────────── */
+
+body.shinden-list .content-wrapper:has(.modal-wrapper) {
+  z-index: 1000;
+}
+
+body.shinden-list .modal-wrapper {
+  background: rgba(5, 8, 5, .8) !important;
+  backdrop-filter: blur(7px) saturate(.86);
+}
+
+body.shinden-list .modal-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: min(1180px, 92vw) !important;
+  color: var(--text) !important;
+  background:
+    linear-gradient(115deg, rgba(var(--accent-rgb), .1), transparent 40%),
+    linear-gradient(180deg, #293025 0%, #1b2119 100%) !important;
+  border: 1px solid rgba(var(--gold-rgb), .4) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .58),
+              inset 0 0 0 1px rgba(0, 0, 0, .35) !important;
+  overflow: hidden !important;
+}
+
+body.shinden-list .modal-header {
+  flex: none;
+  padding: 12px 18px 11px 22px !important;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .17), rgba(var(--accent-2-rgb), .06) 72%, transparent) !important;
+  border-bottom: 1px solid rgba(var(--gold-rgb), .24) !important;
+}
+
+body.shinden-list .modal-header h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--heading) !important;
+  font-family: var(--font-title) !important;
+  font-size: 22px !important;
+  font-weight: 600;
+  letter-spacing: .015em !important;
+}
+
+body.shinden-list .modal-header h4::before {
+  content: "KUPIECKI REJESTR  /" !important;
+  color: var(--accent-light) !important;
+  font-family: var(--font-label) !important;
+  font-size: 9px !important;
+  font-weight: 800;
+  letter-spacing: .12em !important;
+}
+
+body.shinden-list .modal-header h4::after { content: none !important; }
+
+body.shinden-list .modal-close {
+  width: 32px !important;
+  height: 32px !important;
+  background: rgba(5, 10, 7, .28) !important;
+  border: 1px solid rgba(var(--gold-rgb), .2) !important;
+  border-radius: 6px !important;
+}
+
+body.shinden-list .modal-close-icon {
+  color: #d8c9b4 !important;
+  transition: color .18s ease, transform .18s ease;
+}
+
+body.shinden-list .modal-close:hover {
+  background: rgba(var(--accent-rgb), .18) !important;
+  border-color: rgba(var(--gold-rgb), .55) !important;
+}
+
+body.shinden-list .modal-close:hover .modal-close-icon {
+  color: var(--gold-light) !important;
+  transform: rotate(90deg);
+}
+
+body.shinden-list .modal-content {
+  flex: 1;
+  min-height: 0;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+body.shinden-list .advanced-tags-wrapper {
+  height: 100%;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+
+body.shinden-list .advanced-tags-wrapper .tab-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body.shinden-list .advanced-tags-wrapper .tab-header {
+  flex: none;
+  position: relative;
+  padding: 12px 20px 0;
+  background: rgba(13, 17, 13, .24);
+  border-bottom: 1px solid rgba(var(--gold-rgb), .2);
+}
+
+body.shinden-list .tab-header-list { gap: 4px; }
+
+body.shinden-list .tab-title {
+  position: relative;
+  padding: 8px 14px 9px !important;
+  color: var(--muted) !important;
+  background: rgba(var(--gold-rgb), .035);
+  border: 1px solid transparent !important;
+  border-bottom: 0 !important;
+  border-radius: 5px 5px 0 0 !important;
+  font-family: var(--font-label) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: color .18s ease, background .18s ease;
+}
+
+body.shinden-list .tab-title:hover {
+  color: var(--gold-light) !important;
+  background: rgba(var(--gold-rgb), .1);
+}
+
+body.shinden-list .tab-title.active {
+  color: var(--gold-light) !important;
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), .24), rgba(var(--accent-rgb), .08)) !important;
+  border-color: rgba(var(--gold-rgb), .3) !important;
+  box-shadow: inset 0 2px 0 var(--gold);
+}
+
+body.shinden-list .advanced-tags-wrapper .tab-content {
+  flex: 1;
+  min-height: 0;
+  margin: 0 !important;
+  padding: 15px 20px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+body.shinden-list .advanced-tags-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 7px;
+  margin: 0 0 10px !important;
+}
+
+body.shinden-list .advanced-tag-item {
+  width: auto !important;
+  padding: 0 !important;
+}
+
+body.shinden-list .advanced-tag-item .checkbox-label {
+  display: flex !important;
+  align-items: center;
+  width: 100%;
+  min-height: 36px;
+  margin: 0;
+  padding: 7px 10px;
+  background: rgba(11, 15, 11, .3);
+  border: 1px solid rgba(var(--gold-rgb), .14);
+  border-radius: 5px;
+  transition: color .16s ease, border-color .16s ease, background .16s ease;
+}
+
+body.shinden-list .advanced-tag-item .checkbox-label:hover {
+  background: rgba(var(--accent-rgb), .1);
+  border-color: rgba(var(--gold-rgb), .32);
+}
+
+body.shinden-list .advanced-tag-item .checkbox-label.checked {
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), .2), rgba(var(--accent-2-rgb), .06));
+  border-color: rgba(var(--gold-rgb), .4);
+  box-shadow: inset 2px 0 0 var(--gold);
+}
+
+body.shinden-list .advanced-tag-item .checkbox-label.checked .checkbox-label-text {
+  color: var(--gold-light) !important;
+}
+
+body.shinden-list .advanced-tag-item .checkbox-label-text {
+  padding-left: 24px !important;
+  color: #d6cbb7 !important;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+body.shinden-list .modal-footer {
+  flex: none;
+  gap: 8px;
+  padding: 12px 20px !important;
+  background: rgba(7, 12, 8, .24) !important;
+  border-top: 1px solid rgba(var(--gold-rgb), .2) !important;
+}
+
+body.shinden-list .modal-footer-button {
+  min-height: 36px;
+  padding: 8px 19px !important;
+  color: var(--text) !important;
+  background: rgba(var(--gold-rgb), .035) !important;
+  border: 1px solid rgba(var(--gold-rgb), .22) !important;
+  border-radius: 5px !important;
+  font-family: var(--font-label) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+body.shinden-list .modal-footer-button--save {
+  color: #f4ecd9 !important;
+  background: linear-gradient(110deg, #66734f, #3e4b36 60%, #81583e) !important;
+  border-color: rgba(var(--gold-rgb), .58) !important;
+}
+
+
+/* ── H. Ustawienia i komunikaty ─────────────────────────────────── */
+
+body.shinden-list .settingsContent-wrapper .title-wrapper::before {
+  content: "";
+  flex: 0 0 11px;
+  width: 11px;
+  height: 17px;
+  background: var(--m2-wheat) center / contain no-repeat;
+  opacity: .72;
+}
+
+body.shinden-list .description-box {
+  border-left: 2px solid var(--accent-2) !important;
+}
+
+body.shinden-list .description-box::before {
+  content: "NOTATKA KUPIECKA" !important;
+  display: block;
+  min-height: 22px;
+  margin-bottom: 5px;
+  padding: 2px 0 2px 27px;
+  color: var(--gold) !important;
+  background: var(--m2-seal) left center / 20px 20px no-repeat;
+  font-family: var(--font-label) !important;
+  font-size: 9px !important;
+  font-weight: 800;
+  letter-spacing: .13em !important;
+}
+
+body.shinden-list :is(.MuiTooltip-tooltip, [role="tooltip"], .MuiSlider-valueLabel) {
+  color: #f2e8d6 !important;
+  background: #242b20 !important;
+  border: 1px solid rgba(var(--gold-rgb), .36) !important;
+  border-radius: 5px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .32) !important;
+  font-family: var(--font-label) !important;
+  font-size: 11px;
+}
+
+
+/* ── I. Kontrolki — stany i czytelność ──────────────────────────── */
+
 body.shinden-list :is(button, .button, .dropdown-button, .view-content-header-button,
   .view-changer-button, .unmatched-btn, .advanced-tags-btn) {
   border-radius: 6px !important;
   transition: color .18s ease, background .18s ease, border-color .18s ease,
               box-shadow .18s ease, transform .18s ease !important;
 }
-body.shinden-list .input-wrapper,
-body.shinden-list .custom-dropdown-control,
-body.shinden-list .unmatched-input,
-body.shinden-list .settingsContent-wrapper input:not([type="checkbox"]):not([type="radio"]),
-body.shinden-list .settingsContent-wrapper textarea,
-body.shinden-list .settingsContent-wrapper select {
-  color: var(--text) !important;
-  background: rgba(11, 15, 11, .32) !important;
-  border: 1px solid rgba(var(--gold-rgb), .2) !important;
-  border-radius: 6px !important;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,.18);
+
+body.shinden-list :is(button, .button, .dropdown-button):active {
+  transform: translateY(1px);
 }
-body.shinden-list .input-wrapper:focus-within,
-body.shinden-list .custom-dropdown-control:focus-within,
-body.shinden-list .unmatched-input:focus,
-body.shinden-list .settingsContent-wrapper :is(input, textarea, select):focus {
-  border-color: rgba(var(--gold-rgb), .65) !important;
-  outline: 0 !important;
-  box-shadow: 0 0 0 3px rgba(var(--gold-rgb), .11),
-              inset 0 1px 4px rgba(0,0,0,.2) !important;
+
+body.shinden-list .view-changer-button {
+  min-width: 34px;
+  height: 30px !important;
+  color: #c6b998 !important;
+  background: rgba(var(--gold-rgb), .045) !important;
+  border-color: rgba(var(--gold-rgb), .2) !important;
 }
-body.shinden-list .input-element,
-body.shinden-list .settingsContent-wrapper input,
-body.shinden-list .settingsContent-wrapper textarea {
-  color: #eee4d1 !important;
-  caret-color: var(--gold-light);
-}
-body.shinden-list .input-placeholder,
-body.shinden-list .input-icon { color: #a99f8c !important; }
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="singleValue"],
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="placeholder"],
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) input { color: var(--text) !important; }
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="multiValue"] {
-  background: rgba(var(--accent-2-rgb), .16) !important;
-  border: 1px solid rgba(var(--accent-2-rgb), .28) !important;
-  border-radius: 5px;
-}
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="menu"] {
-  color: var(--text) !important;
-  background: linear-gradient(145deg, #293025, #1b2119) !important;
-  border: 1px solid rgba(var(--gold-rgb), .3) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 16px 42px rgba(0,0,0,.48) !important;
-}
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"] {
-  color: var(--text) !important;
-  background: transparent !important;
-  transition: color .16s ease, background .16s ease, padding-left .16s ease;
-}
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [id*="-option-"]:hover {
-  color: #fff !important;
-  background: linear-gradient(90deg, rgba(var(--accent-rgb), .22), rgba(var(--accent-2-rgb), .1)) !important;
-}
-body.shinden-list .custom-dropdown-control:hover,
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="control"]:hover,
-body.shinden-list :is(.custom-dropdown, .custom-async-dropdown) [class*="control"]:focus-within {
-  border-color: rgba(var(--gold-rgb), .55) !important;
-  box-shadow: 0 0 0 3px rgba(var(--gold-rgb), .1) !important;
-}
-body.shinden-list :is(.button, .modal-footer-button--save, .back-to-top-btn,
-  .settingsContent-wrapper .button:not(.button--danger), .unmatched-btn[aria-pressed="true"]) {
-  color: #f3e8d3 !important;
-  background: linear-gradient(110deg, #586548, #35412f 58%, #76553b) !important;
-  border: 1px solid rgba(var(--gold-rgb), .62) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 4px 12px rgba(0,0,0,.2) !important;
-}
-body.shinden-list :is(button, .button, .dropdown-button):hover {
-  border-color: rgba(var(--gold-rgb), .7) !important;
-  box-shadow: 0 5px 18px rgba(var(--gold-rgb), .12) !important;
-}
-body.shinden-list :is(button, .button, .dropdown-button):active { transform: translateY(1px); }
-body.shinden-list .dropdown-button,
-body.shinden-list .view-content-header-button,
-body.shinden-list .unmatched-btn:not([aria-pressed="true"]),
-body.shinden-list .advanced-tags-btn {
-  color: #d6c9b0 !important;
-  background: rgba(var(--accent-2-rgb), .075) !important;
-  border: 1px solid rgba(var(--gold-rgb), .2) !important;
-}
+
 body.shinden-list .view-changer-button.is-active,
 body.shinden-list .view-changer-button:hover {
   color: var(--gold-light) !important;
-  background: linear-gradient(110deg, rgba(var(--accent-rgb), .25), rgba(var(--accent-2-rgb), .14)) !important;
-  border-color: var(--gold) !important;
+  background: linear-gradient(110deg, rgba(var(--accent-rgb), .24), rgba(var(--accent-2-rgb), .12)) !important;
+  border-color: rgba(var(--gold-rgb), .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06),
+              0 3px 10px rgba(0, 0, 0, .15);
 }
-body.shinden-list .view-content-header-button:hover,
-body.shinden-list .dropdown-button:hover,
-body.shinden-list .advanced-tags-btn:hover { color: var(--gold-light) !important; }
 
+body.shinden-list :is(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--accent);
+}
 
-/* ── 10. Checkboxy, radio, suwaki i postęp ───────────────────────── */
-body.shinden-list :is(input[type="checkbox"], input[type="radio"]) { accent-color: var(--accent); }
-body.shinden-list .MuiCheckbox-root,
-body.shinden-list .MuiRadio-root,
-body.shinden-list .MuiSwitch-switchBase { color: #a99f8c !important; }
 body.shinden-list .MuiCheckbox-root.Mui-checked,
 body.shinden-list .MuiRadio-root.Mui-checked,
-body.shinden-list .MuiSwitch-switchBase.Mui-checked { color: var(--accent-light) !important; }
-body.shinden-list .MuiSwitch-track { background: #59604f !important; opacity: .7 !important; }
+body.shinden-list .MuiSwitch-switchBase.Mui-checked {
+  color: var(--accent-light) !important;
+}
+
+body.shinden-list .MuiSwitch-track {
+  background: #59604f !important;
+  opacity: .7 !important;
+}
+
 body.shinden-list .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
   background: var(--accent) !important;
   opacity: 1 !important;
 }
-body.shinden-list .MuiSlider-root { color: var(--accent) !important; }
-body.shinden-list .MuiSlider-track {
-  background: linear-gradient(90deg, var(--accent-2), var(--accent)) !important;
-}
-body.shinden-list .cellProgress-progress {
-  color: var(--accent-light) !important;
-  font-variant-numeric: tabular-nums;
-}
 
 
-/* ── 11. Modale, popovery i menu ─────────────────────────────────── */
-body.shinden-list .modal-wrapper {
-  background: rgba(7, 10, 7, .78) !important;
-  backdrop-filter: blur(8px) saturate(.86);
-}
-body.shinden-list .modal-inner {
-  color: var(--text) !important;
-  background: linear-gradient(115deg, rgba(var(--accent-rgb), .11), transparent 38%),
-              linear-gradient(180deg, #293025 0%, #1b2119 100%) !important;
-  border: 1px solid rgba(var(--gold-rgb), .42) !important;
-  border-radius: 11px !important;
-  box-shadow: 0 24px 80px rgba(0,0,0,.58), 0 0 30px rgba(var(--accent-rgb),.1),
-              inset 0 1px 0 rgba(255,255,255,.06) !important;
-}
-body.shinden-list .modal-header {
-  padding: 14px 18px 12px 22px !important;
-  background: linear-gradient(90deg, rgba(var(--accent-rgb), .18), rgba(var(--accent-2-rgb), .08) 72%, transparent) !important;
-  border-bottom: 1px solid rgba(var(--gold-rgb), .24) !important;
-}
-body.shinden-list .modal-header h4 {
-  color: var(--heading) !important;
-  font-family: var(--font-title) !important;
-  font-size: 22px !important;
-  letter-spacing: .02em !important;
-}
-body.shinden-list .modal-header h4::before {
-  content: "WOLF & SPICE / " !important;
-  color: var(--accent-light) !important;
-  font-family: var(--font-label) !important;
-  font-size: 9px !important;
-  font-weight: 800;
-  letter-spacing: .14em !important;
-}
-body.shinden-list .modal-close {
-  background: rgba(5, 10, 7, .28) !important;
-  border: 1px solid rgba(var(--gold-rgb), .2) !important;
-  border-radius: 7px !important;
-}
-body.shinden-list .modal-close-icon { color: #d8c9b4 !important; }
-body.shinden-list .modal-close:hover {
-  background: rgba(var(--accent-rgb), .18) !important;
-  border-color: rgba(var(--gold-rgb), .58) !important;
-}
-body.shinden-list .modal-close:hover .modal-close-icon { color: #fff !important; }
-body.shinden-list .modal-footer {
-  background: rgba(7, 12, 8, .22) !important;
-  border-top: 1px solid rgba(var(--gold-rgb), .2) !important;
-}
-body.shinden-list .modal-footer-button {
-  color: var(--text) !important;
-  background: rgba(255,255,255,.025) !important;
-  border: 1px solid rgba(var(--gold-rgb), .25) !important;
-}
-body.shinden-list .modal-footer-button:hover {
-  color: #fff !important;
-  background: rgba(var(--accent-2-rgb), .15) !important;
-  border-color: rgba(var(--accent-2-rgb), .65) !important;
-}
-body.shinden-list .MuiPopover-paper,
-body.shinden-list .MuiMenu-paper,
-body.shinden-list .MuiDialog-paper,
-body.shinden-list .MuiDrawer-paper,
-body.shinden-list .MuiTooltip-tooltip,
-body.shinden-list [role="tooltip"] {
-  color: var(--text) !important;
-  background: linear-gradient(145deg, #293025, #1b2119) !important;
-  border: 1px solid rgba(var(--gold-rgb), .34) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 16px 42px rgba(0,0,0,.48) !important;
-}
+/* ── J. Stopka — zamknięcie kroniki ─────────────────────────────── */
 
-
-/* ── 12. Akordeony, komunikaty i etykiety ────────────────────────── */
-body.shinden-list .MuiAccordion-root,
-body.shinden-list .MuiAccordionSummary-root,
-body.shinden-list .MuiAccordionDetails-root {
-  color: var(--text) !important;
-  background: rgba(27, 33, 25, .76) !important;
-  border-color: rgba(var(--gold-rgb), .16) !important;
-}
-body.shinden-list .MuiAccordion-root::before { background: rgba(var(--gold-rgb), .16) !important; }
-body.shinden-list :is(.MuiAlert-root, .alert, .description-box) {
-  color: var(--text) !important;
-  background: rgba(var(--accent-2-rgb), .08) !important;
-  border-color: rgba(var(--accent-2-rgb), .38) !important;
-  border-radius: 7px !important;
-}
-body.shinden-list .description-box { border-left: 2px solid var(--accent-2) !important; }
-body.shinden-list .description-box::before {
-  content: "NOTATKA KUPIECKA" !important;
-  display: block;
-  min-height: 22px;
-  margin-bottom: 5px;
-  padding: 2px 0 2px 28px;
-  color: var(--gold) !important;
-  font-family: var(--font-label) !important;
-  font-size: 10px !important;
-  font-weight: 800;
-  letter-spacing: .13em !important;
-  background: var(--m2-seal) left center / 21px 21px no-repeat;
-}
-body.shinden-list .description-box :is(p, span, a) { color: #e0d5c1 !important; }
-
-
-/* ── 13. Ustawienia — karta dokumentu i sekcje ───────────────────── */
-body.shinden-list .settingsContent-wrapper .title-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 22px 0 11px !important;
-}
-body.shinden-list .settingsContent-wrapper .title-wrapper::before {
-  content: "";
-  flex: 0 0 12px;
-  width: 12px;
-  height: 18px;
-  background: var(--m2-wheat) center / contain no-repeat;
-  opacity: .8;
-}
-body.shinden-list .settingsContent-wrapper .title-wrapper::after {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(var(--gold-rgb), .38), transparent) !important;
-}
-body.shinden-list .settingsContent-wrapper .title-wrapper :is(h2, h3, h4, h5) {
-  color: var(--gold-light) !important;
-  font-family: var(--font-label) !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: .14em !important;
-  text-transform: uppercase;
-  text-decoration: none !important;
-}
-body.shinden-list .settingsContent-wrapper .button {
-  font-family: var(--font-label) !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: .12em !important;
-  text-transform: uppercase;
-}
-body.shinden-list .settingsContent-wrapper .resetToDefaultBtn .button {
-  color: #d4a18b !important;
-  background: rgba(122, 58, 44, .12) !important;
-  border: 1px solid rgba(185, 112, 91, .42) !important;
-  box-shadow: none !important;
-}
-body.shinden-list .settingsContent-wrapper .resetToDefaultBtn .button:hover {
-  color: #fff !important;
-  background: rgba(122, 58, 44, .32) !important;
-}
-
-
-/* ── 14. Stopka — zamknięcie kroniki ─────────────────────────────── */
 body.shinden-list .footer-wrapper {
+  position: relative;
   margin-top: 42px !important;
-  padding: 24px 0 30px !important;
-  background: linear-gradient(180deg, rgba(20,24,19,.1), rgba(17,21,16,.94)) !important;
+  padding: 25px 0 32px !important;
+  background: linear-gradient(180deg, rgba(20, 24, 19, .08), rgba(17, 21, 16, .94)) !important;
   border-top: 1px solid rgba(var(--gold-rgb), .22) !important;
 }
+
 body.shinden-list .footer-wrapper::before {
   height: 1px !important;
-  background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.58) 18%,
-    rgba(var(--gold-rgb),.7) 50%, rgba(var(--gold-rgb),.58) 82%, transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), .58) 18%,
+    rgba(var(--gold-rgb), .7) 50%, rgba(var(--gold-rgb), .58) 82%, transparent) !important;
   box-shadow: 0 0 12px rgba(var(--gold-rgb), .16) !important;
   animation: none !important;
 }
+
 body.shinden-list .footer-wrapper::after {
   left: 50% !important;
   right: auto !important;
@@ -3176,112 +3409,129 @@ body.shinden-list .footer-wrapper::after {
   height: 14px !important;
   transform: translateX(-50%);
   background: var(--m2-divider) center / 100% 100% no-repeat !important;
-  opacity: .48 !important;
+  opacity: .45 !important;
   -webkit-mask-image: none !important;
-  mask-image: none !important;
+          mask-image: none !important;
 }
+
 body.shinden-list .footer-wrapper .wrapper-container::before {
   color: var(--gold-light) !important;
-  font-family: var(--font-label) !important;
-  font-size: 10px !important;
-  font-weight: 800;
-  letter-spacing: .17em !important;
-  background: rgba(var(--accent-rgb), .13) !important;
-  border: 1px solid rgba(var(--gold-rgb), .38) !important;
+  background: rgba(var(--accent-rgb), .12) !important;
+  border: 1px solid rgba(var(--gold-rgb), .36) !important;
   border-radius: 3px !important;
   clip-path: none !important;
+  font-family: var(--font-label) !important;
+  font-size: 9px !important;
+  font-weight: 800;
+  letter-spacing: .15em !important;
 }
+
 body.shinden-list .footer-wrapper .wrapper-container::after {
-  padding-right: 38px;
+  padding-right: 36px;
   color: #d5bd87 !important;
+  background-image: var(--m2-compass) !important;
+  background-position: right center !important;
+  background-size: 30px 30px !important;
+  background-repeat: no-repeat !important;
+  -webkit-background-clip: initial !important;
+          background-clip: initial !important;
+  filter: none !important;
   font-family: var(--font-display) !important;
   font-size: 21px !important;
   letter-spacing: .025em !important;
-  background-image: var(--m2-compass) !important;
-  background-position: right center !important;
-  background-size: 32px 32px !important;
-  background-repeat: no-repeat !important;
-  -webkit-background-clip: initial !important;
-  background-clip: initial !important;
-  filter: none !important;
   animation: none !important;
 }
-body.shinden-list .footer-text,
-body.shinden-list .footer-text a {
-  color: #a99f8c !important;
-  font-family: var(--font-label) !important;
-  font-size: 11px !important;
-  letter-spacing: .08em !important;
-}
-body.shinden-list .footer-text a::before {
-  content: "· " !important;
-  color: var(--gold) !important;
-  text-shadow: none !important;
-}
 
 
-/* ── 15. Responsywność ───────────────────────────────────────────── */
+/* ── K. Responsywność — bez nadmiaru ozdobników ──────────────────── */
+
 @media (max-width: 1023px) {
-  body.shinden-list .view-content-wrapper,
-  body.shinden-list .settingsContent-wrapper { padding: 18px !important; }
-  body.shinden-list .view-content-h3 { font-size: 29px !important; }
-  body.shinden-list .statsPanel-wrapper {
-    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  body.shinden-list .rowTitleInfo-wrapper {
+    width: 220px !important;
+  }
+
+  body.shinden-list .view-content-wrapper {
+    padding: 18px !important;
   }
 }
+
 @media (max-width: 767px) {
-  body.shinden-list .header-wrapper::after {
-    font-size: var(--nick-font-size-mobile) !important;
-  }
   body.shinden-list .view-content-wrapper,
   body.shinden-list .settingsContent-wrapper {
     padding: 14px !important;
-    border-radius: 8px !important;
   }
-  body.shinden-list .view-content-wrapper::before,
-  body.shinden-list .settingsContent-wrapper::before { border-radius: 8px !important; }
-  body.shinden-list .view-content-h3 { font-size: 25px !important; }
-  body.shinden-list .view-content-h3::before,
-  body.shinden-list .settingsContent-header h3::before {
-    width: 20px !important;
-    height: 20px !important;
-    margin-right: 7px;
-    vertical-align: -4px;
+
+  body.shinden-list .cell-tile-link::before {
+    top: 5px;
+    left: 5px;
+    min-width: 22px;
+    padding: 2px 4px;
+    font-size: 8px;
   }
-  body.shinden-list .statsPanel-wrapper {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 8px !important;
+
+  body.shinden-list .rowTitleInfo-wrapper {
+    width: min(210px, calc(100vw - 28px)) !important;
   }
-  body.shinden-list .statsPanel-row { padding: 11px 10px !important; }
-  body.shinden-list .statsPanel-header {
-    font-size: 9px !important;
-    letter-spacing: .09em !important;
+
+  body.shinden-list .rowTitleInfo-inner::before {
+    font-size: 7px;
+    letter-spacing: .08em;
   }
-  body.shinden-list .cell-tile-info,
-  body.shinden-list .cell-tile-info:hover { padding: 8px !important; }
-  body.shinden-list .cell-tile-info .cell-tile-title { font-size: 13px !important; }
-  body.shinden-list .modal-wrapper { padding: 10px !important; }
+
+  body.shinden-list .modal-wrapper {
+    padding: 10px !important;
+  }
+
   body.shinden-list .modal-inner {
     width: 100% !important;
     max-width: 100% !important;
     max-height: calc(100dvh - 20px) !important;
     overflow: auto !important;
-    border-radius: 9px !important;
   }
-  body.shinden-list .footer-wrapper .wrapper-container::before { margin-left: 0 !important; }
-  body.shinden-list .footer-wrapper .wrapper-container::after {
-    font-size: 17px !important;
-    background-size: 27px 27px !important;
-    padding-right: 32px;
+
+  body.shinden-list .modal-header {
+    padding: 10px 12px !important;
+  }
+
+  body.shinden-list .modal-header h4 {
+    flex-wrap: wrap;
+    gap: 5px 8px;
+    font-size: 18px !important;
+  }
+
+  body.shinden-list .advanced-tags-wrapper .tab-header {
+    padding: 9px 10px 0;
+    overflow-x: auto;
+  }
+
+  body.shinden-list .advanced-tags-wrapper .tab-content {
+    padding: 10px;
+  }
+
+  body.shinden-list .advanced-tags-list {
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 5px;
+  }
+
+  body.shinden-list .modal-footer {
+    padding: 9px 10px !important;
+  }
+
+  body.shinden-list .modal-footer-button {
+    padding: 7px 12px !important;
+    font-size: 9px !important;
   }
 }
+
 @media (max-width: 380px) {
-  body.shinden-list .view-content-wrapper { padding: 12px !important; }
-  body.shinden-list .statsPanel-wrapper { grid-template-columns: 1fr !important; }
+  body.shinden-list .advanced-tags-list {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 
-/* ── 16. Ruch i dostępność ───────────────────────────────────────── */
+/* ── L. Dostępność i redukcja ruchu ─────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   body.shinden-list *,
   body.shinden-list *::before,
@@ -3291,6 +3541,14 @@ body.shinden-list .footer-text a::before {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+
+  body.shinden-list .layout-wrapper::before {
+    display: none !important;
+  }
+
+  body.shinden-list .cell-tile-list:has(.cell-tile-wrapper:hover) .cell-tile-wrapper:not(:hover) {
+    opacity: 1 !important;
+  }
 }
 
-/* Koniec MCIOCHU V2 — The Merchant's Journal. */
+/* Koniec MCIOCHU V2.1 — Rzemiosło i interakcje. */
