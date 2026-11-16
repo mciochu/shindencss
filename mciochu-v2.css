@@ -37,7 +37,7 @@
 
   --postac: url("https://i.imgur.com/2M5ZbVG.png");
   --postac-duza: none;
-  --postac-prawa: none;
+  --postac-prawa: url("https://i.imgur.com/98xIzeX.png");
   --postac-siad: .6;
   --postac-proporcje: .7111;
   --postac-h: 300px;
@@ -46,7 +46,7 @@
   --postac-uniesienie: 5px;
   --postac-maska: none;
   --postac-duza-maska: none;
-  --postac-prawa-widok: none;
+  --postac-prawa-widok: block;
 
 
   --side-display: none;
@@ -2176,17 +2176,17 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 
 body.shinden-list::after {
   content: "";
-  display: var(--side-display);
+  display: var(--postac-prawa-widok);
   position: fixed;
   z-index: 1;
   bottom: 0;
-  left: var(--side-left, auto);
-  right: var(--side-right, 0);
+  left: auto;
+  right: 0;
   width: var(--side-w);
   height: var(--side-h);
-  background: var(--postac-duza) var(--side-pos) / var(--side-size, contain) no-repeat;
+  background: var(--postac-prawa) var(--side-pos) / var(--side-size, contain) no-repeat;
   filter: var(--side-filter, none);
   opacity: var(--side-opacity);
   pointer-events: none;
 }
-@media (max-width: 1599px) { body.shinden-list::after { display: none; } }
+@media (max-width: 1023px) { body.shinden-list::after { display: none; } }
