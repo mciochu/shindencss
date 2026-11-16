@@ -2175,42 +2175,35 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 
 
 /*
-   POSTAĆ PO PRAWEJ — KOMPATYBILNOŚĆ ZE STARYM I NOWYM WIDOKIEM SHINDEN
-   Stary widok: body.shinden-list::after
-   Nowy widok:  [data-sh-module="user-list"]::after
+   POSTAĆ PO PRAWEJ — WSPÓLNY PUNKT RENDEROWANIA DLA STAREGO I NOWEGO SHINDEN
+   Obie wersje listy obsługują pseudoelement body::after.
+   Nie używamy osobnego ::after na #tresc, aby uniknąć ograniczeń zakresu skórki
+   oraz konfliktu z pseudoelementem wykorzystywanym przez Shinden.
 */
 
-/* Wspólne ustawienia grafiki dla obu wariantów strony. */
-body.shinden-list::after,
-[data-sh-module="user-list"]::after {
-  content: "";
+/*
+   Ten blok celowo nadpisuje wcześniejszy mechanizm --postac-duza/--side-display.
+   Grafika po prawej korzysta z własnych zmiennych --postac-prawa i --postac-prawa-widok.
+*/
+body.shinden-list::after {
+  content: "" !important;
   display: var(--postac-prawa-widok, block) !important;
-  position: fixed;
-  z-index: 3 !important;
-  right: 0;
-  bottom: 0;
-  width: var(--side-w, 360px);
-  height: var(--side-h, 720px);
-  background-image: var(--postac-prawa);
-  background-position: var(--side-pos, center bottom);
-  background-size: var(--side-size, contain);
-  background-repeat: no-repeat;
-  filter: var(--side-filter, none);
-  opacity: var(--side-opacity, 1);
-  pointer-events: none;
+  position: fixed !important;
+  z-index: 5 !important;
+  left: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: var(--side-w, 360px) !important;
+  height: var(--side-h, 720px) !important;
+  background: var(--postac-prawa) var(--side-pos, center bottom) / var(--side-size, contain) no-repeat !important;
+  filter: var(--side-filter, none) !important;
+  opacity: var(--side-opacity, 1) !important;
+  pointer-events: none !important;
 }
 
-/* W nowym widoku postać jest rysowana wewnątrz modułu listy, nie na body. */
-body.sh-lista-strona::after {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-}
-
-/* Postać pozostaje widoczna na tabletach; wyłączamy ją tylko na małych ekranach. */
+/* Zachowujemy dotychczasowe zachowanie na małych telefonach. */
 @media (max-width: 767px) {
-  body.shinden-list::after,
-  [data-sh-module="user-list"]::after {
+  body.shinden-list::after {
     display: none !important;
   }
 }
