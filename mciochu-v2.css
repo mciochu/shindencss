@@ -2174,7 +2174,15 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 }
 
 
-body.shinden-list::after {
+/*
+   POSTAĆ PO PRAWEJ — KOMPATYBILNOŚĆ ZE STARYM I NOWYM WIDOKIEM SHINDEN
+   Stary widok: body.shinden-list::after
+   Nowy widok:  [data-sh-module="user-list"]::after
+*/
+
+/* Wspólne ustawienia grafiki dla obu wariantów strony. */
+body.shinden-list::after,
+[data-sh-module="user-list"]::after {
   content: "";
   display: var(--postac-prawa-widok, block) !important;
   position: fixed;
@@ -2192,7 +2200,17 @@ body.shinden-list::after {
   pointer-events: none;
 }
 
+/* W nowym widoku postać jest rysowana wewnątrz modułu listy, nie na body. */
+body.sh-lista-strona::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
 /* Postać pozostaje widoczna na tabletach; wyłączamy ją tylko na małych ekranach. */
 @media (max-width: 767px) {
-  body.shinden-list::after { display: none !important; }
+  body.shinden-list::after,
+  [data-sh-module="user-list"]::after {
+    display: none !important;
+  }
 }
