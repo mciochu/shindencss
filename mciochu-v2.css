@@ -2175,16 +2175,19 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 
 
 /*
-   POSTAĆ PO PRAWEJ — WSPÓLNY ELEMENT DLA STAREGO I NOWEGO WIDOKU
-   .page-wrapper występuje w obu wersjach listy.
-   Używamy jego ::after, ponieważ Shinden rezerwuje body::after dla własnej grafiki.
+   POSTAĆ PO PRAWEJ — HOVER NA PRAWDZIWYM ELEMENCIE SHINDENA
+   .back-to-top-wrapper występuje zarówno w starej, jak i nowej liście.
+   Grafika jest pseudo-elementem tego kontenera, a nie elementem page-wrapper.
 */
-.page-wrapper::after {
+body.shinden-list .back-to-top-wrapper {
+  pointer-events: none !important;
+}
+
+body.shinden-list .back-to-top-wrapper::before {
   content: "" !important;
   display: var(--postac-prawa-widok, block) !important;
   position: fixed !important;
   z-index: 5 !important;
-  left: auto !important;
   right: 0 !important;
   bottom: 0 !important;
   width: var(--side-w, 360px) !important;
@@ -2198,38 +2201,27 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
     transform .28s cubic-bezier(.2, .9, .28, 1.35),
     filter .24s ease,
     opacity .2s ease;
-  pointer-events: none !important;
+  pointer-events: auto !important;
 }
 
-/*
-   ZGNIATANIE HOLO — działa tylko na urządzeniach z prawdziwym hoverem.
-   Pseudoelement staje się celem myszy wyłącznie w przeglądarkach obsługujących
-   hover na wygenerowanych elementach; poza nimi zostaje nieklikalną dekoracją.
-*/
-@supports selector(.page-wrapper::after:hover) {
-  @media (hover: hover) and (pointer: fine) {
-    .page-wrapper::after {
-      pointer-events: auto !important;
-      cursor: default;
-    }
+/* Zgniatanie reaguje na najechanie na samą grafikę. */
+@media (hover: hover) and (pointer: fine) {
+  body.shinden-list .back-to-top-wrapper:hover::before {
+    transform: translateY(15px) scaleX(1.13) scaleY(.68) rotate(-2deg) !important;
+    filter:
+      drop-shadow(0 5px 12px rgba(12, 7, 4, .8))
+      drop-shadow(0 0 24px rgba(255, 220, 130, .55)) !important;
+  }
 
-    .page-wrapper::after:hover {
-      transform: translateY(15px) scaleX(1.13) scaleY(.68) rotate(-2deg);
-      filter:
-        drop-shadow(0 5px 12px rgba(12, 7, 4, .8))
-        drop-shadow(0 0 24px rgba(255, 220, 130, .55));
-    }
-
-    .page-wrapper::after:active {
-      transform: translateY(22px) scaleX(1.18) scaleY(.58) rotate(1deg);
-      transition-duration: .1s;
-    }
+  body.shinden-list .back-to-top-wrapper:active::before {
+    transform: translateY(22px) scaleX(1.18) scaleY(.58) rotate(1deg) !important;
+    transition-duration: .1s;
   }
 }
 
 /* Zachowujemy dotychczasowe zachowanie na małych telefonach. */
 @media (max-width: 767px) {
-  .page-wrapper::after {
+  body.shinden-list .back-to-top-wrapper::before {
     display: none !important;
   }
 }
