@@ -2175,17 +2175,11 @@ body.shinden-list :is(.sidebar-list-counter, .cellProgress-progress, .cellDefaul
 
 
 /*
-   POSTAĆ PO PRAWEJ — WSPÓLNY PUNKT RENDEROWANIA DLA STAREGO I NOWEGO SHINDEN
-   Obie wersje listy obsługują pseudoelement body::after.
-   Nie używamy osobnego ::after na #tresc, aby uniknąć ograniczeń zakresu skórki
-   oraz konfliktu z pseudoelementem wykorzystywanym przez Shinden.
+   POSTAĆ PO PRAWEJ — WSPÓLNY ELEMENT DLA STAREGO I NOWEGO WIDOKU
+   .page-wrapper występuje w obu wersjach listy.
+   Używamy jego ::after, ponieważ Shinden rezerwuje body::after dla własnej grafiki.
 */
-
-/*
-   Ten blok celowo nadpisuje wcześniejszy mechanizm --postac-duza/--side-display.
-   Grafika po prawej korzysta z własnych zmiennych --postac-prawa i --postac-prawa-widok.
-*/
-body.shinden-list::after {
+.page-wrapper::after {
   content: "" !important;
   display: var(--postac-prawa-widok, block) !important;
   position: fixed !important;
@@ -2203,7 +2197,7 @@ body.shinden-list::after {
 
 /* Zachowujemy dotychczasowe zachowanie na małych telefonach. */
 @media (max-width: 767px) {
-  body.shinden-list::after {
+  .page-wrapper::after {
     display: none !important;
   }
 }
