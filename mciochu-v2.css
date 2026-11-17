@@ -2233,8 +2233,8 @@ body.shinden-list .back-to-top-wrapper::before {
    ===================================================================== */
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   body.shinden-list .hero-image-container::after {
-    --pad: 32px;
-    --holo-dymek-wysokosc: 56px;
+    --pad: 90px;
+    --holo-dymek-wysokosc: 80px;
     top: calc(
       100% - var(--postac-h) * var(--postac-siad) -
       var(--pad) - var(--postac-uniesienie) -
